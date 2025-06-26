@@ -12,6 +12,8 @@
  * manually added below.
  */
 @import "../custom/components/components.css";
+@import "../custom/components/footer.css";
+@import "../custom/components/header.css";
 
 /**
  * Add Tailwind's utility classes and any utility classes registered by
@@ -19,3 +21,4 @@
  */
 @import "tailwindcss/utilities";
 @import "../custom/utilities.css";
+

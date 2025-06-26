@@ -26,10 +26,29 @@ Recharger la page d’accueil de site http://wp-st-jo.local/ : le texte devrait 
 
 
 Pour voir ce changement sur https://ecole.st-joseph.fr: 
+- demander à Loïc TRUCHOT le droit de contribuer au répertoire 
 - `git add -A && git commit -m "test deploiement" && git push` sur la branche `main` ou faire un PR depuis une nouvelle branche vers `main` et merger
 - aller sur https://github.com/ltruchot/wordpress-theme-st-jo/actions
 - une fois que l’action "deploy" est terminée, vérifier le changement: https://ecole.st-joseph.fr/  
 
+
+## Changements en profondeurs
+- demander à Loïc TRUCHOT le mot de passe SSH de la gestion de Thème
+- `ssh stjoseu@ssh.cluster027.hosting.ovh.net`, entrer password
+- `cd /homez.1929/stjoseu/www/wp-content/themes/st-jo` pour retrouver le thème 
+- des backups faits à chaque déploiements sont présents dans /homez.1929/stjoseu/themes-backup
+- on peut donc restaurer une version précédente avec: `cp -r /homez.1929/stjoseu/themes-backup/20250626_124849/themes/* /homez.1929/stjoseu/www/wp-content/themes/` ou encore, en revenant en arrière sur un changement dans le versionning git et en redeployant
+
+## Hébergement
+- demander à Loïc TRUCHOT l’accès à l’hébergement OVH
+- https://www.ovh.com/manager/#/web/hosting/stjoseu.cluster027.hosting.ovh.net
+
+## Déploiement automatique
+- `.github/workflows/deploy-rsync.yml` définit le déploiement automatique sur le serveur OVH
+
+## Design 
+- overview: https://www.figma.com/proto/nT7ysMo8BiuyKMqMuUTyqN/Ecole-Saint-Joseph?page-id=4772%3A22037&node-id=31-4104&viewport=797%2C-682%2C0.3&t=KJYxIoTOQnBwxFzd-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=31%3A4104&show-proto-sidebar=1
+- editor view for dev: https://www.figma.com/design/nT7ysMo8BiuyKMqMuUTyqN/Ecole-Saint-Joseph?node-id=31-4104
 
 
 ---------------------------------------------------------

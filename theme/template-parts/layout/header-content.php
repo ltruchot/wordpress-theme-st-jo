@@ -9,39 +9,40 @@
 
 ?>
 
-<header id="masthead">
+<header id="masthead" class="estjo-header">
+	<div class="estjo-header__container">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="estjo-header__logo" rel="home">
+			<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/Logotype.png' ); ?>" alt="Logo École Saint-Joseph">
+		</a>
 
-	<div>
-		<?php
-		if ( is_front_page() ) :
-			?>
-			<h1><?php bloginfo( 'name' ); ?></h1>
-			<?php
-		else :
-			?>
-			<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-		endif;
+		<nav id="site-navigation" class="estjo-header__nav" aria-label="<?php esc_attr_e( 'Main Navigation', 'st-jo' ); ?>">
+			<ul>
+				<li><a href="/lecole" <?php if(is_page('lecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
+				<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
+				<li><a href="/associations" <?php if(is_page('associations')) echo 'class="current-menu-item"'; ?>>Les associations</a></li>
+				<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
+				<li><a href="/actualite" <?php if(is_page('actualite')) echo 'class="current-menu-item"'; ?>>Actualité</a></li>
+			</ul>
+			<a href="/contact" class="estjo-header__cta">Nous contacter</a>
+		</nav>
 
-		$st_jo_description = get_bloginfo( 'description', 'display' );
-		if ( $st_jo_description || is_customize_preview() ) :
-			?>
-			<p><?php echo $st_jo_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-		<?php endif; ?>
+		<button class="estjo-header__mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'st-jo' ); ?>">
+			<span></span>
+			<span></span>
+			<span></span>
+			<div class="estjo-header__mobile-toggle-text">MENU</div>
+		</button>
 	</div>
 
-	<nav id="site-navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'st-jo' ); ?>">
-		<button aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'st-jo' ); ?></button>
-
-		<?php
-		wp_nav_menu(
-			array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-				'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
-			)
-		);
-		?>
-	</nav><!-- #site-navigation -->
-
+	<!-- Mobile menu -->
+	<nav id="mobile-menu" class="estjo-header__mobile-menu" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'st-jo' ); ?>">
+		<ul>
+			<li><a href="/lecole" <?php if(is_page('lecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
+			<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
+			<li><a href="/associations" <?php if(is_page('associations')) echo 'class="current-menu-item"'; ?>>Les associations</a></li>
+			<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
+			<li><a href="/actualite" <?php if(is_page('actualite')) echo 'class="current-menu-item"'; ?>>Actualité</a></li>
+		</ul>
+		<a href="/contact" class="estjo-header__mobile-cta">Nous contacter</a>
+	</nav>
 </header><!-- #masthead -->
