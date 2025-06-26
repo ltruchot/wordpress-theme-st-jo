@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: Deploy to Production (Rsync)
 
 on:
   push:
@@ -26,23 +26,16 @@ jobs:
       run: npm ci
 
     - name: Build theme
-      run: npm run bundle
-
-    - name: Extract theme locally
-      run: |
-        unzip -o st-jo.zip
-        ls -la st-jo/
+      run: npm run production
 
     - name: Setup SSH
       run: |
         mkdir -p ~/.ssh
         ssh-keyscan -H -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-    - name: Install tools
-      run: sudo apt-get update && sudo apt-get install -y sshpass rsync
-
     - name: Create backup on server
       run: |
+        sudo apt-get update && sudo apt-get install -y sshpass
         sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p ${{ secrets.SSH_PORT || 22 }} \
           ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
           # Variables
@@ -56,12 +49,12 @@ jobs:
           fi
         ENDSSH
 
-    - name: Deploy theme files
+    - name: Deploy theme via rsync
       run: |
-        # Utiliser rsync pour synchroniser les fichiers extraits
+        # Utiliser rsync pour synchroniser les fichiers
         sshpass -p "${{ secrets.SSH_PASSWORD }}" rsync -avz --delete \
           -e "ssh -p ${{ secrets.SSH_PORT || 22 }}" \
-          ./st-jo/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.THEME_PATH }}/
+          ./theme/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.THEME_PATH }}/
 
     - name: Set permissions
       run: |
