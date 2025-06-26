@@ -1,9 +1,40 @@
-st-jo
+Wordpress Thème St Jo
 =====
 
-Un thème le site web de l’école St Joseph de La Bouëxière
+Thème du site web de l’école St Joseph de La Bouëxière
 
-## Quickstart
+## Démarrage rapide pour les dev: installer, developer, deployer
+
+- installer "Local": https://localwp.com/ et node.js en v22.x.x https://nodejs.org/en/download
+- créer/importer un worpress à jour via "Local" (bouton + en bas à gauche) (ex: `C:\Users\<remplacer-par-mon-username>\Local Sites\wp-st-jo` sous windows 11)
+- lancer ce site avec local (run site, open in browser)
+
+Enfin, cloner ce repertoire dans les themes du  site concerné (ex: `cd C:\Users\<remplacer-par-mon-username>\Local Sites\wp-st-jo\app\public\wp-content\themes` sous windows 11)
+- `git clone https://github.com/ltruchot/wordpress-theme-st-jo.git`
+- `cd wordpress-theme-st-jo`
+- `npm install` à la premiere utilisation
+- `npm run watch` démarre le theme en mode developpement local
+
+À la première utilisation:
+- dans le navigateur, accéder à l’Admin en local: http://wp-st-jo.local/wp-admin
+- passer le site en français si besoin: http://wp-st-jo.local:10004/wp-admin/options-general.php
+- puis activer le theme:
+  - Tableau de bord -> Apparence -> Thèmes -> wordpress-theme-st-jo -> activer
+
+Changer quelque chose dans un template, par exemple ajouter "bonjour" juste après `<main id="main">` dans `theme/page.php`  
+Recharger la page d’accueil de site http://wp-st-jo.local/ : le texte devrait s’afficher après l’entete du site  
+
+
+Pour voir ce changement sur https://ecole.st-joseph.fr: 
+- `git add -A && git commit -m "test deploiement" && git push` sur la branche `main` ou faire un PR depuis une nouvelle branche vers `main` et merger
+- aller sur https://github.com/ltruchot/wordpress-theme-st-jo/actions
+- une fois que l’action "deploy" est terminée, vérifier le changement: https://ecole.st-joseph.fr/  
+
+
+
+---------------------------------------------------------
+
+Generated documentation
 
 ### Installation
 

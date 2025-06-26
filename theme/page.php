@@ -16,7 +16,6 @@ get_header();
 
 	<section id="primary">
 		<main id="main">
-			test-page
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) :
