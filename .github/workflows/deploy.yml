@@ -55,7 +55,13 @@ jobs:
           
           # Extraire le nouveau thème
           cd /tmp
-          unzip -o st-jo.zip
+          # Essayer d'abord avec 7z s'il est disponible
+          if command -v 7z &> /dev/null; then
+            7z x -y st-jo.zip
+          else
+            # Sinon utiliser unzip avec l'option pour ignorer les avertissements
+            unzip -o st-jo.zip 2>/dev/null || true
+          fi
           
           # Remplacer le thème existant
           rm -rf "$THEME_PATH"
