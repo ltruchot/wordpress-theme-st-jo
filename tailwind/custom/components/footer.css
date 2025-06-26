@@ -1,0 +1,154 @@
+.estjo-footer {
+	position: relative;
+	margin-top: auto;
+	font-family: Lato, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 25.6px;
+	color: #fff;
+
+	h4 {
+		padding: 0;
+		margin: 0;
+		margin-bottom: 15px;
+		font-family: "Baloo Da 2", cursive;
+		font-size: 22px;
+		font-weight: bold;
+		line-height: 26.4px;
+	}
+
+	a {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		font-family: Lato, sans-serif;
+		font-weight: 400;
+		color: #fff;
+		text-decoration: underline;
+
+		img {
+			width: 24px;
+			height: 24px;
+		}
+	}
+
+	address {
+		font-style: normal;
+	}
+
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		list-style-position: inside;
+		list-style-type: none;
+
+		li {
+			padding: 0;
+			margin: 0;
+			margin-bottom: 12px;
+			word-break: keep-all;
+			text-wrap: nowrap;
+			list-style: none;
+			list-style-position: inside;
+			list-style-type: none;
+		}
+	}
+
+	.estjo-footer__shapes {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		flex-direction: row;
+		gap: 20px;
+		align-items: flex-start;
+		justify-content: center;
+		transform: translate(-8%, -40%) scale(0.9);
+
+		@media (width <= 768px) {
+			left: -43px;
+			transform: translate(-8%, -40%) scale(0.4);
+		}
+
+		img:nth-child(2) {
+			transform: translateY(100%);
+		}
+	}
+
+	.estjo-footer__background-decoration {
+		height: 29px;
+		padding: 0;
+		margin: 0;
+		background-image: url("https://ecole.st-joseph.fr/wp-content/uploads/2025/01/footer-background-decoration.png");
+		background-repeat: repeat;
+	}
+
+	.estjo-footer__container {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+		padding-top: 50px;
+		background-color: #5b63cb;
+
+		.estjo-footer__content {
+			display: flex;
+			flex-direction: row;
+			gap: 50px;
+			align-items: flex-start;
+			justify-content: center;
+			padding: 0 50px;
+
+			section {
+				flex: 1;
+				max-width: 400px;
+			}
+
+			section:nth-child(3) {
+				padding-top: 20px;
+			}
+
+			section:nth-child(4) {
+				flex: 2;
+			}
+
+			@media (width <= 1024px) {
+				gap: 24px;
+
+				section {
+					max-width: 300px;
+				}
+			}
+
+			@media (width <= 768px) {
+				flex-direction: column;
+				gap: 24px;
+			}
+		}
+
+		.estjo-footer__copyright {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			font-size: 14px;
+			line-height: 22.4px;
+
+			ul {
+				display: flex;
+				gap: 24px;
+				align-items: center;
+				justify-content: center;
+
+				@media (width <= 768px) {
+					flex-direction: column;
+					gap: 12px;
+				}
+			}
+		}
+	}
+}
+

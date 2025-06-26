@@ -38,7 +38,7 @@
 			<section>
 				<ul>
 					<li>
-						<a href="tel:0298765432" class="estjo-no-decoration"><img
+						<a href="tel:0298765432" class="no-underline"><img
 								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-smartphone.svg"
 								alt="Icone de téléphone">02 98 76 54 32</a>
 					</li>
