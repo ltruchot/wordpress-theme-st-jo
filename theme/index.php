@@ -17,6 +17,7 @@ get_header();
 
 	<section id="primary">
 		<main id="main">
+			test-index
 
 		<?php
 		if ( have_posts() ) {

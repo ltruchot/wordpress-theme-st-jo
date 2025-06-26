@@ -1,0 +1,70 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [ closed ]
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build theme
+      run: npm run bundle
+
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Deploy theme via SCP
+      run: |
+        sudo apt-get update && sudo apt-get install -y sshpass
+        sshpass -p "${{ secrets.SSH_PASSWORD }}" scp -P ${{ secrets.SSH_PORT || 22 }} \
+          st-jo.zip ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/
+
+    - name: Extract and install theme
+      run: |
+        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p ${{ secrets.SSH_PORT || 22 }} \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
+          # Variables
+          THEME_PATH="${{ secrets.THEME_PATH }}"
+          BACKUP_DIR="${{ secrets.BACKUP_DIR }}/$(date +%Y%m%d_%H%M%S)"
+          
+          # Créer une sauvegarde du thème actuel
+          if [ -d "$THEME_PATH" ]; then
+            mkdir -p "$BACKUP_DIR"
+            cp -r "$THEME_PATH" "$BACKUP_DIR/"
+          fi
+          
+          # Extraire le nouveau thème
+          cd /tmp
+          unzip -o st-jo.zip
+          
+          # Remplacer le thème existant
+          rm -rf "$THEME_PATH"
+          mv st-jo "$THEME_PATH"
+          
+          # Nettoyer
+          rm -f /tmp/st-jo.zip
+          
+          # Ajuster les permissions
+          find "$THEME_PATH" -type d -exec chmod 755 {} \;
+          find "$THEME_PATH" -type f -exec chmod 644 {} \;
+        ENDSSH
