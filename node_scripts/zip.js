@@ -19,7 +19,9 @@ if (slug) {
 
 	// Create a file to stream archive data to.
 	const output = fs.createWriteStream(zipFilePath);
-	const archive = archiver('zip');
+	const archive = archiver('zip', {
+		zlib: { level: 1 } // Compression level 1 (fastest, least compression)
+	});
 
 	// Listen for all archive data to be written.
 	output.on('close', function () {
