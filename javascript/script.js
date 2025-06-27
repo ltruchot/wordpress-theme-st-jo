@@ -9,6 +9,8 @@
  * https://esbuild.github.io/
  */
 
+import { isDesktop, isMobile, onBreakpointChange } from './breakpoints.js';
+
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
   const mobileToggle = document.querySelector('.estjo-header__mobile-toggle');

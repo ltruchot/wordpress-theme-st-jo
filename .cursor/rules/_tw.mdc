@@ -1,0 +1,601 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: _tw documentation
+globs: 
+alwaysApply: true
+---
+
+ Introduction
+Custom WordPress themes, now with Tailwind
+
+Get started quickly, and deploy to production sooner than you expect
+Quickstart
+Installation
+
+    Generate your theme
+    Unzip the archive
+    Move the entire unzipped folder to wp-content/themes in your local WordPress installation
+    Run npm install && npm run dev in the moved folder
+    Activate the theme in your local WordPress installation
+
+Using WordPress Multisite? Don’t forget that your theme must first be enabled via the Network Admin in order to be available for activation on a network site.
+Development
+
+    Run npm run watch
+    Add Tailwind utility classes with abandon
+
+Deployment
+
+    Run npm run bundle
+    Upload the resulting zip file to your site using the “Upload Theme” button on the “Add Themes” administration page
+
+Have more complex deployment requirements? I’ve received reports of successful deployments via GitHub Actions, Envoyer, Deployer and Capistrano. For more details, please see the deployment documentation.
+
+Why _tw?
+
+There are many approaches to using Tailwind with WordPress. _tw is the combination of approaches that works best for me. I think it could work for you, too!
+
+I use _tw to build websites for my clients, working from custom designs created in applications like Figma, XD and Sketch. I built it to be:
+
+    WordPress first—I like building websites using WordPress, and if I had to choose between it and the other parts of my development toolkit, I would choose WordPress.
+    Block editor focused—My clients have a better time updating their sites when they can use the block editor, so I built _tw to make it easy to customize the block editor and to create as near as possible to a front-end experience when editing.
+    Classic editor friendly—But sometimes you have a custom post type where the classic editor (sometimes in conjunction with Advanced Custom Fields) still makes sense, and _tw supports that, too.
+    Free of production dependencies—I want a build process running locally that creates a static CSS file for deployment. I don’t want to add any dependencies that generate CSS, either client- or server-side.
+    Just Tailwind and WordPress—I’m not interested in making decisions for anyone else about any other frameworks or front-end packages. _tw is a modern WordPress starter theme with Tailwind added—period.
+
+WordPress first
+
+I wanted to integrate Tailwind without making the experience of WordPress theme development diverge in any meaningful way from what is documented on wordpress.org. _tw is a hybrid theme using Automattic’s _s and Varia as a starting point, adding just what I felt was necessary to create a build process for Tailwind and JavaScript.
+Block editor focused
+
+Getting Tailwind (and Tailwind Typography) to play nicely with the block editor can take a bit of work. _tw handles that for you so you can focus on building websites.
+
+That said, _tw doesn’t support adding arbitrary classes in the block editor. (For more details, please see the section below on my eagerness to avoid production dependencies.)
+Classic editor friendly
+
+I recognize that not everyone has bought into the block editor. (Though I do think those people should give it another chance!)
+
+Also, I still find use cases for overriding the block editor for custom post types that consist exclusively of structured content, and I doubt I’m alone in this.
+
+_tw supports both use cases, automatically injecting Tailwind Typography classes as appropriate.
+Free of production dependencies
+
+There are other projects at the nexus of WordPress and Tailwind that take different approaches to adding Tailwind support, and many of them do so by running Tailwind in production. There are a number of ways to do this, but all require some combination of:
+
+    Using server- or client-side resources to generate CSS classes
+    Caching CSS classes on a per-page basis, dependent on which classes are used on which pages
+
+I’m not comfortable with either of the above options. These are necessary compromises if you want to support adding arbitrary classes in the block editor, but I worry about potential failures in class generation, caching, and other related brittleness or slowness inherent in running Tailwind in production.
+
+And absolutely there are use cases for the above, and if you have them, those projects will hopefully serve you well! In my opinion, though, generating CSS locally is the most robust approach, and one that ensures the best experience for website visitors.
+Just Tailwind and WordPress
+
+Early versions of _tw included Alpine.js (because I love Alpine). But including it meant enqueuing JavaScript that a meaningful percentage of people working with _tw would never use. Watching the count of generated themes move from hundreds to thousands made me realize that I should make as few assumptions as possible about how people should set up their themes.
+
+Since then, I’ve prioritized keeping _tw’s focus on adding Tailwind to WordPress, with a modern development workflow for JavaScript that makes it as easy as possible to add things like Alpine (or Turbo).
+
+In putting _tw out in the world, I have been very conscious of the fact that it represents nothing more than what has worked for me and what I think is the best way for me to make websites with WordPress and Tailwind. There are other ways! But I’d love for you to give it a try and see if it works for you, too.
+
+And if it doesn’t, I’d love to hear why. Maybe we can make _tw better together!
+
+
+ Installation
+Get started with _tw
+
+Generate your custom theme, install it in WordPress and run your first Tailwind builds
+Generate your custom theme
+
+The quickest way to get started with _tw is to simply head to this website’s homepage and generate a Tailwind-optimized WordPress theme.
+
+The generator offers a number of options. These ones may not be self-explanatory:
+
+    Theme Name: The name of your theme in title case, with or without spaces. If the theme slug and function prefix fields are both left blank, this field will be used to derive values for those fields.
+    Theme Slug: A custom theme slug if the automatically generated one is not appropriate.
+    Function Prefix: A custom function prefix if the automatically generated one is inappropriate (or, more often, too long). Please note that WordPress Coding Standards call for function prefixes of at least three characters.
+
+All other fields provide metadata that will appear in the header comment at the beginning of the theme’s style.css file.
+Move your theme into place
+
+After unzipping your generated theme archive, you should move it into the correct folder.
+
+The easiest and quickest way to get started is simply to move your generated theme folder into the wp-content/themes folder in your local development environment.
+
+Depending on your requirements, you may want to move your generated theme folder elsewhere in your local environment and then create a symbolic link from the theme folder in your generated theme to wp-content/themes/[theme-slug].
+
+Once your theme is in place, you can go ahead and activate it! (Using WordPress Multisite? Don’t forget that your theme must first be enabled via the Network Admin in order to be available for activation on a network site.)
+Install Tailwind
+
+Your first step before installing Tailwind is to install npm if you haven’t already. After that, open your terminal of choice, navigate to your generated theme folder and run:
+
+npm install
+
+With Tailwind now installed, you can then generate your style.css file by running:
+
+npm run dev
+
+This creates a development build of your theme’s stylesheet.
+Install additional tools
+
+Your custom theme also includes tools for linting, code formatting and internationalization. To install them, navigate to your generated theme folder and run:
+
+composer install
+
+ Development
+Build something great, faster
+
+Watch for changes, build for production and learn more about how _tw, WordPress and Tailwind work together
+Watching for changes
+
+During development you’ll probably want Tailwind to be watching your theme repository for changes and regenerating your style.css file automatically:
+
+npm run watch
+
+The watch command will run continuously in the background, keeping things up-to-date.
+Adding custom CSS
+
+Everything you need to configure Tailwind or to add custom CSS can be found in the ./tailwind folder.
+
+The file you are most likely to need to modify is ./tailwind/tailwind-theme.css. This is where you add your design tokens in the form of Tailwind theme variables.
+
+The ./tailwind/tailwind.css and ./tailwind/tailwind-editor.css files import everything needed to generate style.css and style-editor.css, respectively. (You should never edit those generated files directly, as they will be overwritten when new versions are generated.) There are comments throughout the CSS files in the ./tailwind folder explaining what to put in each file.
+Adding block editor–only CSS
+
+The ./tailwind/tailwind-editor-extra.css file is processed by Tailwind (so you can use @apply and other Tailwind functionality), and its output file is style-editor-extra.css, alongside the existing style.css and style-editor.css files. It is added by default as an editor style in ./theme/functions.php.
+JavaScript
+
+_tw includes esbuild as its JavaScript bundler. For details on how to use it, including an example covering how to install and bundle Alpine.js, please see the dedicated documentation page on JavaScript Bundling with esbuild.
+theme.json
+
+Now with built-in theme.json support, _tw includes a basic theme.json file in its theme folder. The color and width values from that file are automatically made available to Tailwind via CSS variables in ./tailwind/tailwind-theme.css.
+
+This means the top-level colors in theme.json can be used in Tailwind (with classes like bg-primary or text-primary), and the values for contentSize and wideSize are available for setting max-width with either max-w-content or max-w-wide.
+
+(Still not using the block editor? You can safely ignore the included theme.json support entirely! You may want to delete the design tokens referencing WordPress CSS variables, though, as those may not be loaded when using the classic editor.)
+Tailwind Typography
+
+Tailwind Typography comes preinstalled with _tw. To learn how to set up the Typography plugin in your generated theme, please see the dedicated documentation page on using Tailwind Typography.
+
+Move to production
+
+Share your new WordPress theme with the world
+Building for production
+
+Before deployment, you’ll want to create a production build:
+
+npm run prod
+
+This ensures all unneeded CSS declarations have been removed and also minifies the resulting style.css file.
+Deployment via zip archive
+
+To package your theme as a zip archive, you can use the bundle command:
+
+npm run bundle
+
+This command will first execute npm run prod and then create a zip archive from your theme folder, in a file named after your theme slug.
+
+The resulting theme archive can be uploaded directly to a WordPress site. Since WordPress 5.5, uploading a theme that has already been installed will result in an option to overwrite the existing theme, providing a viable path for quick deployments.
+
+If you have copied your development theme from your local development environment to your production server as part of your initial deployment, you will notice that uploading the zip file created by the bundle script doesn’t overwrite the development version. In this case, you can activate the newly uploaded version and then delete the development version from your production server.
+Other deployment options
+
+When deploying via other means, you’ll need to keep three things in mind:
+
+    You should always run npm run prod before deploying
+    Generated files (like style.css and script.min.js) aren’t committed to git by default
+    Only the ./theme folder should be deployed to production
+
+If you’d like to deploy from the command line, Deployer and Capistrano are both great solutions for the command-line deployment of WordPress themes. SpinupWP also has a detailed look at Deploying WordPress using the Command Line showing several different techniques.
+
+GitHub Actions and Envoyer are excellent options as well.
+
+esolve common problems
+
+Find solutions to potential issues and answers to frequently asked questions
+Installation
+Why do errors appear when running npm’s install script?
+
+If you run npm install and you encounter errors or the installation fails, you might be using an older version of Node.js that is incompatible with one or more of _tw’s dependencies.
+
+Please check the latest LTS version of Node.js and install it if your version of Node.js is outdated.
+Why do I encounter an error when uploading the theme to WordPress?
+
+If you attempt to install your development theme by uploading it as a zip file in the WordPress administration area, you will receive the following error:
+
+The package could not be installed. The theme is missing the style.css stylesheet.
+Code language: plaintext (plaintext)
+
+You must manually unzip and copy the development theme into your development environment’s wp-content/themes folder. Please see the installation instructions for details.
+
+(However, the zip file generated by the npm run bundle command is suitable for uploading directly to WordPress to install on a staging or production server.)
+Development
+Why aren’t the Tailwind classes I added in the WordPress block editor working?
+
+When Tailwind generates the CSS files for your theme, it only adds the classes present in your theme repository. This means that if you attempt to add arbitrary classes in the WordPress block editor, they’ll only work if they also appear in your theme. If you need to use classes in the block editor that don’t otherwise appear in your theme, you could do one of the following:
+
+    Safelist classes in your Tailwind configuration file (if you know in advance what the classes will be)
+    Use Twind’s shim module to translate Tailwind utility classes into CSS using JavaScript
+
+Why isn’t Tailwind rebuilding my CSS files after I make changes?
+
+If you’ve run npm run watch, but Tailwind isn’t rebuilding after you make changes either to CSS files in the ./tailwind folder or to PHP files in the ./theme folder, there are a number of possible culprits:
+Errors during installation
+
+If you’re setting up your project for the first time, please confirm there weren’t any installation errors that need to be resolved before proceeding further.
+Working on a network drive or via Windows Subsystem for Linux
+
+Tailwind’s process for monitoring files doesn’t work well (or at all) via network drives. This problem can often be resolved by changing the --watch flag to --poll for both Tailwind watch commands in your package.json file. This will cause Tailwind to check for changes to files on regular intervals rather than waiting for notifications that files have changed.
+Unsupported characters in your project path
+
+_tw uses the following glob pattern to match all of your theme’s PHP files:
+
+./theme/**/*.php
+Code language: plaintext (plaintext)
+
+When processing any glob pattern, certain characters in your path can cause the glob pattern not to expand as expected. I’ve specifically seen issues with parentheses in paths, but there are almost certainly other characters that could cause issues.
+
+I generally recommend limiting the folder names in the path to your project to letters, numbers, underscores and hyphens.
+Deployment
+Why isn’t my automated deployment working?
+
+Using npm run bundle, _tw is able to create a zip file containing your complete theme. However, if you need to deploy from your remote git repository, you’ll find that the repository itself doesn’t contain any of your theme’s generated CSS or JavaScript files.
+
+If you’re using a tool like GitHub Actions, you may be able to run npm run prod as part of the action and then deploy the resulting ./theme folder, which will now contain all of the generated files you’ll need.
+
+If this isn’t an option, you could simply remove the lines in your .gitignore file that correspond with the generated CSS and JavaScript files and begin committing them alongside the rest of your theme files.
+
+[⚠️ Suspicious Content] n Depth
+Using Tailwind Typography
+
+Customize front-end and back-end typographic styles
+
+With a goal of providing “beautiful typographic defaults” to HTML from a CMS, Tailwind Typography is ideal for content created in WordPress.
+
+The plugin’s defaults can be overridden by a series of modifier classes. At their most basic, they allow you to select a type scale corresponding with a visitor’s screen size:
+
+<article class="prose xl:prose-lg">
+	<?php the_content(); ?>
+</article>
+Code language: HTML, XML (xml)
+
+You can also set your gray scale, support dark mode, and customize individual elements. Putting everything together, you end up with something like this:
+
+<article class="prose prose-neutral prose-xl prose-a:text-primary">
+	<?php the_content(); ?>
+</article>
+Code language: HTML, XML (xml)
+
+Breaking down the classes above:
+
+    prose is the base Tailwind Typography function, required by all modifier classes.
+    prose-neutral sets the gray scale.
+    prose-xl sets the type scale.
+    prose-a:text-primary is an element modifier, setting the link colour.
+
+By stringing together element modifiers, you’re able to make significant customizations to the design of your content area as styled by Tailwind Typography.
+
+If you need deeper customization, you can edit the included tailwind-typography.config.js file to customize Tailwind Typography’s raw CSS. I’ve included some tweaks in that file that improve Tailwind Typography styles for common elements in the WordPress block editor.
+Adding modifier classes to your theme
+
+You should add your modifier classes to the TYPOGRAPHY_CLASSES constant at the top of your ./theme/functions.php file. (In your generated theme, the constant’s name will be prefixed with your function prefix.)
+
+Adding them here will automatically add them throughout your site: to all page-content, entry-content and comment-content elements, to the WordPress block editor, and to the classic editor and ACF (via TinyMCE).
+Using Tailwind Typography’s “Lead” styles
+
+A “Lead” block style is created by default in ./javascript/block-editor.js. This applies the .is-style-lead class to the active paragraph. (Which is the sort of thing you might do for the first paragraph of an article—your lead—to distinguish it from the rest of the copy.)
+
+If you’d prefer this block style not be available in the editor, you can safely remove it from ./javascript/block-editor.js.
+Limiting font weights
+
+Tailwind Typography uses a wide range of font weights, which is great if you use a variable font. If your fonts aren’t variable and you don’t want to supply quite so many separate font files (or if your reference designs are more restrained in terms of weights), you may want to reduce the weights generated by Tailwind Typography down to a body weight and a bold weight.
+
+In your tailwind-typography.config.js file, you’ll find, commented out, a block containing every font-weight declaration in Tailwind Typography’s default output. You can then decide how to adjust them to suit your design.
+Customizing Tailwind Typography’s color theme
+
+By default, _tw uses Tailwind Typography’s Neutral gray scale. If you are adapting an existing design and you need to set specific colors throughout, you can do so at the bottom of your tailwind-typography.config.js file. In your ./theme/functions.php file, you will need to replace prose-neutral with the appropriate prose class for your theme (as supplied in the comment about the theme itself).
+
+
+JavaScript Bundling with esbuild
+
+Install and bundle JavaScript libraries (very quickly)
+
+_tw’s default build process includes esbuild, an extremely performant JavaScript bundler.
+
+To use it, begin by modifying the ./javascript/script.js file in your theme repository’s root directory. The build process will create an output file at ./theme/js/script.min.js with a target environment of esnext. (To quote esbuild’s documentation, “[This] tells esbuild to transform JavaScript syntax that is too new for these environments into older JavaScript syntax that will work in these environments.”) esnext is esbuild’s default, but it is also set explicitly in your package.json file, so you can easily update the target environment there if necessary.
+
+If you’re new to JavaScript bundlers, you should be aware that any variables or functions that you’d like to have available globally need to be added to the global object. For a variable, you would do something like this:
+
+window.myVariable = 'An important string';
+Code language: JavaScript (javascript)
+
+And for a function, something like this:
+
+window.myFunction = function( myParameter ) {
+	return myParameter++;
+}
+Code language: JavaScript (javascript)
+
+Example: Installing and importing Alpine.js
+
+Almost all of my website builds begin with WordPress and Tailwind. Then, as soon as it’s time to add interactivity, I install Alpine.js. (Via its website, Alpine describes itself as “jQuery for the modern web,” which both feels accurate and deeply undersells short the joys of using it. You should try it!)
+
+This process is almost identical for other frameworks and libraries you may want to install, so the steps below are fairly representative. Always review the installation documentation for the library you’re hoping to install, and look for instructions explaining how to install via npm and import into a bundle.
+
+For Alpine, the first step is to install it via npm:
+
+npm install alpinejs
+Code language: plaintext (plaintext)
+
+Then add the following to your ./javascript/script.js file:
+
+import Alpine from 'alpinejs'
+ 
+window.Alpine = Alpine
+ 
+Alpine.start()
+Code language: JavaScript (javascript)
+
+And that’s it! If you’re already running npm run watch, Alpine will be available in your theme the moment you hit save (give or take a few milliseconds). If not, it will be added the next time you run any of your theme’s build commands.
+
+[⚠️ Suspicious Content] Adding custom fonts
+
+Host your fonts yourself or use a third party—and then add those fonts to your WordPress theme
+
+Whether self-hosting or using an external service, you’re probably going to want to add your custom fonts to your Tailwind configuration file, so let’s begin there!
+Using custom fonts in Tailwind
+
+Tailwind’s own documentation has an excellent section on customizing your theme’s fonts, the most important part of which is the following snippet:
+
+@theme {
+  --font-sans: "Oswald", "sans-serif"; 
+}
+Code language: CSS (css)
+
+This overrides the default font-sans class, adding your custom font families. You could do the same for serif or mono as well, and you could also create your own font family utilities like display or slab.
+Using external fonts (like Google Fonts)
+
+You can add fonts from providers like Google Fonts using the methods you would use on any other WordPress site. WPBeginner has a solid outline of the various approaches.
+Self-hosting fonts
+
+Whenever possible, I prefer to self-host web fonts. On too many client sites with third-party fonts, I’ve found those fonts ended up being the slowest part of the website, so when I can, I like to control exactly how they’re loaded.
+
+Generally, providers of self-hosted web fonts will supply CSS files with the @font-face at-rules you’ll use to add the fonts to your site.
+
+_tw includes the ./tailwind/custom/fonts.css file to act as a destination for those at-rules.
+
+Here’s an example of one:
+
+@font-face {
+	font-family: "Source Code Pro";
+	src: url("fonts/sourcecodepro-regular.woff2") format("woff2"),
+		url("fonts/sourcecodepro-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+Code language: CSS (css)
+
+In this case, the fonts themselves live in ./theme/fonts. (You could put them somewhere else if you wanted; either way, you’ll need to create a folder for them yourself. That folder should be inside the ./theme folder, nested as deeply as you like.) CSS generated by Tailwind will be created at ./theme/style.css, so the path to the fonts should be relative to that file. Here, url("fonts/sourcecodepro-regular.woff2") does the trick.
+
+n Depth
+Linting and Code Formatting
+
+Catch bugs and stop thinking about formatting
+
+After installing dependencies via npm and Composer, you’ll have a number of tools for linting and code formatting at your disposal:
+
+    ESLint
+    Prettier
+    PHP_CodeSniffer
+
+I’ve become a much better developer by using linters, and removing the mental burden of code formatting is an easy way to increase your productivity (assuming you’re the sort of person to agonize about code formatting).
+
+The tools above are used by _tw as follows:
+ESLint
+
+    Lints JavaScript files via code-quality rules that help you catch bugs.
+
+Prettier
+
+    Formats JavaScript and CSS files.
+    Performs class name ordering for Tailwind classes added via @apply in your theme’s CSS files.
+
+PHP_CodeSniffer
+
+    Lints PHP files via code-quality rules that help you catch bugs, with WordPress-specific rules from WordPress Coding Standards for PHP_CodeSniffer.
+    Formats PHP files.
+
+The combination above gives you robust linting and code formatting across your theme’s PHP, CSS and JavaScript files. You’ll also find a .editorconfig file in your generated theme’s root directory based on the editor configuration used by WordPress core.
+Via your editor
+
+To get the most out of the tools above, you’ll probably want to use them via your editor. In VS Code, I use the following extensions:
+
+    EditorConfig for VS Code
+    ESLint
+    PHP_CodeSniffer
+    Prettier – Code formatter
+
+In PhpStorm, I was able to duplicate my preferred linting and code formatting workflow from VS Code using only bundled plugins.
+Via the command line
+
+To run ESLint and Prettier from the command line, you can use the following npm commands:
+
+npm run lint
+npm run lint-fix
+Code language: plaintext (plaintext)
+
+For PHP_CodeSniffer, you can use:
+
+composer run php:lint
+composer run php:lint:autofix
+
+Keeping your theme up-to-date
+
+How to update (and whether or not you should)
+
+_tw does not have versions, and there is no expectation of backwards compatibility between the most recent version and ones from the past. This philosophy matches that of _s, as outlined in the post, Don’t Update Your Theme (From _s).
+
+In summary, once you generate your theme, you shouldn’t worry about keeping it in sync with every change from _tw.
+
+Nonetheless, you may want to update to the latest version of Tailwind within your previously generated theme. It’s generally safe to use npm update, though you’ll always want to make sure you have a past commit you can go back to in case things go wrong. Alternatively, you could copy the most recent devDependencies from package.json and the most recent package-lock.json and then run npm install.
+
+But you may not find even updates of this sort to be necessary unless you specifically need a new Tailwind feature.
+
+If there are bugs in _tw, or if _tw’s integration with WordPress or another dependency breaks for any reason, you will find commits specific to fixing those bugs on GitHub alongside a list of steps to fix the bug in an existing theme, usually within the corresponding issue for that bug.
+
+ Extras
+On Tailwind and WordPress
+
+Understand how WordPress and Tailwind work together
+CSS in WordPress
+
+A typical WordPress site loads CSS from three sources:
+
+    WordPress itself
+    Active plugins
+    The active theme
+
+That CSS can target either the site’s front end or the administration area.
+
+Tailwind is excellent at creating the CSS provided by the active theme targeting the site’s front end.
+Can plugins use Tailwind?
+
+Plugins absolutely can use Tailwind, but not without deviating from a more standard Tailwind configuration and adding sometimes significant levels of complexity.
+
+While an active theme gets the highest level of priority in terms of dictating front-end CSS, a plugin needs to work in conjunction with the active theme’s styles. This generally means disabling Tailwind’s Preflight, wrapping all of the generated CSS in a selector specific to the plugin, prefixing all utility classes with a string specific to the plugin, or some combination of the above.
+Why can’t themes use Tailwind in the administration area (outside the editor)?
+
+To the extent that a theme provides custom CSS for WordPress’s administration area, Tailwind is unlikely to work as expected without taking similar steps to the ones required for plugins.
+
+Themes will be better served by embracing the administration area’s included CSS and by mirroring the HTML structure of existing administration pages. (And if you find yourself needing administration area styles outside the editor, you could be in plugin territory: It may be worth transitioning that functionality into a dedicated plugin.)
+What about the block editor?
+
+WordPress themes can opt in to provide block editor styles using add_theme_support( 'editor-styles' ) and can then point to an appropriate CSS file using the add_editor_style function.
+
+_tw takes care of this, and automatically creates a separate CSS file compatible with the block editor.
+
+If you want to use Tailwind and WordPress together without using _tw, please be aware that the block editor’s requirements for this file may not be compatible with the front-end CSS you’ve written for your site, and will vary significantly if you’re using Tailwind in conjunction with Tailwind Typography. However, with an appropriate build process, it’s possible to create front-end and editor styles from the same source files supporting both use cases. By using _tw, you’ll be able to avoid the work of setting up this build process yourself.
+What about full-site editing?
+
+WordPress’s full-site editing functionality remains very much in flux, but right now the way global styles are translated from theme.json into front-end CSS does not work well when paired with Tailwind CSS.
+
+My current expectation is that hybrid themes using a theme.json file to integrate with the block editor, but not supporting all features of full-site-editing, will continue to be the best path forward for Tailwind-based WordPress themes. This is the approach that _tw currently uses.
+Can I add arbitrary Tailwind classes in the block editor?
+
+When you add Tailwind classes directly to your theme and generate a CSS file using Tailwind’s build process, only the classes included in your theme will be added to your CSS file. This means that if you add new classes not found in your theme to blocks in the block editor, the corresponding styles will not appear in your CSS file because Tailwind did not know to include them when it built the CSS.
+
+If your project requires you to add classes within the block editor without them appearing within class attributes in your theme, two options to consider are:
+
+    Safelisting classes in your Tailwind configuration file (assuming you know in advance what the classes will be)
+    Using Twind’s shim module to translate Tailwind utility classes into CSS using JavaScript
+
+    Styling HTML from outside the theme
+
+Work with WordPress core, plugins and JavaScript libraries
+
+There are three main approaches to consider when styling HTML from WordPress core, a WordPress plugin or a JavaScript library:
+
+    Use the existing output as-is, attaching CSS to the provided classes and not using utility classes
+    When possible, use functions that allow you to add utility classes without rewriting the HTML directly
+    Take control of the HTML and use utility classes as usual
+
+The method to use depends on the options available to you and your priorities, and each comes with benefits and drawbacks.
+Using the existing output
+
+One of the main benefits of using Tailwind in a project is the removal of most context switching when styling an HTML component. Nonetheless, there are times when it will prove more straightforward and less work on your part to move your styles into a separate file.
+
+Using WordPress’s core menus as an example, default output from the wp_nav_menu() function looks something like this:
+
+<div class="menu-header-container">
+	<ul id="menu-header" class="menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1">
+			<a href="https://underscoretw.com/docs/">Documentation</a>
+		</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2">
+			<a href="https://underscoretw.com/about/">About</a>
+		</li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3">
+			<a href="https://underscoretw.com/contact/">Contact</a>
+		</li>
+	</ul>
+</div>
+Code language: HTML, XML (xml)
+
+Instead of trying to inject utility classes into this menu, we could add CSS targeting the existing classes, using @apply if we want to continue using Tailwind classes:
+
+#menu-header {
+	@apply flex justify-between;
+}
+
+#menu-header .menu-item {
+	@apply text-bold;
+}
+Code language: CSS (css)
+
+The above CSS could be added to any appropriate location in the ./tailwind/custom folder.
+Adding utility classes via function parameters
+
+In some cases, the functions you’re already using may have options allowing you to add your own classes. Returning to the example above, we could call wp_nav_menu() with different arguments:
+
+wp_nav_menu(
+	array(
+		'container'      => false,
+		'theme_location' => 'menu-1',
+		'menu_id'        => 'primary-menu',
+		'menu_class'     => 'flex justify-between [&_.menu-item]:text-bold',
+	)
+);
+Code language: PHP (php)
+
+This provides the same outcome as the approach from the first section, but moves all of the styles to the function call so that you can manage them all in one place. It also does so without any need to modify the structure of the HTML provided by the function.
+Creating your own HTML
+
+You may find that you need to do something more complicated than what a function’s output allows, or you may want to be able to control the exact HTML output you’re sending to your visitors. In the specific case of menus, you have a couple of options for creating your own HTML:
+
+    Use the Walker_Nav_Menu class
+    Use the wp_get_nav_menu_items() function
+
+On walking through your nav(igation)
+
+While extremely powerful, my experience has been that the Walker_Nav_Menu class is almost always too cumbersome to be worth using in a custom theme. It nonetheless has its place for deep customization of WordPress menus, and it’s worth being aware of this approach.
+There has got to be a better way
+
+The wp_get_nav_menu_items() function can more quickly put you in a position to rework the HTML structure of your menus. Returning an array of menu items, this function allows you to iterate through a menu and provide your own HTML as you go.
+
+Because it provides the menu without its hierarchy intact, it’s best used on simpler menus, or with an understanding that you’ll need to create your own array with nested submenus before beginning to output your menu.
+
+You’ll find versions of these approaches will serve you well for both output from WordPress core and for WordPress plugins.
+Notes on JavaScript libraries
+
+JavaScript libraries often come with their own CSS in a separate file. My approach in these cases is generally to drop that CSS file into the ./tailwind/custom/components folder and to edit it there. Once located in that directory, you can use @apply if you so choose, and the CSS will automatically be bundled into the style.css file for your theme.
+
+Two items worth noting:
+
+    Be cautious of bloated CSS files with far more styles than you’ll need for your project
+    When possible, choose libraries with fully namespaced CSS
+
+In the former case, editing the CSS file to remove unneeded styles is often worthwhile. In the latter case, keep an eye out for overly broad CSS selectors from third-party libraries that could override your site’s styles in unexpected ways.
+
+Managing Styles for Custom Blocks
+
+Learn strategies for using Tailwind in theme-specific custom blocks
+
+If you’re creating custom blocks for your project and you want a single Tailwind build process capturing both your WordPress theme’s utility classes and the utility classes for your custom blocks, you have a number of options:
+
+    In your custom block repository, use dynamic blocks and add a filter to the dynamic block’s HTML markup. Then use that filter to put the block’s markup in your theme repository with add_filter.
+    Put your block plugin or plugins inside your theme repository.
+    Manually safelist the utility classes required by your block by adding them in a comment or elsewhere in your theme repository.
+
+My preference would be to move the block’s markup to your theme via a filter. If that isn’t possible, there are some potential downsides to the other approaches:
+Putting your block plugin inside your theme repository
+
+Imagining that you add a plugin folder alongside the theme folder in your theme repository, you would need to create a symbolic link to add the plugin to WordPress during local development, and you would need to create a separate build process for the plugin.
+Manually safelisting the required utility classes
+
+This means any changes to the block’s utility classes need to be made in two places as you maintain both the safelist and the class attributes within the block’s markup.
+
+
+
+

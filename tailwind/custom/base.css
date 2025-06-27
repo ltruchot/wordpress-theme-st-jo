@@ -3,6 +3,15 @@
  */
 
 /**
+ * Responsive breakpoints - Only 2 modes: mobile and desktop
+ * Mobile: 0-719px
+ * Desktop: 720px and up
+ */
+:root {
+  --breakpoint-desktop: 720px;
+}
+
+/**
  * This uses the background and foreground colors declared in the `theme.json`
  * file and is applied both to the front end and in the block editor.
  */
@@ -28,7 +37,7 @@ body {
   padding-top: 110px;
   padding-bottom: 50px;
 
-  @media (width <= 768px) {
+  @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
     padding-top: 70px;
   }
 }
