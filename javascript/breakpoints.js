@@ -1,12 +1,12 @@
 /**
  * Responsive breakpoints configuration
- * Only 2 modes: mobile (0-719px) and desktop (720px+)
+ * Only 2 modes: mobile (0-1023px) and desktop (1024px+)
  */
 
 // Get breakpoint from CSS variable
 const getBreakpoint = () => {
 	const rootStyles = getComputedStyle(document.documentElement);
-	return parseInt(rootStyles.getPropertyValue('--breakpoint-desktop')) || 720;
+	return parseInt(rootStyles.getPropertyValue('--breakpoint-desktop')) || 1024;
 };
 
 export const BREAKPOINTS = {

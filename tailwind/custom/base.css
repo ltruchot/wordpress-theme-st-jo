@@ -4,11 +4,11 @@
 
 /**
  * Responsive breakpoints - Only 2 modes: mobile and desktop
- * Mobile: 0-719px
- * Desktop: 720px and up
+ * Mobile: 0-1023px
+ * Desktop: 1024px and up
  */
 :root {
-  --breakpoint-desktop: 720px;
+  --breakpoint-desktop: 1024px;
 }
 
 /**

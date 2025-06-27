@@ -54,14 +54,14 @@
 	--container-wide: var(--wp--style--global--wide-size);
 
 	/**
-	 * Custom breakpoints: mobile (0-719px) and desktop (720px+)
-	 * Override all Tailwind breakpoints to use our single 720px breakpoint
+	 * Custom breakpoints: mobile (0-1023px) and desktop (1024px+)
+	 * Override all Tailwind breakpoints to use our single 1024px breakpoint
 	 */
-	--breakpoint-sm: 720px;
-	--breakpoint-md: 720px;
-	--breakpoint-lg: 720px;
-	--breakpoint-xl: 720px;
-	--breakpoint-2xl: 720px;
+	--breakpoint-sm: 1024px;
+	--breakpoint-md: 1024px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1024px;
+	--breakpoint-2xl: 1024px;
 
 	/**
 	 * Add your theme below:

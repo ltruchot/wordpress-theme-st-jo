@@ -9,8 +9,8 @@
 
 /**
  * With Tailwind v4 and our custom breakpoints, use:
- * - Default styles for mobile (0-719px)
- * - md: prefix for desktop (720px+)
+ * - Default styles for mobile (0-1023px)
+ * - md: prefix for desktop (1024px+)
  * 
  * Examples:
  * - hidden md:block (hide on mobile, show on desktop)

@@ -41,6 +41,8 @@
   .estjo-header__nav {
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 0 20px;
     gap: 20px;
 
     @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
@@ -65,13 +67,13 @@
         text-decoration: none;
 
         &:hover {
-          color: #CA4A28;
+          color: theme(--color-primary);
           text-decoration: underline;
           text-decoration-style: solid;
         }
 
         &.current-menu-item {
-          color: #CA4A28;
+          color: theme(--color-primary);
           font-weight: 700;
           text-decoration-line: none;
         }
@@ -82,7 +84,7 @@
       width: 142px;
       height: 48px;
       padding: 11px 16px;
-      background-color: #CA4A28;
+      background-color: theme(--color-primary);
       color: #fff;
       text-decoration: none;
       border-radius: 30px;
@@ -212,13 +214,13 @@
         text-align: center;
 
         &:hover {
-          color: #CA4A28;
+          color: theme(--color-primary);
           text-decoration: underline;
           text-decoration-style: solid;
         }
 
         &.current-menu-item {
-          color: #CA4A28;
+          color: theme(--color-primary);
           font-weight: 700;
           text-decoration-line: none;
         }
@@ -231,7 +233,7 @@
         width: 142px;
         height: 48px;
         padding: 11px 16px;
-        background-color: #CA4A28;
+        background-color: theme(--color-primary);
         color: #fff;
         text-decoration: none;
         border-radius: 30px;
@@ -257,7 +259,7 @@
       width: 142px;
       height: 48px;
       padding: 11px 16px;
-      background-color: #CA4A28;
+      background-color: theme(--color-primary);
       color: #fff;
       text-decoration: none;
       border-radius: 30px;

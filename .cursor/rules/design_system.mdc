@@ -13,8 +13,8 @@ alwaysApply: true
 ## Breakpoints:
 
 Seulement 2:
-- Mobile: 0px-719px (donc < 720px)
-- Desktop: 720px et + (donc >= 720px)
+- Mobile: 0px à 1023px (donc < 1024px)
+- Desktop: 1024px et + (donc >= 1024px)
 [tailwind-theme.css](mdc:tailwind/tailwind-theme.css)
 
 ## Couleurs:
@@ -24,7 +24,7 @@ Neutral:
     - Black: #2D3039
     - White: #FFFFFF
     - Beige: #F9F7EF (considérée comme "foreground")
-    - Terracotta: #CA4A28 (considérée comme "primary")
+    - Terracotta: theme(--color-primary) (considérée comme "primary")
     - Yellow: #F8C800 (considérée comme "secondary")
     - Purple: #5B63CB (considérée comme "tertiary")
     - Green: #9CF17B
@@ -48,7 +48,7 @@ Colors:
     - 200: #EAB7A9
     - 300: #DF927E
     - 400: #D56E53
-    - 500: #CA4A28
+    - 500: theme(--color-primary)
     - 600: #A23B20
     - 700: #792C18
     - 800: #511E10
