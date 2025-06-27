@@ -17,11 +17,11 @@
 
 		<nav id="site-navigation" class="estjo-header__nav" aria-label="<?php esc_attr_e( 'Main Navigation', 'st-jo' ); ?>">
 			<ul>
-				<li><a href="/lecole" <?php if(is_page('lecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
+				<li><a href="/ecole" <?php if(is_page('ecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
 				<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
 				<li><a href="/associations" <?php if(is_page('associations')) echo 'class="current-menu-item"'; ?>>Les associations</a></li>
 				<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
-				<li><a href="/actualite" <?php if(is_page('actualite')) echo 'class="current-menu-item"'; ?>>Actualité</a></li>
+				<li><a href="/actualites" <?php if(is_page('actualites')) echo 'class="current-menu-item"'; ?>>Actualités</a></li>
 			</ul>
 			<a href="/contact" class="estjo-header__cta">Nous contacter</a>
 		</nav>
@@ -37,11 +37,11 @@
 	<!-- Mobile menu -->
 	<nav id="mobile-menu" class="estjo-header__mobile-menu" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'st-jo' ); ?>">
 		<ul>
-			<li><a href="/lecole" <?php if(is_page('lecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
+			<li><a href="/ecole" <?php if(is_page('ecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
 			<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
 			<li><a href="/associations" <?php if(is_page('associations')) echo 'class="current-menu-item"'; ?>>Les associations</a></li>
 			<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
-			<li><a href="/actualite" <?php if(is_page('actualite')) echo 'class="current-menu-item"'; ?>>Actualité</a></li>
+			<li><a href="/actualites" <?php if(is_page('actualites')) echo 'class="current-menu-item"'; ?>>Actualités</a></li>
 		</ul>
 		<a href="/contact" class="estjo-header__mobile-cta">Nous contacter</a>
 	</nav>
