@@ -147,8 +147,8 @@
 			]
 		},
 		"layout": {
-			"contentSize": "40rem",
-			"wideSize": "60rem"
+			"contentSize": "1200px",
+			"wideSize": "1200px"
 		},
 		"typography": {
 			"fontFamilies": [
@@ -161,6 +161,33 @@
 					"name": "Heading",
 					"slug": "heading",
 					"fontFamily": "Baloo Da, cursive"
+				}
+			],
+			"fontSizes": [
+				{
+					"name": "Small",
+					"slug": "small",
+					"size": "14px"
+				},
+				{
+					"name": "Normal",
+					"slug": "normal",
+					"size": "16px"
+				},
+				{
+					"name": "Medium", 
+					"slug": "medium",
+					"size": "18px"
+				},
+				{
+					"name": "Large",
+					"slug": "large",
+					"size": "20px"
+				},
+				{
+					"name": "Extra Large",
+					"slug": "x-large",
+					"size": "22px"
 				}
 			]
 		}

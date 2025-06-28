@@ -102,7 +102,7 @@ h5 {
 .page-content > *,
 .entry-content > * {
 	/* Content width from the `theme.json` file */
-	@apply max-w-content mx-auto;
+	@apply max-w-content mx-auto px-6;
 }
 
 .entry-content > .alignwide {

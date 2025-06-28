@@ -63,6 +63,11 @@
 	--breakpoint-2xl: 1280px;
 
 	/**
+	 * Custom shadows
+	 */
+	--shadow-default: 0px 6px 10px 4px #0000000D;
+
+	/**
 	 * Add your theme below:
 	 */
 }

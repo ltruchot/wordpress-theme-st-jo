@@ -15,6 +15,7 @@
 		font-size: 22px;
 		font-weight: bold;
 		line-height: 26.4px;
+		color: var(--color-background);
 	}
 
 	a {
