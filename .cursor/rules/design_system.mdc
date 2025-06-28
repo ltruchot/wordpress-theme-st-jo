@@ -1,0 +1,59 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: design system documentation
+globs: 
+alwaysApply: true
+---
+# Design system
+
+## Breakpoints:
+
+- Mobile: 0px à 719px
+- Tablet: 720px à 959px
+- Desktop: 960 à 1279px
+- Wide: 1279px et plus
+[tailwind-theme.css](mdc:tailwind/tailwind-theme.css)
+[breakpoints.js](mdc:javascript/breakpoints.js)
+
+## Couleurs:
+
+Neutral:
+ - Black, White, Plain:
+    - Black: #2D3039
+    - White: #FFFFFF
+    - Beige: #F9F7EF (considérée comme "foreground")
+    - Terracotta: theme(--color-primary) (considérée comme "primary")
+    - Yellow: #F8C800 (considérée comme "secondary")
+    - Purple: #5B63CB (considérée comme "tertiary")
+    - Green: #9CF17B
+
+ - Grayscale:
+    - 50: #F9FAFB
+    - 100: #F3F4F6
+    - 200: #E5E7EB
+    - 300: #D2D5DA
+    - 400: #8F95A0
+    - 500: #6C727F
+    - 600: #4D5562
+    - 700: #394150
+    - 800: #212936
+    - 900: #121826
+
+Colors:
+  - Primary 01:
+    - 50: #FFF2EE
+    - 100: #FFE2DA
+    - 200: #EAB7A9
+    - 300: #DF927E
+    - 400: #D56E53
+    - 500: theme(--color-primary)
+    - 600: #A23B20
+    - 700: #792C18
+    - 800: #511E10
+    - 900: #280F08
+
+

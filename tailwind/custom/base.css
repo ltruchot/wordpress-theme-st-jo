@@ -2,6 +2,7 @@
  * Custom styles to immediately follow Tailwind’s `base` layer
  */
 
+
 /**
  * This uses the background and foreground colors declared in the `theme.json`
  * file and is applied both to the front end and in the block editor.
@@ -25,13 +26,121 @@ body {
 }
 
 #content {
-  padding-top: 110px;
+  /* Header height + margin */
+  padding-top: calc(110px + 40px);
   padding-bottom: 50px;
 
-  @media (width <= 768px) {
-    padding-top: 70px;
+  @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
+    padding-top: calc(70px + 40px);
+  }
+
+  @media (min-width: theme(--breakpoint-sm)) {
+    padding-top: calc(110px + 64px);
+  }
+
+  @media (min-width: theme(--breakpoint-lg)) {
+    padding-top: calc(110px + 72px);
+  }
+}
+
+#primary {
+  max-width: 1200px;
+  padding: 0 24px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+
+  @media (min-width: theme(--breakpoint-sm)) {
+    margin-bottom: 64px;
+  }
+
+  @media (min-width: theme(--breakpoint-lg)) {
+    margin-bottom: 72px;
   }
 }
 /* stylelint-enable plugin/stylelint-bem-namics */
+
+/**
+ * Typography - Text sizes
+ */
+.has-small-font-size {
+	font-family: Lato, sans-serif !important;
+	font-size: 14px !important;
+	font-weight: 400 !important;
+	line-height: 1.6 !important;
+	color: var(--wp--preset--color--black) !important;
+	letter-spacing: 0 !important;
+}
+
+.has-normal-font-size,
+.has-regular-font-size {
+	font-family: Lato, sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 400 !important;
+	line-height: 1.6 !important;
+	color: var(--wp--preset--color--black) !important;
+	letter-spacing: 0 !important;
+}
+
+.has-medium-font-size {
+	font-family: Lato, sans-serif !important;
+	font-size: 18px !important;
+	font-weight: 400 !important;
+	line-height: 1.6 !important;
+	color: var(--wp--preset--color--black) !important;
+	letter-spacing: 0 !important;
+}
+
+.has-large-font-size {
+	font-family: Lato, sans-serif !important;
+	font-size: 20px !important;
+	font-weight: 400 !important;
+	line-height: 1.6 !important;
+	color: var(--wp--preset--color--black) !important;
+	letter-spacing: 0 !important;
+}
+
+.has-x-large-font-size {
+	font-family: Lato, sans-serif !important;
+	font-size: 22px !important;
+	font-weight: 400 !important;
+	line-height: 1.6 !important;
+	color: var(--wp--preset--color--black) !important;
+	letter-spacing: 0 !important;
+}
+
+/**
+ * Typography - Links and bold text in content areas
+ */
+.entry-content a,
+.page-content a,
+.prose a {
+	font-family: Lato, sans-serif;
+	font-weight: 400;
+	line-height: 1.6;
+	color: var(--wp--preset--color--black);
+	letter-spacing: 0;
+	text-decoration: underline solid;
+}
+
+.entry-content strong,
+.page-content strong,
+.prose strong,
+.entry-content b,
+.page-content b,
+.prose b {
+	font-family: Lato, sans-serif;
+	font-weight: 700;
+	line-height: 1.6;
+	color: var(--wp--preset--color--black);
+	letter-spacing: 0;
+}
+
+/**
+ * Hide entry-footer on front page
+ */
+.home .entry-footer,
+.front-page .entry-footer {
+	display: none;
+}
 
 

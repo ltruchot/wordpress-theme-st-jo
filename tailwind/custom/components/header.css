@@ -1,12 +1,12 @@
 .estjo-header {
   position: fixed;
   top: 0;
+  z-index: 100;
   width: 100vw;
   height: 110px;
-  background-color: #F9F7EF;
-  z-index: 100;
+  background-color: theme(colors.beige);
 
-  @media (width <= 768px) {
+  @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
     height: 70px;
   }
 
@@ -16,87 +16,91 @@
     justify-content: space-between;
     max-width: 1600px;
     height: 100%;
-    margin: 0 auto;
     padding: 0 80px;
+    margin: 0 auto;
 
-    @media (width <= 768px) {
+    @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
       padding: 0 24px;
     }
   }
 
   .estjo-header__logo {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
-    text-decoration: none;
     height: 100%;
+    text-decoration: none;
 
     img {
-      height: 100%;
+      flex-shrink: 0;
       width: auto;
+      height: 100%;
     }
   }
 
   .estjo-header__nav {
     display: flex;
-    align-items: center;
     gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
 
-    @media (width <= 768px) {
+    @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
       display: none;
     }
 
     ul {
       display: flex;
-      align-items: center;
       gap: 20px;
-      margin: 0;
+      align-items: center;
       padding: 0;
+      margin: 0;
       list-style: none;
 
       a {
         font-family: Lato, sans-serif;
-        font-weight: 400;
         font-size: 16px;
+        font-weight: 400;
         line-height: 160%;
+        color: theme(colors.black);
         letter-spacing: 0;
-        color: #2D3039;
         text-decoration: none;
 
         &:hover {
-          color: #CA4A28;
+          color: theme(--color-primary);
           text-decoration: underline;
           text-decoration-style: solid;
         }
 
         &.current-menu-item {
-          color: #CA4A28;
           font-weight: 700;
+          color: theme(--color-primary);
           text-decoration-line: none;
         }
       }
     }
 
     .estjo-header__cta {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
       width: 142px;
       height: 48px;
       padding: 11px 16px;
-      background-color: #CA4A28;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 30px;
       font-family: Lato, sans-serif;
-      font-weight: 400;
       font-size: 16px;
+      font-weight: 400;
       line-height: 160%;
-      letter-spacing: 0;
+      color: theme(colors.background);
       text-align: center;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      letter-spacing: 0;
+      text-decoration: none;
+      background-color: theme(--color-primary);
+      border-radius: 30px;
 
       &:hover {
-        background-color: #B43F20;
+        background-color: theme(colors.primary-600);
       }
     }
   }
@@ -105,16 +109,16 @@
     position: relative;
     display: none;
     flex-direction: column;
-    align-items: center;
     gap: 0;
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
+    align-items: center;
     width: auto;
     height: auto;
+    padding: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
 
-    @media (width <= 768px) {
+    @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
       display: flex;
     }
 
@@ -122,29 +126,29 @@
       display: block;
       width: 30px;
       height: 3px;
-      background-color: #2D3039;
-      border-radius: 3px;
-      transition: all 0.3s ease;
       margin: 2.5px 0;
+      background-color: theme(colors.black);
+      border-radius: 3px;
       transform-origin: center;
+      transition: all 0.3s ease;
     }
 
     .estjo-header__mobile-toggle-text {
-      font-family: Lato, sans-serif;
-      font-weight: 700;
-      font-size: 9px;
-      line-height: 160%;
-      letter-spacing: 0;
-      vertical-align: middle;
-      text-transform: uppercase;
-      color: #2D3039;
       margin-top: 7px;
+      font-family: Lato, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 160%;
+      vertical-align: middle;
+      color: theme(colors.black);
+      text-transform: uppercase;
+      letter-spacing: 0;
     }
 
     &.is-open {
       span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
         width: 24px;
+        transform: translateY(8px) rotate(45deg);
       }
 
       span:nth-child(2) {
@@ -152,8 +156,8 @@
       }
 
       span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
         width: 24px;
+        transform: translateY(-8px) rotate(-45deg);
       }
     }
   }
@@ -162,35 +166,35 @@
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
-    min-height: calc(100vh - 70px);
+    z-index: 99;
     display: flex;
+    visibility: hidden;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: #F9F7EF;
-    z-index: 99;
+    width: 100%;
+    min-height: calc(100vh - 70px);
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    background-color: theme(colors.beige);
     opacity: 0;
-    visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    -webkit-overflow-scrolling: touch;
     
     &.is-open {
-      opacity: 1;
       visibility: visible;
+      opacity: 1;
     }
 
     ul {
       display: flex;
       flex-direction: column;
+      gap: 0;
       align-items: center;
       justify-content: flex-start;
-      gap: 0;
-      margin: 0;
-      padding: 20px 0;
-      list-style: none;
       width: 100%;
+      padding: 20px 0;
+      margin: 0;
+      list-style: none;
 
       li {
         margin: 0;
@@ -200,24 +204,24 @@
         display: block;
         padding: 15px 24px;
         font-family: Lato, sans-serif;
-        font-weight: 400;
         font-size: 16px;
+        font-weight: 400;
         line-height: 160%;
+        color: theme(colors.black);
+        text-align: center;
         letter-spacing: 0;
-        color: #2D3039;
         text-decoration: none;
         cursor: pointer;
-        text-align: center;
 
         &:hover {
-          color: #CA4A28;
+          color: theme(--color-primary);
           text-decoration: underline;
           text-decoration-style: solid;
         }
 
         &.current-menu-item {
-          color: #CA4A28;
           font-weight: 700;
+          color: theme(--color-primary);
           text-decoration-line: none;
         }
       }
@@ -226,49 +230,49 @@
     
   
     .estjo-header__cta {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
         width: 142px;
         height: 48px;
         padding: 11px 16px;
-        background-color: #CA4A28;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 30px;
         font-family: Lato, sans-serif;
-        font-weight: 400;
         font-size: 16px;
+        font-weight: 400;
         line-height: 160%;
-        letter-spacing: 0;
+        color: theme(colors.background);
         text-align: center;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+        letter-spacing: 0;
+        text-decoration: none;
+        background-color: theme(--color-primary);
+        border-radius: 30px;
 
         &:hover {
-        background-color: #B43F20;
+        background-color: theme(colors.primary-600);
         }
     }
 
     .estjo-header__mobile-cta {
+      box-sizing: border-box;
       display: block;
-      margin: 30px auto;
       width: 142px;
       height: 48px;
       padding: 11px 16px;
-      background-color: #CA4A28;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 30px;
+      margin: 30px auto;
       font-family: Lato, sans-serif;
-      font-weight: 400;
       font-size: 16px;
+      font-weight: 400;
       line-height: 160%;
-      letter-spacing: 0;
+      color: theme(colors.background);
       text-align: center;
-      box-sizing: border-box;
+      letter-spacing: 0;
+      text-decoration: none;
+      background-color: theme(--color-primary);
+      border-radius: 30px;
 
       &:hover {
-        background-color: #B43F20;
+        background-color: theme(colors.primary-600);
       }
     }
   }

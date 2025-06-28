@@ -49,8 +49,10 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php st_jo_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	<?php if ( ! is_page() ) : ?>
+		<footer class="entry-footer">
+			<?php st_jo_entry_footer(); ?>
+		</footer><!-- .entry-footer -->
+	<?php endif; ?>
 
 </article><!-- #post-${ID} -->

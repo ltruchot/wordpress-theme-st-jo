@@ -15,7 +15,7 @@
 			<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/Logotype.png' ); ?>" alt="Logo École Saint-Joseph">
 		</a>
 
-		<nav id="site-navigation" class="estjo-header__nav" aria-label="<?php esc_attr_e( 'Main Navigation', 'st-jo' ); ?>">
+		<nav id="site-navigation" class="estjo-header__nav" aria-label="<?php esc_attr_e( 'Navigation principale', 'st-jo' ); ?>">
 			<ul>
 				<li><a href="/ecole" <?php if(is_page('ecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
 				<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
@@ -26,7 +26,7 @@
 			<a href="/contact" class="estjo-header__cta">Nous contacter</a>
 		</nav>
 
-		<button class="estjo-header__mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'st-jo' ); ?>">
+		<button class="estjo-header__mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Montrer le menu', 'st-jo' ); ?>">
 			<span></span>
 			<span></span>
 			<span></span>
@@ -35,7 +35,7 @@
 	</div>
 
 	<!-- Mobile menu -->
-	<nav id="mobile-menu" class="estjo-header__mobile-menu" aria-label="<?php esc_attr_e( 'Mobile Navigation', 'st-jo' ); ?>">
+	<nav id="mobile-menu" class="estjo-header__mobile-menu" aria-label="<?php esc_attr_e( 'Navigation mobile', 'st-jo' ); ?>">
 		<ul>
 			<li><a href="/ecole" <?php if(is_page('ecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
 			<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
