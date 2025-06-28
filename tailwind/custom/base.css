@@ -2,14 +2,6 @@
  * Custom styles to immediately follow Tailwind’s `base` layer
  */
 
-/**
- * Responsive breakpoints - Only 2 modes: mobile and desktop
- * Mobile: 0-1023px
- * Desktop: 1024px and up
- */
-:root {
-  --breakpoint-desktop: 1024px;
-}
 
 /**
  * This uses the background and foreground colors declared in the `theme.json`

@@ -1,38 +1,54 @@
 /**
  * Responsive breakpoints configuration
- * Only 2 modes: mobile (0-1023px) and desktop (1024px+)
+ * 4 modes: mobile (0-719px), tablet (720-959px), desktop (960-1279px), wide (1280px+)
  */
 
-// Get breakpoint from CSS variable
-const getBreakpoint = () => {
+// Get breakpoints from CSS variables
+const getBreakpoint = (name) => {
 	const rootStyles = getComputedStyle(document.documentElement);
-	return parseInt(rootStyles.getPropertyValue('--breakpoint-desktop')) || 1024;
+	const value = rootStyles.getPropertyValue(`--js-breakpoint-${name}`).trim();
+	return parseInt(value.replace('px', ''));
 };
 
 export const BREAKPOINTS = {
+	get tablet() {
+		return getBreakpoint('sm');
+	},
 	get desktop() {
-		return getBreakpoint();
+		return getBreakpoint('md');
+	},
+	get wide() {
+		return getBreakpoint('lg');
 	}
 };
 
-export const isMobile = () => window.innerWidth < BREAKPOINTS.desktop;
-export const isDesktop = () => window.innerWidth >= BREAKPOINTS.desktop;
+export const isMobile = () => window.innerWidth < BREAKPOINTS.tablet;
+export const isTablet = () => window.innerWidth >= BREAKPOINTS.tablet && window.innerWidth < BREAKPOINTS.desktop;
+export const isDesktop = () => window.innerWidth >= BREAKPOINTS.desktop && window.innerWidth < BREAKPOINTS.wide;
+export const isWide = () => window.innerWidth >= BREAKPOINTS.wide;
+
+export const getCurrentBreakpoint = () => {
+	if (isMobile()) return 'mobile';
+	if (isTablet()) return 'tablet';
+	if (isDesktop()) return 'desktop';
+	return 'wide';
+};
 
 export const matchesBreakpoint = (breakpoint) => {
-	if (breakpoint === 'mobile') {
-		return isMobile();
+	switch (breakpoint) {
+		case 'mobile': return isMobile();
+		case 'tablet': return isTablet();
+		case 'desktop': return isDesktop();
+		case 'wide': return isWide();
+		default: return false;
 	}
-	if (breakpoint === 'desktop') {
-		return isDesktop();
-	}
-	return false;
 };
 
 export const onBreakpointChange = (callback) => {
-	let currentBreakpoint = isDesktop() ? 'desktop' : 'mobile';
+	let currentBreakpoint = getCurrentBreakpoint();
 	
 	const checkBreakpoint = () => {
-		const newBreakpoint = isDesktop() ? 'desktop' : 'mobile';
+		const newBreakpoint = getCurrentBreakpoint();
 		if (currentBreakpoint !== newBreakpoint) {
 			currentBreakpoint = newBreakpoint;
 			callback(currentBreakpoint);

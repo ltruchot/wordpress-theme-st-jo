@@ -2,8 +2,10 @@
     "extends": [
         "stylelint-config-standard",
         "stylelint-config-recommended",
-        "stylelint-config-recess-order"
+        "stylelint-config-recess-order",
+        "stylelint-config-tailwindcss"
     ],
+    "customSyntax": "postcss-scss",
     "plugins": [
         "@namics/stylelint-bem"
     ],
@@ -24,10 +26,76 @@
                     "apply",
                     "variants",
                     "responsive",
-                    "screen"
+                    "screen",
+                    "media",
+                    "supports"
                 ]
             }
         ],
-        "no-descending-specificity": null
+        "function-no-unknown": [
+            true,
+            {
+                "ignoreFunctions": ["theme"]
+            }
+        ],
+        "function-calc-no-unspaced-operator": null,
+        "value-keyword-case": [
+            "lower",
+            {
+                "ignoreKeywords": ["/^theme\\(/"]
+            }
+        ],
+        "color-named": null,
+        "color-no-invalid-hex": true,
+        "declaration-property-value-no-unknown": [
+            true,
+            {
+                "ignoreProperties": {
+                    "/color$/": ["/^theme\\(/"],
+                    "background": ["/^theme\\(/"],
+                    "background-color": ["/^theme\\(/"],
+                    "border-color": ["/^theme\\(/"],
+                    "outline-color": ["/^theme\\(/"]
+                }
+            }
+        ],
+        "function-allowed-list": [
+            "rgb",
+            "rgba", 
+            "hsl",
+            "hsla",
+            "hwb",
+            "theme",
+            "var",
+            "calc",
+            "min",
+            "max",
+            "clamp",
+            "url",
+            "translateX",
+            "translateY",
+            "translateZ",
+            "translate",
+            "translate3d",
+            "rotate",
+            "rotateX",
+            "rotateY",
+            "rotateZ",
+            "rotate3d",
+            "scale",
+            "scaleX",
+            "scaleY",
+            "scaleZ",
+            "scale3d",
+            "skew",
+            "skewX",
+            "skewY",
+            "matrix",
+            "matrix3d",
+            "perspective"
+        ],
+        "media-feature-range-notation": null,
+        "no-descending-specificity": null,
+        "at-rule-no-deprecated": null
     }
 }

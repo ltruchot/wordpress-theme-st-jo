@@ -6,13 +6,3 @@
  *
  * https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities
  */
-
-/**
- * With Tailwind v4 and our custom breakpoints, use:
- * - Default styles for mobile (0-1023px)
- * - md: prefix for desktop (1024px+)
- * 
- * Examples:
- * - hidden md:block (hide on mobile, show on desktop)
- * - block md:hidden (show on mobile, hide on desktop)
- */

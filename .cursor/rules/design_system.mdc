@@ -12,10 +12,12 @@ alwaysApply: true
 
 ## Breakpoints:
 
-Seulement 2:
-- Mobile: 0px à 1023px (donc < 1024px)
-- Desktop: 1024px et + (donc >= 1024px)
+- Mobile: 0px à 719px
+- Tablet: 720px à 959px
+- Desktop: 960 à 1279px
+- Wide: 1279px et plus
 [tailwind-theme.css](mdc:tailwind/tailwind-theme.css)
+[breakpoints.js](mdc:javascript/breakpoints.js)
 
 ## Couleurs:
 
