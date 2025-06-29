@@ -110,6 +110,158 @@ add_filter( 'excerpt_more', 'st_jo_continue_reading_link' );
 add_filter( 'the_content_more_link', 'st_jo_continue_reading_link' );
 
 /**
+ * Generate a button element
+ *
+ * @param array $args {
+ *     Optional. An array of arguments.
+ *
+ *     @type string $text      Button text. Default 'Button'.
+ *     @type string $url       URL for link buttons. Default empty.
+ *     @type string $variant   Button variant (primary, secondary, tertiary, outline, ghost). Default 'primary'.
+ *     @type string $size      Button size (small, medium, large). Default 'medium'.
+ *     @type string $icon      Icon HTML or dashicon name. Default empty.
+ *     @type string $icon_position Icon position (start, end). Default 'start'.
+ *     @type string $class     Additional CSS classes. Default empty.
+ *     @type array  $attributes Additional HTML attributes. Default empty array.
+ *     @type bool   $disabled  Whether the button is disabled. Default false.
+ *     @type bool   $full_width Whether the button spans full width. Default false.
+ *     @type string $type      Button type attribute (button, submit, reset). Default 'button'.
+ *     @type bool   $echo      Whether to echo or return. Default true.
+ * }
+ * @return string|void Button HTML markup if echo is false.
+ */
+function st_jo_button( $args = array() ) {
+	$defaults = array(
+		'text'          => __( 'Bouton', 'st-jo' ),
+		'url'           => '',
+		'variant'       => 'primary',
+		'size'          => 'medium',
+		'icon'          => '',
+		'icon_position' => 'start',
+		'class'         => '',
+		'attributes'    => array(),
+		'disabled'      => false,
+		'full_width'    => false,
+		'type'          => 'button',
+		'echo'          => true,
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	// Build CSS classes
+	$classes = array( 'estjo-button' );
+	
+	// Add variant class
+	if ( ! empty( $args['variant'] ) ) {
+		$classes[] = 'estjo-button--' . esc_attr( $args['variant'] );
+	}
+	
+	// Add size class if not medium
+	if ( 'medium' !== $args['size'] && ! empty( $args['size'] ) ) {
+		$classes[] = 'estjo-button--' . esc_attr( $args['size'] );
+	}
+	
+	// Add full width class
+	if ( $args['full_width'] ) {
+		$classes[] = 'estjo-button--full';
+	}
+	
+	// Add disabled class
+	if ( $args['disabled'] ) {
+		$classes[] = 'estjo-button--disabled';
+	}
+	
+	// Add custom classes
+	if ( ! empty( $args['class'] ) ) {
+		$classes[] = esc_attr( $args['class'] );
+	}
+	
+	// Build attributes
+	$attributes = array();
+	
+	// Add base attributes
+	if ( ! empty( $args['url'] ) ) {
+		$attributes['href'] = esc_url( $args['url'] );
+		$tag = 'a';
+	} else {
+		$attributes['type'] = esc_attr( $args['type'] );
+		$tag = 'button';
+	}
+	
+	$attributes['class'] = implode( ' ', $classes );
+	
+	if ( $args['disabled'] ) {
+		if ( 'button' === $tag ) {
+			$attributes['disabled'] = 'disabled';
+		} else {
+			$attributes['aria-disabled'] = 'true';
+		}
+	}
+	
+	// Merge custom attributes
+	if ( ! empty( $args['attributes'] ) && is_array( $args['attributes'] ) ) {
+		foreach ( $args['attributes'] as $key => $value ) {
+			if ( 'class' === $key ) {
+				$attributes['class'] .= ' ' . esc_attr( $value );
+			} else {
+				$attributes[ $key ] = esc_attr( $value );
+			}
+		}
+	}
+	
+	// Build attribute string
+	$attr_string = '';
+	foreach ( $attributes as $key => $value ) {
+		$attr_string .= sprintf( ' %s="%s"', $key, $value );
+	}
+	
+	// Process icon
+	$icon_html = '';
+	if ( ! empty( $args['icon'] ) ) {
+		// Check if it's a dashicon
+		if ( strpos( $args['icon'], 'dashicons-' ) === 0 ) {
+			$icon_html = sprintf(
+				'<span class="estjo-button__icon estjo-button__icon--%s dashicons %s" aria-hidden="true"></span>',
+				esc_attr( $args['icon_position'] ),
+				esc_attr( $args['icon'] )
+			);
+		} else {
+			// Assume it's custom HTML
+			$icon_html = sprintf(
+				'<span class="estjo-button__icon estjo-button__icon--%s" aria-hidden="true">%s</span>',
+				esc_attr( $args['icon_position'] ),
+				wp_kses_post( $args['icon'] )
+			);
+		}
+	}
+	
+	// Build button HTML
+	$button_content = '';
+	if ( 'start' === $args['icon_position'] && ! empty( $icon_html ) ) {
+		$button_content .= $icon_html;
+	}
+	
+	$button_content .= '<span>' . esc_html( $args['text'] ) . '</span>';
+	
+	if ( 'end' === $args['icon_position'] && ! empty( $icon_html ) ) {
+		$button_content .= $icon_html;
+	}
+	
+	$html = sprintf(
+		'<%1$s%2$s>%3$s</%1$s>',
+		$tag,
+		$attr_string,
+		$button_content
+	);
+	
+	if ( $args['echo'] ) {
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	} else {
+		return $html;
+	}
+}
+
+/**
  * Outputs a comment in the HTML5 format.
  *
  * This function overrides the default WordPress comment output in HTML5

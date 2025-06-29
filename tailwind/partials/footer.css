@@ -14,6 +14,7 @@
 @import "../custom/components/components.css";
 @import "../custom/components/footer.css";
 @import "../custom/components/header.css";
+@import "../custom/components/buttons.css";
 
 /**
  * Add Tailwind's utility classes and any utility classes registered by

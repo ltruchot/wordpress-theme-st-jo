@@ -1,0 +1,242 @@
+/**
+ * Button Components
+ * 
+ * Base button styles following the estjo naming convention
+ * Use these classes for consistent button styling across the theme
+ */
+
+/* Base button styles */
+.estjo-button,
+.wp-block-button__link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%;
+  text-align: center;
+  letter-spacing: 0;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  
+  /* Prevent text selection on click */
+  user-select: none;
+  border: 2px solid;
+  border-radius: 24px;
+  transition: all 0.2s ease-in-out;
+  
+  /* Desktop styles */
+  @media (min-width: theme(--breakpoint-md)) {
+    padding: 11px 16px;
+    font-size: 16px;
+  }
+  
+  /* Focus styles for accessibility */
+  &:focus-visible {
+    outline: 2px solid theme(colors.primary-500);
+    outline-offset: 2px;
+  }
+}
+
+/* Primary button (default) */
+.estjo-button--primary,
+.wp-block-button__link {
+  color: theme(colors.white) !important;
+  background-color: theme(colors.primary-500);
+  border-color: theme(colors.primary-500);
+  text-decoration: none !important;
+  
+  &:hover {
+    color: theme(colors.white) !important;
+    background-color: theme(colors.primary-600);
+    border-color: theme(colors.primary-600);
+    text-decoration: none !important;
+  }
+  
+  &:active {
+    color: theme(colors.white) !important;
+    background-color: theme(colors.primary-700);
+    border-color: theme(colors.primary-700);
+    text-decoration: none !important;
+  }
+  
+  &:visited {
+    color: theme(colors.white) !important;
+    text-decoration: none !important;
+  }
+}
+
+/* Secondary button */
+.estjo-button--secondary {
+  color: theme(colors.primary-500);
+  background-color: theme(colors.primary-500);
+  
+  &:hover {
+    background-color: theme(colors.primary-600);
+  }
+  
+  &:active {
+    background-color: theme(colors.primary-700);
+  }
+}
+
+/* Tertiary button */
+.estjo-button--tertiary {
+  color: theme(colors.foreground);
+  background-color: theme(colors.primary-500);
+  
+  &:hover {
+    background-color: theme(colors.primary-600);
+  }
+  
+  &:active {
+    background-color: theme(colors.primary-700);
+  }
+}
+
+/* Outline button */
+.estjo-button--outline,
+.wp-block-button.is-style-outline .wp-block-button__link {
+  color: theme(colors.primary-500) !important;
+  background-color: transparent;
+  border: 2px solid theme(colors.primary-500);
+  text-decoration: none !important;
+  
+  &:hover {
+    color: theme(colors.background) !important;
+    background-color: theme(colors.primary-500);
+    text-decoration: none !important;
+  }
+  
+  &:active {
+    color: theme(colors.background) !important;
+    background-color: theme(colors.primary-700);
+    text-decoration: none !important;
+  }
+  
+  &:visited {
+    color: theme(colors.primary-500) !important;
+    text-decoration: none !important;
+  }
+}
+
+/* Ghost button */
+.estjo-button--ghost {
+  color: theme(colors.primary-500);
+  background-color: transparent;
+  
+  &:hover {
+    background-color: theme(colors.gray-100);
+  }
+  
+  &:active {
+    background-color: theme(colors.gray-200);
+  }
+}
+
+/* Size variants */
+.estjo-button--small {
+  padding: 6px 10px;
+  font-size: 12px;
+  
+  @media (min-width: theme(--breakpoint-md)) {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+.estjo-button--large {
+  padding: 12px 20px;
+  font-size: 16px;
+  
+  @media (min-width: theme(--breakpoint-md)) {
+    padding: 14px 24px;
+    font-size: 18px;
+  }
+}
+
+/* Full width button */
+.estjo-button--full {
+  width: 100%;
+}
+
+/* Disabled state */
+.estjo-button:disabled,
+.estjo-button--disabled {
+  cursor: not-allowed;
+  
+  &.estjo-button--primary {
+    color: theme(colors.primary-300);
+    background-color: theme(colors.primary-100);
+    border-color: theme(colors.primary-100);
+    
+    &:hover {
+      /* Prevent hover effects when disabled */
+      background-color: theme(colors.primary-100);
+      border-color: theme(colors.primary-100);
+    }
+  }
+  
+  /* Apply to other variants if needed */
+  &:not(.estjo-button--primary) {
+    opacity: 0.5;
+    
+    &:hover {
+      /* Prevent hover effects when disabled */
+      background-color: initial;
+    }
+  }
+}
+
+/* Icon support */
+.estjo-button__icon {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  
+  /* Icon on the left */
+  &--start {
+    margin-right: 4px;
+  }
+  
+  /* Icon on the right */
+  &--end {
+    margin-left: 4px;
+  }
+}
+
+/* Loading state */
+.estjo-button--loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+  
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    margin-left: -8px;
+    content: "";
+    border: 2px solid theme(colors.background);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: button-loading-spinner 0.6s linear infinite;
+  }
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}

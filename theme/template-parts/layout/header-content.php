@@ -23,7 +23,10 @@
 				<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
 				<li><a href="/actualites" <?php if(is_page('actualites')) echo 'class="current-menu-item"'; ?>>Actualités</a></li>
 			</ul>
-			<a href="/contact" class="estjo-header__cta">Nous contacter</a>
+			<?php st_jo_button( array(
+				'text' => 'Nous contacter',
+				'url'  => '/contact'
+			) ); ?>
 		</nav>
 
 		<button class="estjo-header__mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Montrer le menu', 'st-jo' ); ?>">
@@ -43,6 +46,9 @@
 			<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
 			<li><a href="/actualites" <?php if(is_page('actualites')) echo 'class="current-menu-item"'; ?>>Actualités</a></li>
 		</ul>
-		<a href="/contact" class="estjo-header__mobile-cta">Nous contacter</a>
+		<?php st_jo_button( array(
+			'text' => 'Nous contacter',
+			'url'  => '/contact'
+		) ); ?>
 	</nav>
 </header><!-- #masthead -->
