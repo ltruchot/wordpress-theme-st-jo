@@ -1,3 +1,4 @@
+/* stylelint-disable plugin/stylelint-bem-namics */
 /**
  * Custom styles to immediately follow Tailwind’s `base` layer
  */
@@ -67,7 +68,7 @@ body {
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: var(--wp--preset--color--black) !important;
+	color: theme(colors.black) !important;
 	letter-spacing: 0 !important;
 }
 
@@ -77,7 +78,7 @@ body {
 	font-size: 16px !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: var(--wp--preset--color--black) !important;
+	color: theme(colors.black) !important;
 	letter-spacing: 0 !important;
 }
 
@@ -86,7 +87,7 @@ body {
 	font-size: 18px !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: var(--wp--preset--color--black) !important;
+	color: theme(colors.black) !important;
 	letter-spacing: 0 !important;
 }
 
@@ -95,7 +96,7 @@ body {
 	font-size: 20px !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: var(--wp--preset--color--black) !important;
+	color: theme(colors.black) !important;
 	letter-spacing: 0 !important;
 }
 
@@ -104,7 +105,7 @@ body {
 	font-size: 22px !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: var(--wp--preset--color--black) !important;
+	color: theme(colors.black) !important;
 	letter-spacing: 0 !important;
 }
 
@@ -117,7 +118,7 @@ body {
 	font-family: Lato, sans-serif;
 	font-weight: 400;
 	line-height: 1.6;
-	color: var(--wp--preset--color--black);
+	color: theme(colors.black);
 	letter-spacing: 0;
 	text-decoration: underline solid;
 }
@@ -131,7 +132,7 @@ body {
 	font-family: Lato, sans-serif;
 	font-weight: 700;
 	line-height: 1.6;
-	color: var(--wp--preset--color--black);
+	color: theme(colors.black);
 	letter-spacing: 0;
 }
 

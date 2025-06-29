@@ -47,7 +47,7 @@
 
 /* Primary button (default) */
 .estjo-button--primary,
-.wp-block-button__link {
+.wp-block-button:not(.is-style-outline) .wp-block-button__link {
   color: theme(colors.white) !important;
   background-color: theme(colors.primary-500);
   border-color: theme(colors.primary-500);
@@ -73,51 +73,23 @@
   }
 }
 
-/* Secondary button */
-.estjo-button--secondary {
-  color: theme(colors.primary-500);
-  background-color: theme(colors.primary-500);
-  
-  &:hover {
-    background-color: theme(colors.primary-600);
-  }
-  
-  &:active {
-    background-color: theme(colors.primary-700);
-  }
-}
-
-/* Tertiary button */
-.estjo-button--tertiary {
-  color: theme(colors.foreground);
-  background-color: theme(colors.primary-500);
-  
-  &:hover {
-    background-color: theme(colors.primary-600);
-  }
-  
-  &:active {
-    background-color: theme(colors.primary-700);
-  }
-}
-
-/* Outline button */
-.estjo-button--outline,
+/* Secondary button (outline style in WordPress) */
+.estjo-button--secondary,
 .wp-block-button.is-style-outline .wp-block-button__link {
   color: theme(colors.primary-500) !important;
   background-color: transparent;
-  border: 2px solid theme(colors.primary-500);
+  border-color: theme(colors.primary-300);
   text-decoration: none !important;
   
   &:hover {
-    color: theme(colors.background) !important;
-    background-color: theme(colors.primary-500);
+    color: theme(colors.primary-500) !important;
+    border-color: theme(colors.primary-500);
     text-decoration: none !important;
   }
   
   &:active {
-    color: theme(colors.background) !important;
-    background-color: theme(colors.primary-700);
+    color: theme(colors.primary-700) !important;
+    border-color: theme(colors.primary-700);
     text-decoration: none !important;
   }
   
@@ -125,21 +97,14 @@
     color: theme(colors.primary-500) !important;
     text-decoration: none !important;
   }
+  
+  &:focus-visible {
+    outline: 2px solid theme(colors.primary-500);
+    outline-offset: 2px;
+  }
 }
 
-/* Ghost button */
-.estjo-button--ghost {
-  color: theme(colors.primary-500);
-  background-color: transparent;
-  
-  &:hover {
-    background-color: theme(colors.gray-100);
-  }
-  
-  &:active {
-    background-color: theme(colors.gray-200);
-  }
-}
+
 
 /* Size variants */
 .estjo-button--small {
@@ -188,8 +153,21 @@
     }
   }
   
+  &.estjo-button--secondary,
+  &.is-style-outline .wp-block-button__link {
+    color: theme(colors.primary-300) !important;
+    background-color: transparent;
+    border-color: theme(colors.primary-100);
+    
+    &:hover {
+      /* Prevent hover effects when disabled */
+      color: theme(colors.primary-300) !important;
+      border-color: theme(colors.primary-100);
+    }
+  }
+  
   /* Apply to other variants if needed */
-  &:not(.estjo-button--primary) {
+  &:not(.estjo-button--primary):not(.estjo-button--secondary) {
     opacity: 0.5;
     
     &:hover {

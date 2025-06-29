@@ -15,7 +15,6 @@ Le composant bouton du thème St-Jo offre une interface cohérente et flexible p
    - Choisissez parmi les modèles disponibles :
      - **Bouton principal** : Pour les actions principales
      - **Bouton secondaire** : Pour les actions secondaires
-     - **Bouton contour** : Pour un style plus léger
      - **Bouton avec icône** : Avec une icône intégrée
      - **Groupe de boutons** : Plusieurs boutons alignés
      - **Section appel à l'action** : Section complète avec titre et bouton
@@ -56,7 +55,7 @@ st_jo_button( array(
 // Bouton large désactivé
 st_jo_button( array(
     'text'     => 'Bientôt disponible',
-    'variant'  => 'outline',
+    'variant'  => 'secondary',
     'size'     => 'large',
     'disabled' => true
 ) );
@@ -97,7 +96,7 @@ $button_html = st_jo_button( array(
 |-----------|------|---------|-------------|
 | `text` | string | 'Bouton' | Texte du bouton |
 | `url` | string | '' | URL de destination (crée un lien si rempli) |
-| `variant` | string | 'primary' | Style : primary, secondary, tertiary, outline, ghost |
+| `variant` | string | 'primary' | Style : primary, secondary |
 | `size` | string | 'medium' | Taille : small, medium, large |
 | `icon` | string | '' | Icône (nom dashicon ou HTML personnalisé) |
 | `icon_position` | string | 'start' | Position de l'icône : start, end |
@@ -154,9 +153,6 @@ Les classes CSS suivantes sont disponibles :
 - `.estjo-button` : Classe de base
 - `.estjo-button--primary` : Variante principale
 - `.estjo-button--secondary` : Variante secondaire
-- `.estjo-button--tertiary` : Variante tertiaire
-- `.estjo-button--outline` : Variante contour
-- `.estjo-button--ghost` : Variante fantôme
 - `.estjo-button--small` : Taille petite
 - `.estjo-button--large` : Taille grande
 - `.estjo-button--full` : Pleine largeur

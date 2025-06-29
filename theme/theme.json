@@ -95,6 +95,16 @@
 					"name": "Green"
 				},
 				{
+					"slug": "purple",
+					"color": "#5B63CB",
+					"name": "Purple"
+				},
+				{
+					"slug": "yellow",
+					"color": "#F8C800",
+					"name": "Yellow"
+				},
+				{
 					"slug": "gray-50",
 					"color": "#F9FAFB",
 					"name": "Gray 50"

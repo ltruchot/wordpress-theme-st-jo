@@ -117,7 +117,7 @@ add_filter( 'the_content_more_link', 'st_jo_continue_reading_link' );
  *
  *     @type string $text      Button text. Default 'Button'.
  *     @type string $url       URL for link buttons. Default empty.
- *     @type string $variant   Button variant (primary, secondary, tertiary, outline, ghost). Default 'primary'.
+ *     @type string $variant   Button variant (primary, secondary). Default 'primary'.
  *     @type string $size      Button size (small, medium, large). Default 'medium'.
  *     @type string $icon      Icon HTML or dashicon name. Default empty.
  *     @type string $icon_position Icon position (start, end). Default 'start'.

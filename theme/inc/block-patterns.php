@@ -50,23 +50,6 @@ function st_jo_register_block_patterns() {
 		)
 	);
 
-	// Outline button pattern
-	register_block_pattern(
-		'st-jo/button-outline',
-		array(
-			'title'       => __( 'Bouton contour', 'st-jo' ),
-			'description' => __( 'Un bouton avec contour', 'st-jo' ),
-			'categories'  => array( 'st-jo-buttons', 'buttons' ),
-			'content'     => '<!-- wp:html -->
-' . st_jo_button( array(
-	'text'    => __( 'Découvrir', 'st-jo' ),
-	'url'     => '#',
-	'variant' => 'outline',
-	'echo'    => false,
-) ) . '
-<!-- /wp:html -->',
-		)
-	);
 
 	// Button with icon pattern
 	register_block_pattern(
@@ -107,7 +90,7 @@ function st_jo_register_block_patterns() {
 ' . st_jo_button( array(
 	'text'    => __( 'Action secondaire', 'st-jo' ),
 	'url'     => '#',
-	'variant' => 'outline',
+	'variant' => 'secondary',
 	'echo'    => false,
 ) ) . '
 <!-- /wp:html -->

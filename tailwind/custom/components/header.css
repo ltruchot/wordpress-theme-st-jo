@@ -67,14 +67,14 @@
         text-decoration: none;
 
         &:hover {
-          color: theme(--color-primary);
+          color: theme(colors.primary-500);
           text-decoration: underline;
           text-decoration-style: solid;
         }
 
         &.current-menu-item {
           font-weight: 700;
-          color: theme(--color-primary);
+          color: theme(colors.primary-500);
           text-decoration-line: none;
         }
       }
@@ -191,14 +191,14 @@
         cursor: pointer;
 
         &:hover {
-          color: theme(--color-primary);
+          color: theme(colors.primary-500);
           text-decoration: underline;
           text-decoration-style: solid;
         }
 
         &.current-menu-item {
           font-weight: 700;
-          color: theme(--color-primary);
+          color: theme(colors.primary-500);
           text-decoration-line: none;
         }
       }
