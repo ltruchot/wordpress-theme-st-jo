@@ -28,6 +28,15 @@ wp.domReady(() => {
 		label: 'Lead',
 	});
 
+	/**
+	 * Add container variation for Group block with beige background and bottom wave border
+	 */
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'container-beige-wave',
+		label: 'Beige et vagues',
+		className: 'is-style-container-beige-wave',
+	});
+
 	// Add additional block editor modifications here. For example, you could
 	// register another block style:
 	//
