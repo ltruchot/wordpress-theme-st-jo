@@ -17,6 +17,7 @@
 @import "../custom/components/buttons.css";
 @import "../custom/components/columns.css";
 @import "../custom/components/container-beige.css";
+@import "../custom/components/carousel-masked-image.css";
 
 /**
  * Add Tailwind's utility classes and any utility classes registered by
