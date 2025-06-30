@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple Carousel Masked Image</title>
+    <link rel="stylesheet" href="theme/style.css">
+</head>
+<body>
+    <!-- Version avec le bon chemin original -->
+    <div 
+        class="carousel-masked-image carousel-masked-image--medium"
+        style="--carousel-image-url: url('theme/assets/images/enfants-jouant-a-l-ecole.jpg');">
+    </div>
+
+    <!-- Usage dans un contexte WordPress avec ACF ou media library -->
+    <!--
+    <div 
+        class="carousel-masked-image"
+        style="--carousel-image-url: url('<?php echo esc_url($image_url); ?>');">
+    </div>
+    
+    // En PHP WordPress :
+    $image_url = wp_get_attachment_image_url($image_id, 'large');
+    echo '<div class="carousel-masked-image" style="--carousel-image-url: url(' . esc_url($image_url) . ');"></div>';
+    -->
+
+    <h2>Test de tailles :</h2>
+    <div 
+        class="carousel-masked-image carousel-masked-image--small"
+        style="--carousel-image-url: url('theme/assets/images/enfants-jouant-a-l-ecole.jpg');">
+    </div>
+
+    <div 
+        class="carousel-masked-image carousel-masked-image--large"
+        style="--carousel-image-url: url('theme/assets/images/enfants-jouant-a-l-ecole.jpg');">
+    </div>
+</body>
+</html>
