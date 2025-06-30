@@ -20,9 +20,49 @@ get_header();
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
+				?>
 
-				get_template_part( 'template-parts/content/content', 'page' );
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+					<?php st_jo_post_thumbnail(); ?>
+
+					<div <?php st_jo_content_class( 'entry-content' ); ?>>
+						<?php
+						the_content();
+
+						wp_link_pages(
+							array(
+								'before' => '<div>' . __( 'Pages:', 'st-jo' ),
+								'after'  => '</div>',
+							)
+						);
+						?>
+					</div><!-- .entry-content -->
+
+					<?php if ( get_edit_post_link() ) : ?>
+						<footer class="entry-footer">
+							<?php
+							edit_post_link(
+								sprintf(
+									wp_kses(
+										/* translators: %s: Name of current post. Only visible to screen readers. */
+										__( 'Edit <span class="sr-only">%s</span>', 'st-jo' ),
+										array(
+											'span' => array(
+												'class' => array(),
+											),
+										)
+									),
+									get_the_title()
+								)
+							);
+							?>
+						</footer><!-- .entry-footer -->
+					<?php endif; ?>
+
+				</article><!-- #post-<?php the_ID(); ?> -->
+
+				<?php
 				// If comments are open, or we have at least one comment, load
 				// the comment template.
 				if ( comments_open() || get_comments_number() ) {

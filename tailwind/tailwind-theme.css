@@ -54,6 +54,12 @@
 	--color-gray-900: var(--wp--preset--color--gray-900);
 	--container-content: var(--wp--style--global--content-size);
 	--container-wide: var(--wp--style--global--wide-size);
+	
+	/**
+	 * Font families
+	 */
+	--font-sans: var(--wp--preset--font-family--system);
+	--font-heading: var(--wp--preset--font-family--heading);
 
 	/**
 	 * Custom breakpoints: mobile (0-719px), tablet (720-959px), desktop (960-1279px), wide (1280px+)

@@ -51,23 +51,6 @@ function st_jo_register_block_patterns() {
 	);
 
 
-	// Button with icon pattern
-	register_block_pattern(
-		'st-jo/button-with-icon',
-		array(
-			'title'       => __( 'Bouton avec icône', 'st-jo' ),
-			'description' => __( 'Un bouton avec une icône', 'st-jo' ),
-			'categories'  => array( 'st-jo-buttons', 'buttons' ),
-			'content'     => '<!-- wp:html -->
-' . st_jo_button( array(
-	'text' => __( 'Télécharger', 'st-jo' ),
-	'url'  => '#',
-	'icon' => 'dashicons-download',
-	'echo' => false,
-) ) . '
-<!-- /wp:html -->',
-		)
-	);
 
 	// Button group pattern
 	register_block_pattern(
