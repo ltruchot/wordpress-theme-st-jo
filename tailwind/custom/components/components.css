@@ -130,12 +130,112 @@ h5 {
 .prose .wp-block-paragraph.is-style-lead,
 .prose :where([class~="is-style-lead"]):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: Lato, sans-serif !important;
-	font-weight: 400 !important;
 	font-size: 16px !important;
+	font-weight: 400 !important;
 	line-height: 100% !important;
-	letter-spacing: 3% !important;
-	text-transform: uppercase !important;
 	color: theme(colors.black) !important;
+	text-transform: uppercase !important;
+	letter-spacing: 3% !important;
+}
+
+/**
+ * Carousel Masked Image Component
+ * Creates a masked image using SVG shape with proper image fitting
+ * Version responsive et transparente
+ */
+.carousel-masked-image {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 715px; /* Largeur max du SVG */
+	aspect-ratio: 715 / 707; /* Proportion du SVG original */
+	overflow: visible;
+	
+	/* Transparent - on voit la couleur de fond */
+	background: transparent;
+	
+	/* L'image de fond qui sera masquée - version WordPress */
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		content: '';
+		background-image: var(--carousel-image-url);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		
+		/* Application du masque SVG - maintenant en noir pour masque luminance */
+		mask: url('assets/images/carousel-mask-shape-mask.svg') no-repeat center/contain;
+	}
+	
+	/* Banane décorative qui dépasse à droite */
+	&::after {
+		position: absolute;
+		top: 0%;
+		right: -19%;
+		z-index: 2;
+		width: 66%;
+		height: 103%;
+		pointer-events: none;
+		content: '';
+		background-image: url('assets/images/logo-destructured-banana.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+	}
+}
+
+/* Splash bleu qui longe le bas gauche */
+.carousel-masked-image.with-splash {
+	&::before {
+		z-index: 1;
+	}
+	
+	&::after {
+		z-index: 3;
+	}
+}
+
+.carousel-masked-image.with-splash::before {
+	/* Image masquée reste en z-index 1 */
+}
+
+.carousel-masked-image::before,
+.carousel-masked-image.with-splash::before {
+	/* Propriété commune déjà définie */
+}
+
+/* Utiliser un pseudo-élément sur un enfant pour le splash */
+.carousel-masked-image.with-splash > .splash-overlay {
+	position: absolute;
+	bottom: -6%;
+	left: -3%;
+	z-index: 2;
+	width: 41%;
+	height: 63%;
+	pointer-events: none;
+	content: '';
+	background-image: url('assets/images/logo-destructured-splash.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+/* Variantes de largeur si nécessaire */
+.carousel-masked-image--small {
+	max-width: 300px;
+}
+
+.carousel-masked-image--medium {
+	max-width: 500px;
+}
+
+.carousel-masked-image--large {
+	max-width: 715px; /* Taille max par défaut */
 }
 
 

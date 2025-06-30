@@ -38,6 +38,23 @@ get_header();
 						);
 						?>
 					</div><!-- .entry-content -->
+					
+					<!-- Test du composant Carousel Masked Image -->
+					<div style="padding: 40px; text-align: center;">
+						<h3>Test Carousel Masked Image Responsive</h3>
+						
+						<!-- Version responsive par défaut -->
+						<div 
+							class="carousel-masked-image"
+							style="--carousel-image-url: url('<?php echo get_template_directory_uri(); ?>/assets/images/enfants-jouant-a-l-ecole.jpg'); margin: 20px auto; display: block;">
+						</div>
+						
+						<!-- Version small pour test -->
+						<div 
+							class="carousel-masked-image carousel-masked-image--small"
+							style="--carousel-image-url: url('<?php echo get_template_directory_uri(); ?>/assets/images/enfants-jouant-a-l-ecole.jpg'); margin: 20px auto; display: block;">
+						</div>
+					</div>
 
 					<?php if ( get_edit_post_link() ) : ?>
 						<footer class="entry-footer">
