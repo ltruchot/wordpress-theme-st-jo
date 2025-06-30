@@ -16,6 +16,17 @@ function st_jo_pingback_header() {
 add_action( 'wp_head', 'st_jo_pingback_header' );
 
 /**
+ * Add preconnect for Google Fonts.
+ *
+ * Adds preconnect resource hints for Google Fonts to improve performance.
+ */
+function st_jo_google_fonts_preconnect() {
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+}
+add_action( 'wp_head', 'st_jo_google_fonts_preconnect', 1 );
+
+/**
  * Changes comment form default fields.
  *
  * @param array $defaults The default comment form arguments.
