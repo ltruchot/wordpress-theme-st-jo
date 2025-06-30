@@ -30,10 +30,12 @@ function st_jo_register_block_patterns() {
 			'categories'  => array( 'st-jo-components', 'media' ),
 			'keywords'    => array( 'image', 'masque', 'dessiné', 'svg', 'forme' ),
 			'content'     => '<!-- wp:html -->
-<div class="carousel-masked-image with-splash with-character" style="--carousel-image-url: url(\'/wp-content/themes/st-jo/theme/assets/images/sample-image.jpg\');">
-	<div class="splash-overlay"></div>
-	<div class="character-body"></div>
-	<div class="character-head"></div>
+<div class="carousel-masked-image-wrapper">
+	<div class="carousel-masked-image with-splash with-character" style="--carousel-image-url: url(\'/wp-content/themes/st-jo/theme/assets/images/sample-image.jpg\');">
+		<div class="splash-overlay"></div>
+		<div class="character-body"></div>
+		<div class="character-head"></div>
+	</div>
 </div>
 <!-- /wp:html -->',
 		)

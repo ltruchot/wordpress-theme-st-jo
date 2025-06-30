@@ -67,7 +67,7 @@
 		justify-content: center;
 		transform: translate(-8%, -40%) scale(0.9);
 
-		@media (max-width: calc(theme(--breakpoint-sm) - 1px)) {
+		@media (max-width: calc(theme(--breakpoint-md) - 1px)) {
 			left: -43px;
 			transform: translate(-8%, -40%) scale(0.4);
 		}
@@ -145,7 +145,7 @@
 				align-items: center;
 				justify-content: center;
 
-				@media (max-width: calc(theme(--breakpoint-sm) - 1px)) {
+				@media (max-width: calc(theme(--breakpoint-md) - 1px)) {
 					flex-direction: column;
 					gap: 12px;
 				}
