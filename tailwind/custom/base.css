@@ -27,21 +27,9 @@ body {
 }
 
 #content {
-  /* Header height + margin */
-  padding-top: calc(110px + 40px);
+
   padding-bottom: 50px;
 
-  @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
-    padding-top: calc(70px + 40px);
-  }
-
-  @media (min-width: theme(--breakpoint-sm)) {
-    padding-top: calc(110px + 64px);
-  }
-
-  @media (min-width: theme(--breakpoint-lg)) {
-    padding-top: calc(110px + 72px);
-  }
 }
 
 #primary {

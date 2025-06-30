@@ -123,4 +123,19 @@ h5 {
 }
 /* stylelint-enable plugin/stylelint-bem-namics */
 
+/**
+ * Lead paragraph style - Override Tailwind Typography
+ */
+.wp-block-paragraph.is-style-lead,
+.prose .wp-block-paragraph.is-style-lead,
+.prose :where([class~="is-style-lead"]):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: Lato, sans-serif !important;
+	font-weight: 400 !important;
+	font-size: 16px !important;
+	line-height: 100% !important;
+	letter-spacing: 3% !important;
+	text-transform: uppercase !important;
+	color: theme(colors.black) !important;
+}
+
 

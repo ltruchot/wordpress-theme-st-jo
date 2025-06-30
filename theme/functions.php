@@ -186,6 +186,7 @@ function st_jo_tinymce_add_class( $settings ) {
 }
 add_filter( 'tiny_mce_before_init', 'st_jo_tinymce_add_class' );
 
+
 /**
  * Custom template tags for this theme.
  */
@@ -195,6 +196,8 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+
 
 /**
  * Block patterns for reusable components.

@@ -28,11 +28,25 @@ wp.domReady(() => {
 		label: 'Lead',
 	});
 
-	// Add additional block editor modifications here. For example, you could
-	// register another block style:
-	//
-	// wp.blocks.registerBlockStyle( 'core/quote', {
-	// 	name: 'fancy-quote',
-	// 	label: 'Fancy Quote',
-	// } );
+	/**
+	 * Add container variation for Group block with beige background and bottom wave border
+	 */
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'container-beige-wave',
+		label: 'Beige et vagues',
+		className: 'is-style-container-beige-wave',
+	});
+
+	/**
+	 * Add button variations with chevron
+	 */
+	wp.blocks.registerBlockStyle('core/button', {
+		name: 'chevron-right',
+		label: 'Chevron droit',
+	});
+
+	wp.blocks.registerBlockStyle('core/button', {
+		name: 'outline-chevron-right',
+		label: 'Contour chevron droit',
+	});
 });
