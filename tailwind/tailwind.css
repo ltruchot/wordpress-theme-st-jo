@@ -23,3 +23,9 @@
  * shared code to avoid duplication.
  */
 @import "./partials/footer.css";
+
+/**
+ * Safelist - Force generation of specific utility classes
+ */
+@source inline("{md:,}block");
+@source inline("{md:,}hidden");
