@@ -99,6 +99,13 @@
     color: theme(colors.primary-500) !important;
     text-decoration: none !important;
     background-color: transparent !important;
+    border-color: theme(colors.primary-300) !important;
+  }
+  
+  /* Force Android/Chrome compliance */
+  &:visited:hover {
+    color: theme(colors.primary-500) !important;
+    border-color: theme(colors.primary-500) !important;
   }
   
   &:focus-visible {
