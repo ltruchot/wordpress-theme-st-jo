@@ -145,6 +145,9 @@ add_action( 'widgets_init', 'st_jo_widgets_init' );
  * Enqueue scripts and styles.
  */
 function st_jo_scripts() {
+	// Google Fonts
+	wp_enqueue_style( 'st-jo-google-fonts', 'https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap', array(), null );
+	
 	wp_enqueue_style( 'st-jo-style', get_stylesheet_uri(), array(), ST_JO_VERSION );
 	wp_enqueue_script( 'st-jo-script', get_template_directory_uri() . '/js/script.min.js', array(), ST_JO_VERSION, true );
 
@@ -196,6 +199,7 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
 
 
 

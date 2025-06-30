@@ -14,6 +14,30 @@ function st_jo_register_block_patterns() {
 		'st-jo-buttons',
 		array( 'label' => __( 'Boutons', 'st-jo' ) )
 	);
+	
+	// Register custom components category
+	register_block_pattern_category(
+		'st-jo-components',
+		array( 'label' => __( 'Composants St-Jo', 'st-jo' ) )
+	);
+	
+	// Image masquée pattern
+	register_block_pattern(
+		'st-jo/image-masque-dessinee',
+		array(
+			'title'       => __( 'Image masquée dessinée', 'st-jo' ),
+			'description' => __( 'Une image affichée à travers une forme SVG irrégulière', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'media' ),
+			'keywords'    => array( 'image', 'masque', 'dessiné', 'svg', 'forme' ),
+			'content'     => '<!-- wp:html -->
+<div class="carousel-masked-image with-splash with-character" style="--carousel-image-url: url(\'/wp-content/themes/st-jo/theme/assets/images/sample-image.jpg\');">
+	<div class="splash-overlay"></div>
+	<div class="character-body"></div>
+	<div class="character-head"></div>
+</div>
+<!-- /wp:html -->',
+		)
+	);
 
 	// Primary button pattern
 	register_block_pattern(

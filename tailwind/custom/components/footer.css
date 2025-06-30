@@ -11,7 +11,7 @@
 		padding: 0;
 		margin: 0;
 		margin-bottom: 15px;
-		font-family: "Baloo Da 2", cursive;
+		font-family: var(--wp--preset--font-family--heading);
 		font-size: 22px;
 		font-weight: bold;
 		line-height: 26.4px;
