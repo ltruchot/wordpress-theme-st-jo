@@ -3,20 +3,17 @@
  * Section avec fond beige et bordure décorative en bas
  */
 
+ /* stylelint-disable plugin/stylelint-bem-namics */
 .wp-block-group.is-style-container-beige-wave {
   position: relative;
-  padding: 40px 20px;
+  padding: 72px 24px;
   margin: 0;
   background-color: var(--wp--preset--color--beige);
   
-  @media (min-width: theme(--breakpoint-sm)) {
+  @media (min-width: theme(--breakpoint-md)) {
     padding: 64px 24px;
   }
   
-  @media (min-width: theme(--breakpoint-lg)) {
-    padding: 72px 24px;
-  }
-
   /* Bordure vague en bas - dépasse du container pour être visible */
   &::after {
     position: absolute;
@@ -45,15 +42,6 @@
     margin-bottom: 0;
   }
 
-  /* Ajustements pour les titres */
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--wp--preset--color--black);
-  }
-
-  /* Ajustements pour les paragraphes */
-  p {
-    color: var(--wp--preset--color--black);
-  }
 }
 
 /* Variante pleine largeur */
@@ -62,3 +50,4 @@
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
 }
+/* stylelint-enable plugin/stylelint-bem-namics */
