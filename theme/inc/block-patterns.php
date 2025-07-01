@@ -139,5 +139,75 @@ function st_jo_register_block_patterns() {
 <!-- /wp:group -->',
 		)
 	);
+
+	// MEA Rouge pattern
+	register_block_pattern(
+		'st-jo/mea-rouge',
+		array(
+			'title'       => __( 'MEA Rouge', 'st-jo' ),
+			'description' => __( 'Cartouche rouge avec mise en page 33/66 en desktop', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'mea', 'rouge', 'cartouche', 'mise en avant' ),
+			'content'     => '<!-- wp:group {"className":"is-style-mea-rouge"} -->
+<div class="wp-block-group is-style-mea-rouge">
+<!-- wp:columns -->
+<div class="wp-block-columns">
+<!-- wp:column {"width":"33.33%"} -->
+<div class="wp-block-column" style="flex-basis:33.33%">
+<!-- wp:group {"className":"is-style-icon-title"} -->
+<div class="wp-block-group is-style-icon-title">
+<!-- wp:image {"width":64,"height":64} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-icon.png" alt="" width="64" height="64"/></figure>
+<!-- /wp:image -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">' . __( 'Titre principal', 'st-jo' ) . '</h3>
+<!-- /wp:heading -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:column -->
+
+<!-- wp:column {"width":"66.66%"} -->
+<div class="wp-block-column" style="flex-basis:66.66%">
+<!-- wp:paragraph -->
+<p>' . __( 'Votre texte de mise en avant ici. Ce cartouche rouge attire l\'attention sur des informations importantes avec un fort contraste visuel.', 'st-jo' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"backgroundColor":"white","textColor":"primary"} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-primary-color has-white-background-color has-text-color has-background wp-element-button">' . __( 'En savoir plus', 'st-jo' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:column -->
+</div>
+<!-- /wp:columns -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
+
+	// Icon Title pattern
+	register_block_pattern(
+		'st-jo/icon-title',
+		array(
+			'title'       => __( 'Icône et titre', 'st-jo' ),
+			'description' => __( 'Icône au-dessus du titre en desktop, à côté en mobile', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'icon', 'titre', 'icône' ),
+			'content'     => '<!-- wp:group {"className":"is-style-icon-title"} -->
+<div class="wp-block-group is-style-icon-title">
+<!-- wp:image {"width":64,"height":64} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-icon.png" alt="" width="64" height="64"/></figure>
+<!-- /wp:image -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">' . __( 'Titre avec icône', 'st-jo' ) . '</h3>
+<!-- /wp:heading -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
 }
 add_action( 'init', 'st_jo_register_block_patterns' );
