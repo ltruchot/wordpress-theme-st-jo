@@ -8,6 +8,7 @@
   position: relative;
   padding: 72px 24px;
   margin: 0;
+  margin-bottom: 120px;
   background-color: var(--wp--preset--color--beige);
   
   @media (min-width: theme(--breakpoint-md)) {

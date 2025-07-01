@@ -1,0 +1,74 @@
+/**
+ * Icon Title component styles
+ * Desktop: icon above title (column)
+ * Mobile: icon beside title (row)
+ */
+
+/* Base styles */
+.wp-block-group.is-style-icon-title {
+	@apply flex items-start gap-4;
+	
+	/* Mobile first: flex row */
+	@apply flex-row;
+
+	figure {
+		margin-top: 0 !important;
+        margin-bottom: 0 !important;
+	}
+}
+
+/* Desktop: switch to column layout */
+@media (min-width: theme(--breakpoint-md)) {
+	.wp-block-group.is-style-icon-title {
+		@apply flex-col text-left;
+		@apply gap-2;
+
+		max-width: 223px;
+	}
+}
+
+/* Icon container styling */
+.wp-block-group.is-style-icon-title > .wp-block-image:first-child {
+	@apply flex-shrink-0;
+	
+	/* Mobile: smaller icon */
+	@apply w-12 h-12;
+	
+	/* Ensure image fills container */
+	img {
+		@apply w-full h-full object-contain;
+	}
+}
+
+/* Desktop: larger icon */
+@media (min-width: theme(--breakpoint-md)) {
+	.wp-block-group.is-style-icon-title > .wp-block-image:first-child {
+		@apply w-12 h-12;
+	}
+}
+
+/* Title styling */
+.wp-block-group.is-style-icon-title > .wp-block-heading,
+.wp-block-group.is-style-icon-title > h1,
+.wp-block-group.is-style-icon-title > h2,
+.wp-block-group.is-style-icon-title > h3,
+.wp-block-group.is-style-icon-title > h4 {
+	@apply m-0;
+	
+	/* Mobile: left aligned */
+	@apply text-left;
+}
+
+/* Desktop: left aligned (already set on mobile) */
+
+/* When used inside MEA Rouge, ensure white text */
+.wp-block-group.is-style-mea-rouge .wp-block-group.is-style-icon-title > .wp-block-heading,
+.wp-block-group.is-style-mea-rouge h1,
+.wp-block-group.is-style-mea-rouge h2,
+.wp-block-group.is-style-mea-rouge h3,
+.wp-block-group.is-style-mea-rouge h4,
+.wp-block-group.is-style-mea-rouge h5,
+.wp-block-group.is-style-mea-rouge strong,
+.wp-block-group.is-style-mea-rouge p {
+	@apply text-white;
+}

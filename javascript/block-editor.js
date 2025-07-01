@@ -38,6 +38,24 @@ wp.domReady(() => {
 	});
 
 	/**
+	 * Add MEA Rouge variation for Group block
+	 */
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'mea-rouge',
+		label: 'MEA Rouge',
+		className: 'is-style-mea-rouge',
+	});
+
+	/**
+	 * Add Icon Title variation for Group block
+	 */
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'icon-title',
+		label: 'Icône et titre',
+		className: 'is-style-icon-title',
+	});
+
+	/**
 	 * Add button variations with chevron
 	 */
 	wp.blocks.registerBlockStyle('core/button', {
