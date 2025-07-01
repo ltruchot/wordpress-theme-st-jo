@@ -9,7 +9,7 @@
 	@apply flex items-start gap-4;
 	
 	/* Mobile first: flex row, centered */
-	@apply flex-row justify-center;
+	@apply flex-row justify-start;
 
 	figure {
 		margin-top: 0 !important;
@@ -20,7 +20,7 @@
 /* Desktop: switch to column layout */
 @media (min-width: theme(--breakpoint-md)) {
 	.wp-block-group.is-style-icon-title {
-		@apply flex-col text-left justify-start;
+		@apply flex-col text-left justify-start items-center;
 		@apply gap-2;
 
 		max-width: 223px;
