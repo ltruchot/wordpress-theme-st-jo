@@ -8,8 +8,8 @@
 .wp-block-group.is-style-icon-title {
 	@apply flex items-start gap-4;
 	
-	/* Mobile first: flex row */
-	@apply flex-row;
+	/* Mobile first: flex row, centered */
+	@apply flex-row justify-center;
 
 	figure {
 		margin-top: 0 !important;
@@ -20,7 +20,7 @@
 /* Desktop: switch to column layout */
 @media (min-width: theme(--breakpoint-md)) {
 	.wp-block-group.is-style-icon-title {
-		@apply flex-col text-left;
+		@apply flex-col text-left justify-start;
 		@apply gap-2;
 
 		max-width: 223px;
