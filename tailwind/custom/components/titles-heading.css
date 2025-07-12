@@ -8,15 +8,12 @@
 /* stylelint-disable plugin/stylelint-bem-namics */
 
 /**
- * Base heading styles
- * These apply everywhere except in specific contexts (MEA Rouge, Footer)
+ * Force override of all heading styles including .prose
+ * Using multiple selectors for maximum specificity
  */
-h1,
-.page-title,
-.entry-title,
-.prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
-	@apply max-w-content mx-auto mb-6;
 
+/* H1 Styles */
+h1 {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 30px !important;
 	font-weight: 800 !important;
@@ -30,9 +27,29 @@ h1,
 	}
 }
 
+.page-title,
+.entry-title,
+.prose h1,
+.prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)),
+.entry-content h1,
+.page-content h1 {
+	@apply max-w-content mx-auto mb-6;
+	
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 30px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 0 !important;
+	margin-bottom: 1.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 48px !important;
+	}
+}
 
-h2,
-.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+/* H2 Styles */
+h2 {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 26px !important;
 	font-weight: 800 !important;
@@ -46,8 +63,25 @@ h2,
 	}
 }
 
-h3,
-.prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+.prose h2,
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)),
+.entry-content h2,
+.page-content h2 {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 26px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 2rem !important;
+	margin-bottom: 1rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 36px !important;
+	}
+}
+
+/* H3 Styles */
+h3 {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 24px !important;	
 	font-weight: 800 !important;
@@ -61,8 +95,25 @@ h3,
 	}
 }
 
-h4,
-.prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+.prose h3,
+.prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)),
+.entry-content h3,
+.page-content h3 {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 24px !important;	
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 1.5rem !important;
+	margin-bottom: 0.75rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 34px !important;
+	}
+}
+
+/* H4 Styles */
+h4 {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 22px !important;
 	font-weight: 800 !important;
@@ -76,8 +127,42 @@ h4,
 	}
 }
 
-h5,
-.prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+.prose h4,
+.prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)),
+.entry-content h4,
+.page-content h4 {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 22px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 26px !important;
+	}
+}
+
+/* H5 Styles */
+h5 {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 20px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 22px !important;
+	}
+}
+
+.prose h5,
+.prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)),
+.entry-content h5,
+.page-content h5 {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 20px !important;
 	font-weight: 800 !important;
@@ -92,9 +177,10 @@ h5,
 }
 
 /**
- * Styles for headings inside MEA Rouge
+ * Styles for headings inside MEA Rouge - Override everything
  */
 .wp-block-group.is-style-mea-rouge h1,
+.wp-block-group.is-style-mea-rouge .prose h1,
 .wp-block-group.is-style-mea-rouge .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 30px !important;
@@ -110,6 +196,7 @@ h5,
 }
 
 .wp-block-group.is-style-mea-rouge h2,
+.wp-block-group.is-style-mea-rouge .prose h2,
 .wp-block-group.is-style-mea-rouge .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 26px !important;
@@ -125,6 +212,7 @@ h5,
 }
 
 .wp-block-group.is-style-mea-rouge h3,
+.wp-block-group.is-style-mea-rouge .prose h3,
 .wp-block-group.is-style-mea-rouge .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 24px !important;	
@@ -140,6 +228,7 @@ h5,
 }
 
 .wp-block-group.is-style-mea-rouge h4,
+.wp-block-group.is-style-mea-rouge .prose h4,
 .wp-block-group.is-style-mea-rouge .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 22px !important;
@@ -155,6 +244,7 @@ h5,
 }
 
 .wp-block-group.is-style-mea-rouge h5,
+.wp-block-group.is-style-mea-rouge .prose h5,
 .wp-block-group.is-style-mea-rouge .prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 20px !important;
@@ -170,9 +260,10 @@ h5,
 }
 
 /**
- * Styles for headings inside Footer
+ * Styles for headings inside Footer - Override everything
  */
 .estjo-footer h1,
+.estjo-footer .prose h1,
 .estjo-footer .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 30px !important;
@@ -188,6 +279,7 @@ h5,
 }
 
 .estjo-footer h2,
+.estjo-footer .prose h2,
 .estjo-footer .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 26px !important;
@@ -203,6 +295,7 @@ h5,
 }
 
 .estjo-footer h3,
+.estjo-footer .prose h3,
 .estjo-footer .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 24px !important;	
@@ -218,6 +311,7 @@ h5,
 }
 
 .estjo-footer h4,
+.estjo-footer .prose h4,
 .estjo-footer .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 22px !important;
@@ -229,6 +323,7 @@ h5,
 }
 
 .estjo-footer h5,
+.estjo-footer .prose h5,
 .estjo-footer .prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
 	font-family: var(--wp--preset--font-family--heading) !important;
 	font-size: 20px !important;
