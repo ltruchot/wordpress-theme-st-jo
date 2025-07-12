@@ -12,6 +12,7 @@
  * manually added below.
  */
 @import "../custom/components/components.css";
+@import "../custom/components/titles-heading.css";
 @import "../custom/components/footer.css";
 @import "../custom/components/header.css";
 @import "../custom/components/buttons.css";

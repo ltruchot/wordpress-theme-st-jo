@@ -1,0 +1,246 @@
+/**
+ * Titles and Headings Styles
+ * 
+ * This file consolidates all heading styles and ensures they override
+ * Tailwind Typography .prose styles properly
+ */
+
+/* stylelint-disable plugin/stylelint-bem-namics */
+
+/**
+ * Base heading styles
+ * These apply everywhere except in specific contexts (MEA Rouge, Footer)
+ */
+h1,
+.page-title,
+.entry-title,
+.prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+	@apply max-w-content mx-auto mb-6;
+
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 30px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 0 !important;
+	margin-bottom: 1.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 48px !important;
+	}
+}
+
+
+h2,
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 26px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 2rem !important;
+	margin-bottom: 1rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 36px !important;
+	}
+}
+
+h3,
+.prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 24px !important;	
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 1.5rem !important;
+	margin-bottom: 0.75rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 34px !important;
+	}
+}
+
+h4,
+.prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 22px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 26px !important;
+	}
+}
+
+h5,
+.prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(.wp-block-group.is-style-mea-rouge *):not(.estjo-footer *) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 20px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 22px !important;
+	}
+}
+
+/**
+ * Styles for headings inside MEA Rouge
+ */
+.wp-block-group.is-style-mea-rouge h1,
+.wp-block-group.is-style-mea-rouge .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 30px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: white !important;
+	margin-top: 0 !important;
+	margin-bottom: 1.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 48px !important;
+	}
+}
+
+.wp-block-group.is-style-mea-rouge h2,
+.wp-block-group.is-style-mea-rouge .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 26px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: white !important;
+	margin-top: 2rem !important;
+	margin-bottom: 1rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 36px !important;
+	}
+}
+
+.wp-block-group.is-style-mea-rouge h3,
+.wp-block-group.is-style-mea-rouge .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 24px !important;	
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: white !important;
+	margin-top: 1.5rem !important;
+	margin-bottom: 0.75rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 34px !important;
+	}
+}
+
+.wp-block-group.is-style-mea-rouge h4,
+.wp-block-group.is-style-mea-rouge .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 22px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: white !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 26px !important;
+	}
+}
+
+.wp-block-group.is-style-mea-rouge h5,
+.wp-block-group.is-style-mea-rouge .prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 20px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: white !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 22px !important;
+	}
+}
+
+/**
+ * Styles for headings inside Footer
+ */
+.estjo-footer h1,
+.estjo-footer .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 30px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.background) !important;
+	margin-top: 0 !important;
+	margin-bottom: 1.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 48px !important;
+	}
+}
+
+.estjo-footer h2,
+.estjo-footer .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 26px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.background) !important;
+	margin-top: 2rem !important;
+	margin-bottom: 1rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 36px !important;
+	}
+}
+
+.estjo-footer h3,
+.estjo-footer .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 24px !important;	
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.background) !important;
+	margin-top: 1.5rem !important;
+	margin-bottom: 0.75rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 34px !important;
+	}
+}
+
+.estjo-footer h4,
+.estjo-footer .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 22px !important;
+	font-weight: 700 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.background) !important;
+	margin-top: 0 !important;
+	margin-bottom: 15px !important;
+}
+
+.estjo-footer h5,
+.estjo-footer .prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 20px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.background) !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+	
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 22px !important;
+	}
+}
+
+/* stylelint-enable plugin/stylelint-bem-namics */

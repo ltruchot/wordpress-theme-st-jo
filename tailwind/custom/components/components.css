@@ -20,72 +20,9 @@
  /* stylelint-disable plugin/stylelint-bem-namics */
 
 /**
- * Headings
+ * Heading styles have been moved to titles-heading.css
+ * to consolidate all heading-related styles in one place
  */
-h1,
-.page-title,
-.entry-title {
-	@apply max-w-content mx-auto mb-6;
-
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: 30px;
-	font-weight: 400;
-	line-height: 1.2;
-	color: theme(colors.black);
-	
-	@media (min-width: theme(--breakpoint-md)) {
-		font-size: 54px;
-	}
-}
-
-
-h2 {
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: 26px;
-	font-weight: 400;
-	line-height: 1.2;
-	color: theme(colors.black);
-	
-	@media (min-width: theme(--breakpoint-md)) {
-		font-size: 40px;
-	}
-}
-
-h3 {
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: 24px;	
-	font-weight: 400;
-	line-height: 1.2;
-	color: theme(colors.black);
-	
-	@media (min-width: theme(--breakpoint-md)) {
-		font-size: 34px;
-	}
-}
-
-h4 {
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: 22px;
-	font-weight: 400;
-	line-height: 1.2;
-	color: theme(colors.black);
-	
-	@media (min-width: theme(--breakpoint-md)) {
-		font-size: 26px;
-	}
-}
-
-h5 {
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: 20px;
-	font-weight: 400;
-	line-height: 1.2;
-	color: theme(colors.black);
-	
-	@media (min-width: theme(--breakpoint-md)) {
-		font-size: 22px;
-	}
-}
 
 
 

@@ -109,6 +109,7 @@ if ( ! function_exists( 'st_jo_setup' ) ) :
 		add_theme_support( 'editor-styles' );
 
 		// Enqueue editor styles.
+		add_editor_style( 'style-editor-fonts.css' );
 		add_editor_style( 'style-editor.css' );
 		add_editor_style( 'style-editor-extra.css' );
 
@@ -176,6 +177,16 @@ function st_jo_enqueue_block_editor_script() {
 	}
 }
 add_action( 'enqueue_block_assets', 'st_jo_enqueue_block_editor_script' );
+
+/**
+ * Enqueue Google Fonts for the block editor.
+ */
+function st_jo_enqueue_block_editor_fonts() {
+	if ( is_admin() ) {
+		wp_enqueue_style( 'st-jo-google-fonts', 'https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap', array(), null );
+	}
+}
+add_action( 'enqueue_block_editor_assets', 'st_jo_enqueue_block_editor_fonts' );
 
 /**
  * Add the Tailwind Typography classes to TinyMCE.
