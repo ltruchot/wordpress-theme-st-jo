@@ -9,7 +9,7 @@
 	@apply relative overflow-hidden;
 	
 	/* Container width: 2/3 on desktop, full on mobile */
-	@apply w-full md:w-3/4;
+	@apply w-full md:w-7/8;
 	
 	/* Center the container on desktop */
 	@apply lg:mx-auto;

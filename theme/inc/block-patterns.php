@@ -209,5 +209,133 @@ function st_jo_register_block_patterns() {
 <!-- /wp:group -->',
 		)
 	);
+
+	// Single Round Image Link pattern
+	register_block_pattern(
+		'st-jo/round-image-link-single',
+		array(
+			'title'       => __( 'Lien image ronde', 'st-jo' ),
+			'description' => __( 'Photo ronde avec bouton jaune en chevauchement', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'media' ),
+			'keywords'    => array( 'image', 'rond', 'lien', 'bouton', 'photo' ),
+			'content'     => '<!-- wp:group {"className":"is-style-round-image-link"} -->
+<div class="wp-block-group is-style-round-image-link">
+<!-- wp:image {"width":250,"height":250} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image.jpg" alt="" width="250" height="250"/></figure>
+<!-- /wp:image -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-chevron-right"} -->
+<div class="wp-block-button is-style-chevron-right"><a class="wp-block-button__link wp-element-button">' . __( 'Découvrir', 'st-jo' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
+
+	// Two Round Image Links pattern
+	register_block_pattern(
+		'st-jo/round-image-links-x2',
+		array(
+			'title'       => __( 'Deux liens images rondes', 'st-jo' ),
+			'description' => __( 'Deux photos rondes côte à côte avec boutons', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'media' ),
+			'keywords'    => array( 'image', 'rond', 'lien', 'bouton', 'photo', 'duo' ),
+			'content'     => '<!-- wp:group {"className":"is-style-round-image-links-container"} -->
+<div class="wp-block-group is-style-round-image-links-container">
+<!-- wp:group {"className":"is-style-round-image-link"} -->
+<div class="wp-block-group is-style-round-image-link">
+<!-- wp:image {"width":250,"height":250} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-1.jpg" alt="" width="250" height="250"/></figure>
+<!-- /wp:image -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-chevron-right"} -->
+<div class="wp-block-button is-style-chevron-right"><a class="wp-block-button__link wp-element-button">' . __( 'Découvrir', 'st-jo' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"is-style-round-image-link"} -->
+<div class="wp-block-group is-style-round-image-link">
+<!-- wp:image {"width":250,"height":250} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-2.jpg" alt="" width="250" height="250"/></figure>
+<!-- /wp:image -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-chevron-right"} -->
+<div class="wp-block-button is-style-chevron-right"><a class="wp-block-button__link wp-element-button">' . __( 'Explorer', 'st-jo' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
+
+	// Three Round Image Links pattern
+	register_block_pattern(
+		'st-jo/round-image-links-x3',
+		array(
+			'title'       => __( 'Trois liens images rondes', 'st-jo' ),
+			'description' => __( 'Trois photos rondes alignées avec boutons', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'media' ),
+			'keywords'    => array( 'image', 'rond', 'lien', 'bouton', 'photo', 'trio' ),
+			'content'     => '<!-- wp:group {"className":"is-style-round-image-links-container"} -->
+<div class="wp-block-group is-style-round-image-links-container">
+<!-- wp:group {"className":"is-style-round-image-link"} -->
+<div class="wp-block-group is-style-round-image-link">
+<!-- wp:image {"width":250,"height":250} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-1.jpg" alt="" width="250" height="250"/></figure>
+<!-- /wp:image -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-chevron-right"} -->
+<div class="wp-block-button is-style-chevron-right"><a class="wp-block-button__link wp-element-button">' . __( 'Découvrir', 'st-jo' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"is-style-round-image-link"} -->
+<div class="wp-block-group is-style-round-image-link">
+<!-- wp:image {"width":250,"height":250} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-2.jpg" alt="" width="250" height="250"/></figure>
+<!-- /wp:image -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-chevron-right"} -->
+<div class="wp-block-button is-style-chevron-right"><a class="wp-block-button__link wp-element-button">' . __( 'Explorer', 'st-jo' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"is-style-round-image-link"} -->
+<div class="wp-block-group is-style-round-image-link">
+<!-- wp:image {"width":250,"height":250} -->
+<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-3.jpg" alt="" width="250" height="250"/></figure>
+<!-- /wp:image -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"className":"is-style-chevron-right"} -->
+<div class="wp-block-button is-style-chevron-right"><a class="wp-block-button__link wp-element-button">' . __( 'Visiter', 'st-jo' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
 }
 add_action( 'init', 'st_jo_register_block_patterns' );
