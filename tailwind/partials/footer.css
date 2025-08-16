@@ -21,6 +21,7 @@
 @import "../custom/components/carousel-masked-image.css";
 @import "../custom/components/mea-rouge.css";
 @import "../custom/components/icon-title.css";
+@import "../custom/components/round-image-link.css";
 
 /**
  * Add Tailwind's utility classes and any utility classes registered by

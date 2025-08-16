@@ -67,4 +67,19 @@ wp.domReady(() => {
 		name: 'outline-chevron-right',
 		label: 'Contour chevron droit',
 	});
+
+	/**
+	 * Add Round Image Link variations for Group block
+	 */
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'round-image-link',
+		label: 'Lien image ronde',
+		className: 'is-style-round-image-link',
+	});
+
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'round-image-links-container',
+		label: 'Conteneur liens images rondes',
+		className: 'is-style-round-image-links-container',
+	});
 });
