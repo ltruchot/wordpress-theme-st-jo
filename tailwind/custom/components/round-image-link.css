@@ -1,0 +1,57 @@
+/**
+ * Round Image Link component styles
+ * Photo in a 250x250px circle with overlapping button
+ */
+
+/* Single round image link */
+.wp-block-group.is-style-round-image-link {
+	@apply relative inline-block;
+}
+
+/* The image container */
+.wp-block-group.is-style-round-image-link > .wp-block-image {
+	@apply relative w-[250px] h-[250px] mb-0;
+	@apply !mt-0 !mb-0; /* Force remove prose margins */
+}
+
+/* Round image styling */
+.wp-block-group.is-style-round-image-link > .wp-block-image img {
+	@apply w-full h-full rounded-full object-cover;
+	@apply !mt-0 !mb-0; /* Force remove prose margins */
+}
+
+/* Button positioning - absolute to overlap the image */
+.wp-block-group.is-style-round-image-link > .wp-block-buttons {
+	@apply absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2;
+	@apply z-10;
+}
+
+/* Ensure button text doesn't wrap - both in editor and frontend */
+.wp-block-group.is-style-round-image-link .wp-block-button__link,
+.editor-styles-wrapper .wp-block-group.is-style-round-image-link .wp-block-button__link {
+	@apply !whitespace-nowrap;
+
+	white-space: nowrap !important; /* Force override editor's pre-wrap */
+}
+
+/* Container for multiple round image links */
+.wp-block-group.is-style-round-image-links-container {
+	@apply flex flex-wrap justify-between items-center w-full gap-8;
+	@apply mx-auto px-4 py-8;
+	
+	/* Same width as MEA Rouge on desktop */
+	@apply w-full;
+	
+	/* Mobile: column layout */
+	@apply flex-col;
+	
+	/* Desktop: row layout */
+	@media (min-width: theme(--breakpoint-md)) {
+		@apply flex-row w-7/8;
+	}
+}
+
+/* Ensure proper spacing between items */
+.wp-block-group.is-style-round-image-links-container > * {
+	@apply flex-shrink-0;
+}
