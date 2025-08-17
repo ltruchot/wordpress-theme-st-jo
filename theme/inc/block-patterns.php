@@ -140,16 +140,34 @@ function st_jo_register_block_patterns() {
 		)
 	);
 
-	// MEA Rouge pattern
+	// MEA Rouge pattern (simple)
 	register_block_pattern(
 		'st-jo/mea-rouge',
 		array(
 			'title'       => __( 'MEA Rouge', 'st-jo' ),
-			'description' => __( 'Cartouche rouge avec mise en page 33/66 en desktop', 'st-jo' ),
+			'description' => __( 'Cartouche rouge sobre et centré', 'st-jo' ),
 			'categories'  => array( 'st-jo-components', 'text' ),
-			'keywords'    => array( 'mea', 'rouge', 'cartouche', 'mise en avant' ),
+			'keywords'    => array( 'mea', 'rouge', 'cartouche', 'mise en avant', 'red' ),
 			'content'     => '<!-- wp:group {"className":"is-style-mea-rouge"} -->
 <div class="wp-block-group is-style-mea-rouge">
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
+
+	// MEA Rouge with Content pattern
+	register_block_pattern(
+		'st-jo/mea-rouge-with-content',
+		array(
+			'title'       => __( 'MEA Rouge avec contenu', 'st-jo' ),
+			'description' => __( 'Cartouche rouge avec mise en page 33/66 en desktop', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'mea', 'rouge', 'cartouche', 'mise en avant', 'contenu', 'colonnes' ),
+			'content'     => '<!-- wp:group {"className":"is-style-mea-rouge is-style-mea-rouge-with-content"} -->
+<div class="wp-block-group is-style-mea-rouge is-style-mea-rouge-with-content">
 <!-- wp:columns -->
 <div class="wp-block-columns">
 <!-- wp:column {"width":"33.33%"} -->
@@ -333,6 +351,24 @@ function st_jo_register_block_patterns() {
 <!-- /wp:buttons -->
 </div>
 <!-- /wp:group -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
+
+	// MEA Jaune pattern
+	register_block_pattern(
+		'st-jo/mea-jaune',
+		array(
+			'title'       => __( 'MEA Jaune', 'st-jo' ),
+			'description' => __( 'Cartouche jaune sobre et centré', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'mea', 'jaune', 'cartouche', 'mise en avant', 'yellow' ),
+			'content'     => '<!-- wp:group {"className":"is-style-mea-jaune"} -->
+<div class="wp-block-group is-style-mea-jaune">
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->',
 		)

@@ -1,12 +1,12 @@
 /**
- * MEA Rouge component styles
- * Simple red highlight container with decorative elements
+ * MEA Jaune component styles
+ * Simple yellow highlight container with decorative elements
  */
 
 /* Base container styles */
-.wp-block-group.is-style-mea-rouge {
+.wp-block-group.is-style-mea-jaune {
 	@apply flex flex-col justify-center items-center;
-	@apply bg-primary text-white;
+	@apply bg-secondary text-black;
 	@apply relative overflow-hidden;
 	@apply w-full;
 	
@@ -14,7 +14,7 @@
 }
 
 /* Decorative elements */
-.wp-block-group.is-style-mea-rouge::before {
+.wp-block-group.is-style-mea-jaune::before {
 	position: absolute;
 	top: 0;
 	left: 4%;
@@ -26,7 +26,7 @@
 	background-size: contain;
 }
 
-.wp-block-group.is-style-mea-rouge::after {
+.wp-block-group.is-style-mea-jaune::after {
 	position: absolute;
 	right: 2%;
 	bottom: 0;
@@ -39,6 +39,6 @@
 }
 
 /* Editor specific styles */
-.editor-styles-wrapper .wp-block-group.is-style-mea-rouge {
+.editor-styles-wrapper .wp-block-group.is-style-mea-jaune {
 	@apply my-8;
 }
