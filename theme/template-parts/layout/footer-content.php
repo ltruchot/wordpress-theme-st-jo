@@ -38,9 +38,9 @@
 			<section>
 				<ul>
 					<li>
-						<a href="tel:0298765432" class="no-underline"><img
+						<a href="tel:0299626309" class="no-underline"><img
 								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-smartphone.svg"
-								alt="Icone de téléphone">02 98 76 54 32</a>
+								alt="Icone de téléphone">02 99 62 63 09</a>
 					</li>
 					<li>
 						<a href="mailto:eco35.st-joseph.la-bouexiere@enseignement-catholique.bzh"><img
@@ -72,10 +72,10 @@
 					©2025 École Saint-Joseph
 				</li>
 				<li>
-					<a href="https://www.ecolesaintjoseph.fr">Mentions légales</a>
+					<a href="https://ecole.st-joseph.fr">Mentions légales</a>
 				</li>
 				<li>
-					<a href="https://www.ecolesaintjoseph.fr">Données personnelles</a>
+					<a href="https://ecole.st-joseph.fr">Données personnelles</a>
 				</li>
 			</ul>
 		</div>
