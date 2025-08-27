@@ -59,9 +59,9 @@
 				<h4>Suivez l’animation de l’école et les prochains évènements sur le Facebook de l’Apel !</h4>
 				<ul>
 					<li>
-						<a href="https://www.facebook.com/ecolesaintjoseph"><img
+						<a href="https://www.facebook.com/share/19sAwLHJa1/?mibextid=wwXIfr"><img
 								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-facebook.svg"
-								alt="Icone de Facebook">Facebook de l’école Saint-Joseph</a>
+								alt="Icone de Facebook">Facebook de l’APEL de l’école Saint-Joseph</a>
 					</li>
 				</ul>
 			</section>
