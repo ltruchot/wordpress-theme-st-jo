@@ -18,6 +18,7 @@
 - Claude produit du code optimisé pour la vitesse de chargement et la performance, conforme aux normes Google PageSpeed Insights et Lighthouse.
 - Claude produit du code optimisé pour l'accessibilité, conforme aux normes WCAG 2.1.
 - Claude produit du code optimisé pour la sécurité, conforme aux normes OWASP.
+- Claude réutilise les variables de couleur, typo, de breakpoints du thème sans redefinir de valeurs dans le css.
 
 
 ## Context global du projet

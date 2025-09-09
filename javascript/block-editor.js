@@ -68,6 +68,11 @@ wp.domReady(() => {
 		label: 'Contour chevron droit',
 	});
 
+	wp.blocks.registerBlockStyle('core/button', {
+		name: 'download',
+		label: 'Téléchargement',
+	});
+
 	/**
 	 * Add Round Image Link variations for Group block
 	 */

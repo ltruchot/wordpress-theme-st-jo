@@ -384,5 +384,23 @@ function st_jo_register_block_patterns() {
 <!-- /wp:group -->',
 		)
 	);
+
+	// MEA Quadrillée pattern
+	register_block_pattern(
+		'st-jo/mea-quadrillee',
+		array(
+			'title'       => __( 'MEA Quadrillée', 'st-jo' ),
+			'description' => __( 'Feuille quadrillée avec décorations crayon et gomme', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'mea', 'quadrillé', 'grille', 'cahier', 'crayon', 'gomme', 'grid', 'pencil', 'eraser' ),
+			'content'     => '<!-- wp:group {"className":"is-style-mea-quadrillee"} -->
+<div class="wp-block-group is-style-mea-quadrillee">
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
 }
 add_action( 'init', 'st_jo_register_block_patterns' );

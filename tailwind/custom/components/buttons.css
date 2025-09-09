@@ -274,6 +274,20 @@
   mask-size: contain;
 }
 
+/* Button with arrow right (primary style by default) */
+.wp-block-button.is-style-chevron-right .wp-block-button__link::after {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 6px;
+  content: "";
+  background-color: currentcolor;
+  mask-image: url("assets/icons/arrow_right.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
 /* Button outline with arrow right */
 .wp-block-button.is-style-outline-chevron-right .wp-block-button__link {
   color: var(--wp--preset--color--primary-500) !important;
@@ -321,6 +335,20 @@
   content: "";
   background-color: currentcolor;
   mask-image: url("assets/icons/arrow_right.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+/* Button with download icon (primary style by default) */
+.wp-block-button.is-style-download .wp-block-button__link::after {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 6px;
+  content: "";
+  background-color: currentcolor;
+  mask-image: url("assets/icons/download.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;

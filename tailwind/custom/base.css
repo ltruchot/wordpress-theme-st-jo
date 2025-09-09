@@ -26,6 +26,7 @@ body {
 
 body {
 	@apply bg-background text-foreground font-sans;
+	color: theme(colors.black);
 }
 
  /* stylelint-disable plugin/stylelint-bem-namics */

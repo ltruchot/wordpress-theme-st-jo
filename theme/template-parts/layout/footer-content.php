@@ -8,7 +8,53 @@
  */
 
 ?>
-
+<section class="estjo-footer-for-parents max-w-[1200px] mx-auto mb-8 md:mb-24">
+	<!-- MEA quadrillée -->
+	<div class="wp-block-group is-style-mea-quadrillee">
+		<div class="flex flex-col md:flex-row gap-8 md:gap-0 relative min-h-[260px] px-8 md:px-16 py-8 md:py-0">
+			<!-- Left column - 2/3 width on desktop, full on mobile -->
+			<div class="w-full md:w-2/3 md:pr-12">
+				<h2>Pour les parents...</h2>
+				<div class="flex flex-col gap-4 md:flex-row">
+					<div class="w-full md:w-1/2">
+						<h5>Noéfil</h5>
+						<p>Utilisez le portail sécurisé Noéfil afin de faciliter le règlement de la scolarité de votre enfant ainsi que celui de la cantine.</p>
+						<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex my-8">
+							<div class="wp-block-button is-style-chevron-right">
+								<a class="wp-block-button__link wp-element-button" href="https://www.noefil.fr/portail" target="_blank">Portail Noéfil</a>
+							</div>
+						</div>
+					</div>
+					<div class="w-full md:w-1/2">
+					<h5>Carnet en ligne Éducartable</h5>
+						<p>Suivez simplement la scolarité de votre enfant grâce à une application gratuite et sans publicité pour les familles.</p>
+						<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex my-8">
+							<div class="wp-block-button is-style-chevron-right">
+								<a class="wp-block-button__link wp-element-button" href="https://www.educartable.com/" target="_blank">Éducartable</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Separator line - vertical on desktop, horizontal on mobile -->
+			<div class="mea-quadrillee-separator"></div>
+			
+			<!-- Right column - 1/3 width on desktop, full on mobile -->
+			<div class="w-full md:w-1/3 md:pl-12">
+				<h5>Inscriptions 2025-2026</h5>
+				<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex my-8">
+					<div class="wp-block-button is-style-download">
+						<a class="wp-block-button__link wp-element-button" href="http://ecole.st-joseph.fr/wp-content/uploads/2025/09/Fiche-Nouvelle-inscription-2021-2022-bis.pdf" target="_blank">Télécharger le dossier (.pdf) </a>
+					</div>
+				</div>
+				<p class="space-y-2">
+				  Pour inscrire votre enfant au cours de l’année scolaire, prenez contact avec l’école. En cas d’absence, laissez-nous votre message et vos coordonnées afin que nous puissions vous rappeler.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
 <footer class="estjo-footer">
 	<!-- Background foating colored shapes -->
 	<div class="estjo-footer__shapes">
