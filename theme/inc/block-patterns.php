@@ -178,7 +178,7 @@ function st_jo_register_block_patterns() {
 <figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-icon.png" alt="" width="64" height="64"/></figure>
 <!-- /wp:image -->
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">' . __( 'Titre principal', 'st-jo' ) . '</h3>
+<h4 class="wp-block-heading">' . __( 'Titre principal', 'st-jo' ) . '</h4>
 <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->
@@ -191,13 +191,6 @@ function st_jo_register_block_patterns() {
 <p>' . __( 'Votre texte de mise en avant ici. Ce cartouche rouge attire l\'attention sur des informations importantes avec un fort contraste visuel.', 'st-jo' ) . '</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:buttons -->
-<div class="wp-block-buttons">
-<!-- wp:button {"backgroundColor":"white","textColor":"primary"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-primary-color has-white-background-color has-text-color has-background wp-element-button">' . __( 'En savoir plus', 'st-jo' ) . '</a></div>
-<!-- /wp:button -->
-</div>
-<!-- /wp:buttons -->
 </div>
 <!-- /wp:column -->
 </div>
@@ -366,6 +359,24 @@ function st_jo_register_block_patterns() {
 			'keywords'    => array( 'mea', 'jaune', 'cartouche', 'mise en avant', 'yellow' ),
 			'content'     => '<!-- wp:group {"className":"is-style-mea-jaune"} -->
 <div class="wp-block-group is-style-mea-jaune">
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
+
+	// Feuille quadrillée pattern
+	register_block_pattern(
+		'st-jo/feuille-quadrillee',
+		array(
+			'title'       => __( 'Feuille quadrillée', 'st-jo' ),
+			'description' => __( 'Conteneur avec fond quadrillé façon feuille de cahier', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'feuille', 'quadrillé', 'grille', 'cahier', 'grid', 'paper' ),
+			'content'     => '<!-- wp:group {"className":"is-style-feuille-quadrillee"} -->
+<div class="wp-block-group is-style-feuille-quadrillee">
 <!-- wp:paragraph -->
 <p></p>
 <!-- /wp:paragraph -->

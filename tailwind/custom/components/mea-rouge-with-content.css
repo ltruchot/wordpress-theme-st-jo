@@ -4,21 +4,23 @@
  */
 
 /* This component extends the base mea-rouge styles */
+
 /* Container already has base styles from .is-style-mea-rouge */
 .wp-block-group.is-style-mea-rouge-with-content {
 	@apply mx-auto px-12 py-12;
 	
 	/* Container width: 7/8 on desktop, full on mobile */
-	@apply w-full md:w-7/8;
+	@apply w-full;
 	
 	/* Center the container on desktop */
 	@apply lg:mx-auto;
 }
 
 /* Inner flex container for columns */
-.wp-block-group.is-style-mea-rouge-with-content > .wp-block-group__inner-container {
+.wp-block-group.is-style-mea-rouge-with-content > .wp-block-columns {
 	@apply flex flex-col lg:flex-row;
 	@apply gap-8 lg:gap-12;
+	@apply w-full;
 }
 
 /* First column (33% on desktop) */
