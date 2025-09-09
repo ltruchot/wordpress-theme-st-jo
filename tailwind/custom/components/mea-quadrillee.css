@@ -1,0 +1,127 @@
+/**
+ * MEA Quadrillée component styles
+ * Grid paper container with pencil and eraser decorative elements
+ */
+
+/* Base container styles - extends feuille-quadrillee */
+.wp-block-group.is-style-mea-quadrillee {
+	@apply flex flex-col justify-center items-center;
+	@apply relative overflow-visible;
+	@apply w-full;
+	
+	/* Grid pattern with linear gradients */
+	background-image: 
+		linear-gradient(to right, rgb(228 207 207 / 25%) 1px, transparent 1px),
+		linear-gradient(to bottom, rgb(228 207 207 / 25%) 1px, transparent 1px);
+	
+	/* Offset by 9px from top only */
+	background-position: 0 9px;
+	
+	/* Grid size: 18px x 18px */
+	background-size: 18px 18px;
+	border-radius: 16px;
+	
+	/* Container styling */
+	box-shadow: 0 6px 10px 4px #0000000D;
+}
+
+/* Decorative pencil element - top right */
+.wp-block-group.is-style-mea-quadrillee::before {
+	position: absolute;
+	top: -30px;
+	right: -30px;
+
+	/* Mobile size: 100x118px */
+	width: 100px;
+	height: 118px;
+	content: '';
+	background-image: url("assets/images/deco-crayon.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+/* Desktop size for pencil: 199x235px */
+@media (min-width: theme(--breakpoint-md)) {
+	.wp-block-group.is-style-mea-quadrillee::before {
+		top: -50px;
+		right: -50px;
+		width: 199px;
+		height: 235px;
+	}
+}
+
+/* Decorative eraser element - bottom right */
+.wp-block-group.is-style-mea-quadrillee::after {
+	position: absolute;
+	right: -20px;
+	bottom: -20px;
+
+	/* Mobile size: 57x48px */
+	width: 58px;
+	height: 46px;
+	content: '';
+	background-image: url("assets/images/deco-gomme.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+/* Desktop size for eraser: 117x93px */
+@media (min-width: theme(--breakpoint-md)) {
+	.wp-block-group.is-style-mea-quadrillee::after {
+		right: -30px;
+		bottom: -30px;
+		width: 117px;
+		height: 93px;
+	}
+}
+
+/* Separator line for mea-quadrillee in footer */
+.mea-quadrillee-separator {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/* Mobile: needs height to show the rotated line */
+	width: 100%;
+	height: 40px;
+}
+
+.mea-quadrillee-separator::before {
+	position: absolute;
+	display: block;
+
+	/* Line dimensions */
+	width: 10px;
+	height: 260px;
+	content: '';
+	background-image: url("assets/images/deco-line.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+
+	/* Rotate 90 degrees to make horizontal */
+	transform: rotate(90deg);
+}
+
+/* Desktop: vertical line */
+@media (min-width: theme(--breakpoint-md)) {
+	.mea-quadrillee-separator {
+		/* Desktop: vertical separator needs width */
+		width: 10px;
+		height: auto;
+		min-height: 260px;
+	}
+	
+	.mea-quadrillee-separator::before {
+		width: 10px;
+		height: 260px;
+		transform: rotate(0deg);
+	}
+}
+
+/* Editor specific styles */
+.editor-styles-wrapper .wp-block-group.is-style-mea-quadrillee {
+	@apply my-8;
+	
+}
