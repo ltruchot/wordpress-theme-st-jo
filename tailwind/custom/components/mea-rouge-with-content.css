@@ -25,12 +25,12 @@
 
 /* First column (33% on desktop) */
 .wp-block-group.is-style-mea-rouge-with-content .wp-block-column:first-child {
-	@apply w-full lg:w-1/3;
+	@apply w-full lg:w-1/4;
 }
 
 /* Second column (66% on desktop) */
 .wp-block-group.is-style-mea-rouge-with-content .wp-block-column:last-child {
-	@apply w-full lg:w-2/3;
+	@apply w-full lg:w-3/4;
 }
 
 /* Typography adjustments for white text */
@@ -61,7 +61,7 @@
 
 /* Link styles */
 .wp-block-group.is-style-mea-rouge-with-content a {
-	@apply underline hover:no-underline;
+	@apply underline hover:no-underline text-nowrap;
 }
 
 /* Button adjustments for contrast */
