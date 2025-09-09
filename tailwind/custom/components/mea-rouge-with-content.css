@@ -17,9 +17,10 @@
 }
 
 /* Inner flex container for columns */
-.wp-block-group.is-style-mea-rouge-with-content > .wp-block-group__inner-container {
+.wp-block-group.is-style-mea-rouge-with-content > .wp-block-columns {
 	@apply flex flex-col lg:flex-row;
 	@apply gap-8 lg:gap-12;
+	@apply w-full;
 }
 
 /* First column (33% on desktop) */
