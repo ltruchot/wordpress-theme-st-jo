@@ -8,7 +8,7 @@
  */
 
 ?>
-<section class="estjo-footer-for-parents max-w-[1200px] mx-auto mb-8 md:mb-24">
+<section class="estjo-footer-for-parents max-w-[1200px] mx-0 md:mx-auto mb-8 md:mb-24">
 	<!-- MEA quadrillée -->
 	<div class="wp-block-group is-style-mea-quadrillee">
 		<div class="flex flex-col md:flex-row gap-8 md:gap-0 relative min-h-[260px] px-8 md:px-16 py-8 md:py-0">
