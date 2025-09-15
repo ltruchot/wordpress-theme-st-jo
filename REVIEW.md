@@ -1,0 +1,12 @@
+- footer: reprendre la nouvelle version sans fb
+- home: template au max, sauf dates et actualités
+- carousel: en fade in, voir démo en favoris (4, 5 photos)
+- etat visité des boutons liens: bug couleur blanche
+- logo: svg à la pace de png
+- 1200px = taille max faite de 12 colonnes (de taille 78px), et contenu accueil sur 10 colonnes
+- MEA jaune accueil: h5 et padding
+- bloc actualités: radius de l’image, et align start
+- lien externe pour calendrier scolaire
+- penser à l’icone lien sortant pour tous les liens externes  (voir template periscolaire)
+- attention au pixelisé enseignement catholique (en particulier sur mobile)
+- marge en mobile
