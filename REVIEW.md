@@ -10,3 +10,5 @@
 - penser à l’icone lien sortant pour tous les liens externes  (voir template periscolaire)
 - attention au pixelisé enseignement catholique (en particulier sur mobile)
 - marge en mobile
+- Alizee RAULT JULIEN: Designer UX et UI
+- creer des comptes pour les éditeurs de contenu: Alizee et Loïg
