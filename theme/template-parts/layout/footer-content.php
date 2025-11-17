@@ -42,10 +42,10 @@
 			
 			<!-- Right column - 1/3 width on desktop, full on mobile -->
 			<div class="w-full md:w-1/3 md:pl-12">
-				<h5>Inscriptions 2025-2026</h5>
+				<h5>Inscription</h5>
 				<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex my-8">
-					<div class="wp-block-button is-style-download">
-						<a class="wp-block-button__link wp-element-button" href="http://ecole.st-joseph.fr/wp-content/uploads/2025/09/Fiche-Nouvelle-inscription-2021-2022-bis.pdf" target="_blank">Télécharger le dossier (.pdf) </a>
+					<div class="wp-block-button is-style-chevron-right">
+						<a class="wp-block-button__link wp-element-button" href="https://www.noefil.fr/inscription?portail=QjEyNA==" target="_blank">Via Noéfil</a>
 					</div>
 				</div>
 				<p class="space-y-2">
