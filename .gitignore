@@ -15,4 +15,8 @@ st-jo.zip
 
 # Ignore .DS_Store files from macOS:
 .DS_Store
-.claude
+# Reglages Claude Code propres a une machine, mais les skills WordPress sont
+# partagees avec l'equipe :
+.claude/*
+!.claude/skills/
+.claude/settings.local.json
