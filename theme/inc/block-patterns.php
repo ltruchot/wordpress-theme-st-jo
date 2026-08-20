@@ -402,5 +402,93 @@ function st_jo_register_block_patterns() {
 <!-- /wp:group -->',
 		)
 	);
+
+	/*
+	 * One news item, as a single group.
+	 *
+	 * Until now an item on the news page was a run of loose paragraphs between
+	 * two horizontal rules: nothing tied a title to its own text, so removing an
+	 * expired item meant deleting the right paragraphs one by one and hoping.
+	 * Wrapped in a group, the item is selected, moved or deleted in one gesture
+	 * -- which is what makes the page maintainable by someone who does not write
+	 * code.
+	 *
+	 * The heading is a real h3 under the month's h2. The page previously jumped
+	 * from h1 straight to h4 with the item titles as bold paragraphs, which
+	 * leaves screen readers without an outline to navigate.
+	 */
+	register_block_pattern(
+		'st-jo/actualite',
+		array(
+			'title'       => __( 'Actualité', 'st-jo' ),
+			'description' => __( 'Une actualité : titre, date et texte, dans un bloc qui se déplace et se supprime d\'un seul geste', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'actualité', 'actu', 'événement', 'news', 'agenda' ),
+			'content'     => '<!-- wp:group {"className":"is-style-actualite"} -->
+<div class="wp-block-group is-style-actualite">
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">' . __( '🎄 Titre de l\'actualité', 'st-jo' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"actualite-date"} -->
+<p class="actualite-date">' . __( 'Vendredi 21 novembre, à partir de 17 h', 'st-jo' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>' . __( 'Décrivez ici l\'événement en quelques phrases : ce que c\'est, où il a lieu, et pour qui.', 'st-jo' ) . '</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
+
+	/*
+	 * A whole month of news, ready to fill in. Inserting this once a month and
+	 * deleting the previous one is the maintenance routine the page is missing.
+	 */
+	register_block_pattern(
+		'st-jo/actualites-mois',
+		array(
+			'title'       => __( 'Actualités du mois', 'st-jo' ),
+			'description' => __( 'Un titre de mois suivi de deux actualités à compléter', 'st-jo' ),
+			'categories'  => array( 'st-jo-components', 'text' ),
+			'keywords'    => array( 'actualité', 'actu', 'mois', 'agenda', 'news' ),
+			'content'     => '<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">' . __( 'Mois 2026', 'st-jo' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"is-style-actualite"} -->
+<div class="wp-block-group is-style-actualite">
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">' . __( '🎄 Première actualité', 'st-jo' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"actualite-date"} -->
+<p class="actualite-date">' . __( 'Vendredi 21 novembre, à partir de 17 h', 'st-jo' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>' . __( 'Décrivez ici l\'événement en quelques phrases : ce que c\'est, où il a lieu, et pour qui.', 'st-jo' ) . '</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"is-style-actualite"} -->
+<div class="wp-block-group is-style-actualite">
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">' . __( '🍫 Seconde actualité', 'st-jo' ) . '</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"actualite-date"} -->
+<p class="actualite-date">' . __( 'Commandes jusqu\'au 21 novembre', 'st-jo' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>' . __( 'Décrivez ici l\'événement en quelques phrases : ce que c\'est, où il a lieu, et pour qui.', 'st-jo' ) . '</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->',
+		)
+	);
 }
 add_action( 'init', 'st_jo_register_block_patterns' );

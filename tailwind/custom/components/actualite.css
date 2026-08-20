@@ -1,0 +1,47 @@
+/**
+ * Actualité component styles
+ *
+ * One news item = one group. That is the whole point: an editor selects the
+ * block, deletes it, and the item is gone -- heading, dates and text together.
+ * The previous items were loose paragraphs separated by horizontal rules, with
+ * nothing tying an item to its own title.
+ */
+
+.wp-block-group.is-style-actualite {
+	@apply relative;
+	@apply bg-beige text-black;
+	@apply px-6 py-5;
+	@apply my-8;
+
+	border-radius: 8px;
+
+	/* The accent bar carries the visual weight, so the card itself stays quiet
+	   even when several items follow one another. */
+	border-left: 6px solid var(--color-primary);
+}
+
+.wp-block-group.is-style-actualite > *:first-child {
+	@apply mt-0;
+}
+
+.wp-block-group.is-style-actualite > *:last-child {
+	@apply mb-0;
+}
+
+/**
+ * The date line. Marked up as a paragraph rather than styled text so it stays
+ * readable when stylesheets do not load, and so an editor can simply type in it.
+ */
+.wp-block-group.is-style-actualite .actualite-date {
+	@apply font-semibold;
+	@apply text-primary;
+	@apply mb-3;
+}
+
+/*
+ * No editor-specific block here on purpose. The component sheet is imported by
+ * both tailwind.css and tailwind-editor.css, so the rules above already reach
+ * the block editor -- and `my-8` is among them. An `.editor-styles-wrapper`
+ * override would repeat what is already applied, and ship a front-end rule that
+ * no visitor ever needs.
+ */
