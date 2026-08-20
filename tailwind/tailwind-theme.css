@@ -54,7 +54,7 @@
 	--color-gray-900: var(--wp--preset--color--gray-900);
 	--container-content: var(--wp--style--global--content-size);
 	--container-wide: var(--wp--style--global--wide-size);
-	
+
 	/**
 	 * Font families
 	 */
@@ -73,7 +73,7 @@
 	/**
 	 * Custom shadows
 	 */
-	--shadow-default: 0px 6px 10px 4px #0000000D;
+	--shadow-default: 0px 6px 10px 4px #0000000d;
 
 	/**
 	 * Add your theme below:

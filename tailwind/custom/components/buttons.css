@@ -8,252 +8,249 @@
 /* Base button styles */
 .estjo-button,
 .wp-block-button__link {
-  box-sizing: border-box;
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  padding: 0 12px;
-  font-family: Lato, sans-serif;
-  font-weight: 700 !important;
-  line-height: 160%;
-  text-align: center;
-  letter-spacing: 0;
-  white-space: nowrap;
-  text-decoration: none;
-  cursor: pointer;
-  
-  /* Prevent text selection on click */
-  user-select: none;
-  border: 2px solid;
-  border-radius: 24px;
-  transition: all 0.2s ease-in-out;
-  
-  /* Desktop styles */
-  @media (min-width: theme(--breakpoint-md)) {
-    height: 46px;
-    padding: 0 16px;
-    font-size: 16px;
-  }
+	box-sizing: border-box;
+	display: inline-flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: center;
+	height: 36px;
+	padding: 0 12px;
+	font-family: Lato, sans-serif;
+	font-weight: 700 !important;
+	line-height: 160%;
+	text-align: center;
+	letter-spacing: 0;
+	white-space: nowrap;
+	text-decoration: none;
+	cursor: pointer;
 
-  a {
-    font-family: Lato, sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-  }
-  
-  /* Focus styles for accessibility */
-  &:focus-visible {
-    outline: 2px solid theme(colors.primary-500);
-    outline-offset: 2px;
-  }
+	/* Prevent text selection on click */
+	user-select: none;
+	border: 2px solid;
+	border-radius: 24px;
+	transition: all 0.2s ease-in-out;
+
+	/* Desktop styles */
+	@media (min-width: theme(--breakpoint-md)) {
+		height: 46px;
+		padding: 0 16px;
+		font-size: 16px;
+	}
+
+	a {
+		font-family: Lato, sans-serif !important;
+		font-size: 14px !important;
+		font-weight: 700 !important;
+	}
+
+	/* Focus styles for accessibility */
+	&:focus-visible {
+		outline: 2px solid theme(colors.primary-500);
+		outline-offset: 2px;
+	}
 }
-
 
 /* Primary button (default) */
 .estjo-button--primary,
 .wp-block-button:not(.is-style-outline) .wp-block-button__link {
-  color: theme(colors.white) !important;
-  text-decoration: none !important;
-  background-color: theme(colors.primary-500);
-  border-color: theme(colors.primary-500);
-  
-  &:hover {
-    color: theme(colors.white) !important;
-    text-decoration: none !important;
-    background-color: theme(colors.primary-600);
-    border-color: theme(colors.primary-600);
-  }
-  
-  &:active {
-    color: theme(colors.white) !important;
-    text-decoration: none !important;
-    background-color: theme(colors.primary-700);
-    border-color: theme(colors.primary-700);
-  }
-  
-  &:visited {
-    color: theme(colors.white) !important;
-    text-decoration: none !important;
-  }
+	color: theme(colors.white) !important;
+	text-decoration: none !important;
+	background-color: theme(colors.primary-500);
+	border-color: theme(colors.primary-500);
+
+	&:hover {
+		color: theme(colors.white) !important;
+		text-decoration: none !important;
+		background-color: theme(colors.primary-600);
+		border-color: theme(colors.primary-600);
+	}
+
+	&:active {
+		color: theme(colors.white) !important;
+		text-decoration: none !important;
+		background-color: theme(colors.primary-700);
+		border-color: theme(colors.primary-700);
+	}
+
+	&:visited {
+		color: theme(colors.white) !important;
+		text-decoration: none !important;
+	}
 }
 
 /* Secondary button (outline style in WordPress) */
 .estjo-button--secondary,
 .wp-block-button.is-style-outline .wp-block-button__link {
-  color: theme(colors.primary-500) !important;
-  text-decoration: none !important;
-  background-color: transparent !important;
-  border-color: theme(colors.primary-300);
-  
-  &:hover {
-    color: theme(colors.primary-500) !important;
-    text-decoration: none !important;
-    background-color: transparent !important;
-    border-color: theme(colors.primary-500);
-  }
-  
-  &:active {
-    color: theme(colors.primary-700) !important;
-    text-decoration: none !important;
-    background-color: transparent !important;
-    border-color: theme(colors.primary-700);
-  }
-  
-  &:visited {
-    color: theme(colors.primary-500) !important;
-    text-decoration: none !important;
-    background-color: transparent !important;
-    border-color: theme(colors.primary-300) !important;
-  }
-  
-  /* Force Android/Chrome compliance */
-  &:visited:hover {
-    color: theme(colors.primary-500) !important;
-    border-color: theme(colors.primary-500) !important;
-  }
-  
-  &:focus-visible {
-    outline: 2px solid theme(colors.primary-500);
-    outline-offset: 2px;
-    background-color: transparent !important;
-  }
-  
-  &:disabled,
-  &[disabled] {
-    color: theme(colors.primary-300) !important;
-    background-color: transparent !important;
-    border-color: theme(colors.primary-100);
-    
-    &:hover {
-      color: theme(colors.primary-300) !important;
-      background-color: transparent !important;
-      border-color: theme(colors.primary-100);
-    }
-  }
+	color: theme(colors.primary-500) !important;
+	text-decoration: none !important;
+	background-color: transparent !important;
+	border-color: theme(colors.primary-300);
+
+	&:hover {
+		color: theme(colors.primary-500) !important;
+		text-decoration: none !important;
+		background-color: transparent !important;
+		border-color: theme(colors.primary-500);
+	}
+
+	&:active {
+		color: theme(colors.primary-700) !important;
+		text-decoration: none !important;
+		background-color: transparent !important;
+		border-color: theme(colors.primary-700);
+	}
+
+	&:visited {
+		color: theme(colors.primary-500) !important;
+		text-decoration: none !important;
+		background-color: transparent !important;
+		border-color: theme(colors.primary-300) !important;
+	}
+
+	/* Force Android/Chrome compliance */
+	&:visited:hover {
+		color: theme(colors.primary-500) !important;
+		border-color: theme(colors.primary-500) !important;
+	}
+
+	&:focus-visible {
+		outline: 2px solid theme(colors.primary-500);
+		outline-offset: 2px;
+		background-color: transparent !important;
+	}
+
+	&:disabled,
+	&[disabled] {
+		color: theme(colors.primary-300) !important;
+		background-color: transparent !important;
+		border-color: theme(colors.primary-100);
+
+		&:hover {
+			color: theme(colors.primary-300) !important;
+			background-color: transparent !important;
+			border-color: theme(colors.primary-100);
+		}
+	}
 }
-
-
 
 /* Size variants */
 .estjo-button--small {
-  height: 28px;
-  padding: 0 10px;
-  font-size: 12px;
-  
-  @media (min-width: theme(--breakpoint-md)) {
-    height: 36px;
-    padding: 0 12px;
-    font-size: 14px;
-  }
+	height: 28px;
+	padding: 0 10px;
+	font-size: 12px;
+
+	@media (min-width: theme(--breakpoint-md)) {
+		height: 36px;
+		padding: 0 12px;
+		font-size: 14px;
+	}
 }
 
 .estjo-button--large {
-  height: 44px;
-  padding: 0 20px;
-  font-size: 16px;
-  
-  @media (min-width: theme(--breakpoint-md)) {
-    height: 56px;
-    padding: 0 24px;
-    font-size: 18px;
-  }
+	height: 44px;
+	padding: 0 20px;
+	font-size: 16px;
+
+	@media (min-width: theme(--breakpoint-md)) {
+		height: 56px;
+		padding: 0 24px;
+		font-size: 18px;
+	}
 }
 
 /* Full width button */
 .estjo-button--full {
-  width: 100%;
+	width: 100%;
 }
 
 /* Disabled state */
 .estjo-button:disabled,
 .estjo-button--disabled {
-  cursor: not-allowed;
-  
-  &.estjo-button--primary {
-    color: theme(colors.primary-300);
-    background-color: theme(colors.primary-100);
-    border-color: theme(colors.primary-100);
-    
-    &:hover {
-      /* Prevent hover effects when disabled */
-      background-color: theme(colors.primary-100);
-      border-color: theme(colors.primary-100);
-    }
-  }
-  
-  &.estjo-button--secondary,
-  &.is-style-outline .wp-block-button__link {
-    color: theme(colors.primary-300) !important;
-    background-color: transparent;
-    border-color: theme(colors.primary-100);
-    
-    &:hover {
-      /* Prevent hover effects when disabled */
-      color: theme(colors.primary-300) !important;
-      border-color: theme(colors.primary-100);
-    }
-  }
-  
-  /* Apply to other variants if needed */
-  &:not(.estjo-button--primary, .estjo-button--secondary) {
-    opacity: 0.5;
-    
-    &:hover {
-      /* Prevent hover effects when disabled */
-      background-color: initial;
-    }
-  }
+	cursor: not-allowed;
+
+	&.estjo-button--primary {
+		color: theme(colors.primary-300);
+		background-color: theme(colors.primary-100);
+		border-color: theme(colors.primary-100);
+
+		&:hover {
+			/* Prevent hover effects when disabled */
+			background-color: theme(colors.primary-100);
+			border-color: theme(colors.primary-100);
+		}
+	}
+
+	&.estjo-button--secondary,
+	&.is-style-outline .wp-block-button__link {
+		color: theme(colors.primary-300) !important;
+		background-color: transparent;
+		border-color: theme(colors.primary-100);
+
+		&:hover {
+			/* Prevent hover effects when disabled */
+			color: theme(colors.primary-300) !important;
+			border-color: theme(colors.primary-100);
+		}
+	}
+
+	/* Apply to other variants if needed */
+	&:not(.estjo-button--primary, .estjo-button--secondary) {
+		opacity: 0.5;
+
+		&:hover {
+			/* Prevent hover effects when disabled */
+			background-color: initial;
+		}
+	}
 }
 
 /* Icon support */
 .estjo-button__icon {
-  display: inline-flex;
-  width: 1em;
-  height: 1em;
-  
-  /* Icon on the left */
-  &--start {
-    margin-right: 4px;
-  }
-  
-  /* Icon on the right */
-  &--end {
-    margin-left: 4px;
-  }
+	display: inline-flex;
+	width: 1em;
+	height: 1em;
+
+	/* Icon on the left */
+	&--start {
+		margin-right: 4px;
+	}
+
+	/* Icon on the right */
+	&--end {
+		margin-left: 4px;
+	}
 }
 
 /* Loading state */
 .estjo-button--loading {
-  position: relative;
-  color: transparent;
-  pointer-events: none;
-  
-  &::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    margin-top: -8px;
-    margin-left: -8px;
-    content: "";
-    border: 2px solid theme(colors.background);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: button-loading-spinner 0.6s linear infinite;
-  }
+	position: relative;
+	color: transparent;
+	pointer-events: none;
+
+	&::after {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 16px;
+		height: 16px;
+		margin-top: -8px;
+		margin-left: -8px;
+		content: "";
+		border: 2px solid theme(colors.background);
+		border-top-color: transparent;
+		border-radius: 50%;
+		animation: button-loading-spinner 0.6s linear infinite;
+	}
 }
 
 @keyframes button-loading-spinner {
-  from {
-    transform: rotate(0turn);
-  }
+	from {
+		transform: rotate(0turn);
+	}
 
-  to {
-    transform: rotate(1turn);
-  }
+	to {
+		transform: rotate(1turn);
+	}
 }
 
 /**
@@ -262,94 +259,94 @@
 
 /* Button with arrow right (primary style by default) */
 .wp-block-button.is-style-chevron-right .wp-block-button__link::after {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-left: 6px;
-  content: "";
-  background-color: currentcolor;
-  mask-image: url("assets/icons/arrow_right.svg");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin-left: 6px;
+	content: "";
+	background-color: currentcolor;
+	mask-image: url("assets/icons/arrow_right.svg");
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
 }
 
 /* Button with arrow right (primary style by default) */
 .wp-block-button.is-style-chevron-right .wp-block-button__link::after {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-left: 6px;
-  content: "";
-  background-color: currentcolor;
-  mask-image: url("assets/icons/arrow_right.svg");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin-left: 6px;
+	content: "";
+	background-color: currentcolor;
+	mask-image: url("assets/icons/arrow_right.svg");
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
 }
 
 /* Button outline with arrow right */
 .wp-block-button.is-style-outline-chevron-right .wp-block-button__link {
-  color: var(--wp--preset--color--primary-500) !important;
-  text-decoration: none !important;
-  background-color: transparent !important;
-  border-color: var(--wp--preset--color--primary-300);
-  
-  &:hover {
-    color: var(--wp--preset--color--primary-500) !important;
-    text-decoration: none !important;
-    background-color: transparent !important;
-    border-color: var(--wp--preset--color--primary-500);
-  }
-  
-  &:active {
-    color: var(--wp--preset--color--primary-700) !important;
-    text-decoration: none !important;
-    background-color: transparent !important;
-    border-color: var(--wp--preset--color--primary-700);
-  }
-  
-  &:focus-visible {
-    background-color: transparent !important;
-  }
-  
-  &:disabled,
-  &[disabled] {
-    color: var(--wp--preset--color--primary-300) !important;
-    background-color: transparent !important;
-    border-color: var(--wp--preset--color--primary-100);
-    
-    &:hover {
-      color: var(--wp--preset--color--primary-300) !important;
-      background-color: transparent !important;
-      border-color: var(--wp--preset--color--primary-100);
-    }
-  }
+	color: var(--wp--preset--color--primary-500) !important;
+	text-decoration: none !important;
+	background-color: transparent !important;
+	border-color: var(--wp--preset--color--primary-300);
+
+	&:hover {
+		color: var(--wp--preset--color--primary-500) !important;
+		text-decoration: none !important;
+		background-color: transparent !important;
+		border-color: var(--wp--preset--color--primary-500);
+	}
+
+	&:active {
+		color: var(--wp--preset--color--primary-700) !important;
+		text-decoration: none !important;
+		background-color: transparent !important;
+		border-color: var(--wp--preset--color--primary-700);
+	}
+
+	&:focus-visible {
+		background-color: transparent !important;
+	}
+
+	&:disabled,
+	&[disabled] {
+		color: var(--wp--preset--color--primary-300) !important;
+		background-color: transparent !important;
+		border-color: var(--wp--preset--color--primary-100);
+
+		&:hover {
+			color: var(--wp--preset--color--primary-300) !important;
+			background-color: transparent !important;
+			border-color: var(--wp--preset--color--primary-100);
+		}
+	}
 }
 
 .wp-block-button.is-style-outline-chevron-right .wp-block-button__link::after {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-left: 6px;
-  content: "";
-  background-color: currentcolor;
-  mask-image: url("assets/icons/arrow_right.svg");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin-left: 6px;
+	content: "";
+	background-color: currentcolor;
+	mask-image: url("assets/icons/arrow_right.svg");
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
 }
 
 /* Button with download icon (primary style by default) */
 .wp-block-button.is-style-download .wp-block-button__link::after {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-left: 6px;
-  content: "";
-  background-color: currentcolor;
-  mask-image: url("assets/icons/download.svg");
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin-left: 6px;
+	content: "";
+	background-color: currentcolor;
+	mask-image: url("assets/icons/download.svg");
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
 }

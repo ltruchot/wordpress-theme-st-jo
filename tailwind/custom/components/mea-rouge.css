@@ -9,7 +9,7 @@
 	@apply bg-primary text-white;
 	@apply relative overflow-hidden;
 	@apply w-full;
-	
+
 	border-radius: 8px;
 }
 
@@ -20,7 +20,7 @@
 	left: 4%;
 	width: 60px;
 	height: 60px;
-	content: '';
+	content: "";
 	background-image: url("assets/images/mea-deco-top-left.png");
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -32,7 +32,7 @@
 	bottom: 0;
 	width: 60px;
 	height: 60px;
-	content: '';
+	content: "";
 	background-image: url("assets/images/mea-deco-bottom-right.png");
 	background-repeat: no-repeat;
 	background-size: contain;

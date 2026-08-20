@@ -17,14 +17,12 @@
  * The supplied styles are meant to match the default `h1` classes from
  * Tailwind Typography.
  */
- /* stylelint-disable plugin/stylelint-bem-namics */
+/* stylelint-disable plugin/stylelint-bem-namics */
 
 /**
  * Heading styles have been moved to titles-heading.css
  * to consolidate all heading-related styles in one place
  */
-
-
 
 /**
  * Layout styles for centered content areas
@@ -74,7 +72,10 @@
  */
 .wp-block-paragraph.is-style-lead,
 .prose .wp-block-paragraph.is-style-lead,
-.prose :where([class~="is-style-lead"]):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+.prose
+	:where([class~="is-style-lead"]):not(
+		:where([class~="not-prose"], [class~="not-prose"] *)
+	) {
 	font-family: var(--font-sans) !important;
 	font-size: var(--wp--preset--font-size--normal) !important;
 	font-weight: 400 !important;
@@ -83,4 +84,3 @@
 	text-transform: uppercase !important;
 	letter-spacing: 0.03em !important;
 }
-

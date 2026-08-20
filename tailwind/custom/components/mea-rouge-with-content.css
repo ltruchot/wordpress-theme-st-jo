@@ -8,10 +8,10 @@
 /* Container already has base styles from .is-style-mea-rouge */
 .wp-block-group.is-style-mea-rouge-with-content {
 	@apply mx-auto px-12 py-12;
-	
+
 	/* Container width: 7/8 on desktop, full on mobile */
 	@apply w-full;
-	
+
 	/* Center the container on desktop */
 	@apply lg:mx-auto;
 }
@@ -55,7 +55,9 @@
 	margin-bottom: 8px;
 }
 
-.wp-block-group.is-style-mea-rouge-with-content .wp-block-column:last-child p:last-of-type {
+.wp-block-group.is-style-mea-rouge-with-content
+	.wp-block-column:last-child
+	p:last-of-type {
 	margin-bottom: 0;
 }
 
@@ -69,6 +71,8 @@
 	@apply bg-white text-primary hover:bg-gray-100;
 }
 
-.wp-block-group.is-style-mea-rouge-with-content .wp-block-button.is-style-outline .wp-block-button__link {
+.wp-block-group.is-style-mea-rouge-with-content
+	.wp-block-button.is-style-outline
+	.wp-block-button__link {
 	@apply border-white text-white hover:bg-white hover:text-primary;
 }

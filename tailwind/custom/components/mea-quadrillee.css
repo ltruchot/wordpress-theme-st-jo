@@ -8,21 +8,21 @@
 	@apply flex flex-col justify-center items-center;
 	@apply relative overflow-visible;
 	@apply w-full;
-	
+
 	/* Grid pattern with linear gradients */
-	background-image: 
+	background-image:
 		linear-gradient(to right, rgb(228 207 207 / 25%) 1px, transparent 1px),
 		linear-gradient(to bottom, rgb(228 207 207 / 25%) 1px, transparent 1px);
-	
+
 	/* Offset by 9px from top only */
 	background-position: 0 9px;
-	
+
 	/* Grid size: 18px x 18px */
 	background-size: 18px 18px;
 	border-radius: 16px;
-	
+
 	/* Container styling */
-	box-shadow: 0 6px 10px 4px #0000000D;
+	box-shadow: 0 6px 10px 4px #0000000d;
 }
 
 /* Decorative pencil element - top right */
@@ -34,7 +34,7 @@
 	/* Mobile size: 100x118px */
 	width: 100px;
 	height: 118px;
-	content: '';
+	content: "";
 	background-image: url("assets/images/deco-crayon.png");
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -59,7 +59,7 @@
 	/* Mobile size: 57x48px */
 	width: 58px;
 	height: 46px;
-	content: '';
+	content: "";
 	background-image: url("assets/images/deco-gomme.png");
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -94,7 +94,7 @@
 	/* Line dimensions */
 	width: 10px;
 	height: 260px;
-	content: '';
+	content: "";
 	background-image: url("assets/images/deco-line.png");
 	background-repeat: no-repeat;
 	background-position: center;
@@ -112,7 +112,7 @@
 		height: auto;
 		min-height: 260px;
 	}
-	
+
 	.mea-quadrillee-separator::before {
 		width: 10px;
 		height: 260px;
@@ -123,5 +123,4 @@
 /* Editor specific styles */
 .editor-styles-wrapper .wp-block-group.is-style-mea-quadrillee {
 	@apply my-8;
-	
 }
