@@ -62,16 +62,25 @@
 
 /**
  * Lead paragraph style - Override Tailwind Typography
+ *
+ * Values come from the theme's design tokens rather than being repeated here,
+ * so a change in `theme.json` propagates. `!important` is required to win over
+ * Tailwind Typography, whose `prose` rules also style paragraphs.
+ *
+ * `letter-spacing` is expressed in `em` rather than the `3%` it replaces.
+ * Percentage letter-spacing is a CSS Text 4 addition: Chromium and Firefox
+ * apply it and resolve it to exactly this value, but support is not universal,
+ * and iOS is a target platform. `em` is equivalent and works everywhere.
  */
 .wp-block-paragraph.is-style-lead,
 .prose .wp-block-paragraph.is-style-lead,
 .prose :where([class~="is-style-lead"]):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-	font-family: Lato, sans-serif !important;
-	font-size: 16px !important;
+	font-family: var(--font-sans) !important;
+	font-size: var(--wp--preset--font-size--normal) !important;
 	font-weight: 400 !important;
 	line-height: 100% !important;
-	color: theme(colors.black) !important;
+	color: var(--color-black) !important;
 	text-transform: uppercase !important;
-	letter-spacing: 3% !important;
+	letter-spacing: 0.03em !important;
 }
 
