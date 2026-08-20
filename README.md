@@ -64,27 +64,17 @@ En cas de problème, le workflow **Rollback Production** remet la version préc�
 
 ---------------------------------------------------------
 
-Generated documentation
+## Documentation du projet amont `_tw`
 
-### Installation
+Ce thème est parti de [`_tw`](https://underscoretw.com/). Les pages ci-dessous décrivent les
+mécanismes **génériques** du projet amont : Tailwind Typography, polices personnalisées,
+bundling JavaScript, style du HTML produit par WordPress ou une extension.
 
-1. Move this folder to `wp-content/themes` in your local development environment
-2. Run `npm install && npm run dev` in this folder
-3. Activate this theme in your local WordPress installation
-
-### Development
-
-4. Run `npm run watch`
-5. Add [Tailwind utility classes](https://tailwindcss.com/docs/utility-first) with abandon
-
-### Deployment
-
-6. Run `npm run bundle`
-7. Upload the resulting zip file to your site using the “Upload Theme” button on the “Add Themes” administration page
-
-Or [deploy with the tool of your choice](https://underscoretw.com/docs/deployment/#h-other-deployment-options)!
-
-## Full Documentation
+⚠️ Elles décrivent aussi une installation par archive zip et un envoi manuel depuis
+l'administration WordPress. **Ce n'est pas ainsi que ce site fonctionne** : la mise en route est
+décrite plus haut (« Démarrage rapide pour les dev ») et le déploiement part au merge d'une
+Pull Request (« Mettre un changement en production »). `npm run bundle` existe mais ne sert
+pas ici.
 
 ### Fundamentals
 

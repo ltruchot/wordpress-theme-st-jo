@@ -61,50 +61,55 @@ body {
 
 /**
  * Typography - Text sizes
+ *
+ * These mirror the font size presets from `theme.json`, always through their
+ * CSS variables so a change to the preset propagates here. `!important` is
+ * required to win over Tailwind Typography, whose `prose` rules also size
+ * text inside content areas.
  */
 .has-small-font-size {
-	font-family: Lato, sans-serif !important;
-	font-size: 14px !important;
+	font-family: var(--font-sans) !important;
+	font-size: var(--wp--preset--font-size--small) !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: theme(colors.black) !important;
+	color: var(--color-black) !important;
 	letter-spacing: 0 !important;
 }
 
 .has-normal-font-size,
 .has-regular-font-size {
-	font-family: Lato, sans-serif !important;
-	font-size: 16px !important;
+	font-family: var(--font-sans) !important;
+	font-size: var(--wp--preset--font-size--normal) !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: theme(colors.black) !important;
+	color: var(--color-black) !important;
 	letter-spacing: 0 !important;
 }
 
 .has-medium-font-size {
-	font-family: Lato, sans-serif !important;
-	font-size: 18px !important;
+	font-family: var(--font-sans) !important;
+	font-size: var(--wp--preset--font-size--medium) !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: theme(colors.black) !important;
+	color: var(--color-black) !important;
 	letter-spacing: 0 !important;
 }
 
 .has-large-font-size {
-	font-family: Lato, sans-serif !important;
-	font-size: 20px !important;
+	font-family: var(--font-sans) !important;
+	font-size: var(--wp--preset--font-size--large) !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: theme(colors.black) !important;
+	color: var(--color-black) !important;
 	letter-spacing: 0 !important;
 }
 
 .has-x-large-font-size {
-	font-family: Lato, sans-serif !important;
-	font-size: 22px !important;
+	font-family: var(--font-sans) !important;
+	font-size: var(--wp--preset--font-size--x-large) !important;
 	font-weight: 400 !important;
 	line-height: 1.6 !important;
-	color: theme(colors.black) !important;
+	color: var(--color-black) !important;
 	letter-spacing: 0 !important;
 }
 
