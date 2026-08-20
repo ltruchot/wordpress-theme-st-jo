@@ -3,86 +3,87 @@
 	"version": 3,
 	"settings": {
 		"color": {
+			"defaultPalette": false,
 			"palette": [
 				{
 					"slug": "background",
 					"color": "#FFFFFF",
-					"name": "Background"
+					"name": "Blanc (fond de page)"
 				},
 				{
 					"slug": "foreground",
 					"color": "#F9F7EF",
-					"name": "Foreground"
+					"name": "Beige (fond de bloc)"
 				},
 				{
 					"slug": "primary",
 					"color": "#CA4A28",
-					"name": "Primary"
+					"name": "Terracotta (principale)"
 				},
 				{
 					"slug": "primary-50",
 					"color": "#FFF2EE",
-					"name": "Primary 50"
+					"name": "Terracotta 50"
 				},
 				{
 					"slug": "primary-100",
 					"color": "#FFE2DA",
-					"name": "Primary 100"
+					"name": "Terracotta 100"
 				},
 				{
 					"slug": "primary-200",
 					"color": "#EAB7A9",
-					"name": "Primary 200"
+					"name": "Terracotta 200"
 				},
 				{
 					"slug": "primary-300",
 					"color": "#DF927E",
-					"name": "Primary 300"
+					"name": "Terracotta 300"
 				},
 				{
 					"slug": "primary-400",
 					"color": "#D56E53",
-					"name": "Primary 400"
+					"name": "Terracotta 400"
 				},
 				{
 					"slug": "primary-500",
 					"color": "#CA4A28",
-					"name": "Primary 500"
+					"name": "Terracotta 500"
 				},
 				{
 					"slug": "primary-600",
 					"color": "#A23B20",
-					"name": "Primary 600"
+					"name": "Terracotta 600"
 				},
 				{
 					"slug": "primary-700",
 					"color": "#792C18",
-					"name": "Primary 700"
+					"name": "Terracotta 700"
 				},
 				{
 					"slug": "primary-800",
 					"color": "#511E10",
-					"name": "Primary 800"
+					"name": "Terracotta 800"
 				},
 				{
 					"slug": "primary-900",
 					"color": "#280F08",
-					"name": "Primary 900"
+					"name": "Terracotta 900"
 				},
 				{
 					"slug": "secondary",
 					"color": "#F8C800",
-					"name": "Secondary"
+					"name": "Jaune (secondaire)"
 				},
 				{
 					"slug": "tertiary",
 					"color": "#5B63CB",
-					"name": "Tertiary"
+					"name": "Violet (tertiaire)"
 				},
 				{
 					"slug": "black",
 					"color": "#2D3039",
-					"name": "Black"
+					"name": "Noir (texte)"
 				},
 				{
 					"slug": "beige",
@@ -92,67 +93,67 @@
 				{
 					"slug": "green",
 					"color": "#9CF17B",
-					"name": "Green"
+					"name": "Vert"
 				},
 				{
 					"slug": "purple",
 					"color": "#5B63CB",
-					"name": "Purple"
+					"name": "Violet"
 				},
 				{
 					"slug": "yellow",
 					"color": "#F8C800",
-					"name": "Yellow"
+					"name": "Jaune"
 				},
 				{
 					"slug": "gray-50",
 					"color": "#F9FAFB",
-					"name": "Gray 50"
+					"name": "Gris 50"
 				},
 				{
 					"slug": "gray-100",
 					"color": "#F3F4F6",
-					"name": "Gray 100"
+					"name": "Gris 100"
 				},
 				{
 					"slug": "gray-200",
 					"color": "#E5E7EB",
-					"name": "Gray 200"
+					"name": "Gris 200"
 				},
 				{
 					"slug": "gray-300",
 					"color": "#D2D5DA",
-					"name": "Gray 300"
+					"name": "Gris 300"
 				},
 				{
 					"slug": "gray-400",
 					"color": "#8F95A0",
-					"name": "Gray 400"
+					"name": "Gris 400"
 				},
 				{
 					"slug": "gray-500",
 					"color": "#6C727F",
-					"name": "Gray 500"
+					"name": "Gris 500"
 				},
 				{
 					"slug": "gray-600",
 					"color": "#4D5562",
-					"name": "Gray 600"
+					"name": "Gris 600"
 				},
 				{
 					"slug": "gray-700",
 					"color": "#394150",
-					"name": "Gray 700"
+					"name": "Gris 700"
 				},
 				{
 					"slug": "gray-800",
 					"color": "#212936",
-					"name": "Gray 800"
+					"name": "Gris 800"
 				},
 				{
 					"slug": "gray-900",
 					"color": "#121826",
-					"name": "Gray 900"
+					"name": "Gris 900"
 				}
 			]
 		},
