@@ -44,13 +44,35 @@ jobs:
       # built first and swapped in, so the live directory is never empty.
       - name: Restore
         if: inputs.backup != ''
+        env:
+          # The input arrives as an environment variable, never inlined into the
+          # script. Inlined, GitHub substitutes it before the shell reads a
+          # single character: a value carrying a quote would close the string and
+          # the rest would run as code -- on a job that holds the production
+          # credentials and removes directories.
+          STAMP: ${{ inputs.backup }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          SSH_PORT: ${{ secrets.SSH_PORT || 22 }}
+          SSH_TARGET: ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          BACKUP_DIR: ${{ secrets.BACKUP_DIR }}
+          THEME_PATH: ${{ secrets.THEME_PATH }}
         run: |
-          STAMP='${{ inputs.backup }}'
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p "${{ secrets.SSH_PORT || 22 }}" \
-            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+          # Backups are named by the deploy workflow with date +%Y%m%d_%H%M%S.
+          # Refusing anything else leaves digits and one underscore as the only
+          # characters that can reach the server, which is what makes the
+          # interpolation below safe rather than merely tidy.
+          case "$STAMP" in
+            [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]) ;;
+            *)
+              echo "::error::Horodatage invalide : format attendu AAAAMMJJ_HHMMSS."
+              exit 1
+              ;;
+          esac
+
+          sshpass -p "$SSH_PASSWORD" ssh -p "$SSH_PORT" "$SSH_TARGET" \
             "set -e
-             SRC='${{ secrets.BACKUP_DIR }}/$STAMP'
-             DST='${{ secrets.THEME_PATH }}'
+             SRC='$BACKUP_DIR/$STAMP'
+             DST='$THEME_PATH'
              test -d \"\$SRC\" || { echo 'Sauvegarde introuvable :' \"\$SRC\"; exit 1; }
              test -f \"\$SRC/style.css\" || { echo 'Sauvegarde sans style.css, inexploitable'; exit 1; }
              rm -rf \"\$DST.rollback-tmp\"

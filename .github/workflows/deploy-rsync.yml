@@ -58,13 +58,17 @@ jobs:
         id: backup
         run: |
           STAMP=$(date +%Y%m%d_%H%M%S)
-          echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p "${{ secrets.SSH_PORT || 22 }}" \
             "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
             "set -e
              mkdir -p '${{ secrets.BACKUP_DIR }}/$STAMP'
              cp -a '${{ secrets.THEME_PATH }}/.' '${{ secrets.BACKUP_DIR }}/$STAMP/'
              echo \"Sauvegarde : \$(find '${{ secrets.BACKUP_DIR }}/$STAMP' -type f | wc -l) fichiers\""
+          # The output is published only once the copy has actually happened. Set
+          # earlier, a failed SSH would still hand a stamp to the rollback step,
+          # which would then try to restore a backup that was never taken and
+          # fail in turn -- burying the real cause under a second error.
+          echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
           echo "Sauvegarde horodatee : $STAMP" >> "$GITHUB_STEP_SUMMARY"
 
       # Printed before anything is sent, so the log always shows what this run
