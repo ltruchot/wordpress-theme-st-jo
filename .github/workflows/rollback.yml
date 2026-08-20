@@ -66,6 +66,7 @@ jobs:
         if: inputs.backup != ''
         run: |
           UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
-          CODE=$(curl -s -A "$UA" -o /dev/null -w '%{http_code}' -m 30 https://ecole.st-joseph.fr/ || echo 000)
+          CODE=$(curl -s -A "$UA" -o /dev/null -w '%{http_code}' -m 30 https://ecole.st-joseph.fr/ || true)
+          CODE=${CODE:-000}
           echo "HTTP $CODE" >> "$GITHUB_STEP_SUMMARY"
           [ "$CODE" = "200" ] || { echo "::error::La page d'accueil repond $CODE"; exit 1; }

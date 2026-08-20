@@ -98,7 +98,8 @@ jobs:
         run: |
           UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
           for attempt in 1 2 3; do
-            CODE=$(curl -s -A "$UA" -o /tmp/home.html -w '%{http_code}' -m 30 https://ecole.st-joseph.fr/ || echo 000)
+            CODE=$(curl -s -A "$UA" -o /tmp/home.html -w '%{http_code}' -m 30 https://ecole.st-joseph.fr/ || true)
+            CODE=${CODE:-000}
             [ "$CODE" = "200" ] && break
             echo "Tentative $attempt : HTTP $CODE"
             sleep 10
