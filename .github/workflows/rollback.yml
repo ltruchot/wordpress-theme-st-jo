@@ -1,0 +1,94 @@
+# Puts the live theme back to a previously saved state.
+#
+# Run it from the Actions tab. Leave the field empty to list what is available,
+# then run it again with the timestamp you want.
+name: Rollback Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      backup:
+        description: "Horodatage de la sauvegarde (vide = lister les sauvegardes disponibles)"
+        required: false
+        default: ''
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Setup SSH
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+          mkdir -p ~/.ssh
+          ssh-keyscan -H -p "${{ secrets.SSH_PORT || 22 }}" "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: List available backups
+        if: inputs.backup == ''
+        run: |
+          echo "## Sauvegardes disponibles" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p "${{ secrets.SSH_PORT || 22 }}" \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "ls -1t '${{ secrets.BACKUP_DIR }}' | head -30" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo "Relancer ce workflow en indiquant l'horodatage voulu." >> "$GITHUB_STEP_SUMMARY"
+
+      # The restore runs entirely on the server: nothing is uploaded, so a slow
+      # connection cannot leave the theme half-written. The temporary copy is
+      # built first and swapped in, so the live directory is never empty.
+      - name: Restore
+        if: inputs.backup != ''
+        env:
+          # The input arrives as an environment variable, never inlined into the
+          # script. Inlined, GitHub substitutes it before the shell reads a
+          # single character: a value carrying a quote would close the string and
+          # the rest would run as code -- on a job that holds the production
+          # credentials and removes directories.
+          STAMP: ${{ inputs.backup }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          SSH_PORT: ${{ secrets.SSH_PORT || 22 }}
+          SSH_TARGET: ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          BACKUP_DIR: ${{ secrets.BACKUP_DIR }}
+          THEME_PATH: ${{ secrets.THEME_PATH }}
+        run: |
+          # Backups are named by the deploy workflow with date +%Y%m%d_%H%M%S.
+          # Refusing anything else leaves digits and one underscore as the only
+          # characters that can reach the server, which is what makes the
+          # interpolation below safe rather than merely tidy.
+          case "$STAMP" in
+            [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]) ;;
+            *)
+              echo "::error::Horodatage invalide : format attendu AAAAMMJJ_HHMMSS."
+              exit 1
+              ;;
+          esac
+
+          sshpass -p "$SSH_PASSWORD" ssh -p "$SSH_PORT" "$SSH_TARGET" \
+            "set -e
+             SRC='$BACKUP_DIR/$STAMP'
+             DST='$THEME_PATH'
+             test -d \"\$SRC\" || { echo 'Sauvegarde introuvable :' \"\$SRC\"; exit 1; }
+             test -f \"\$SRC/style.css\" || { echo 'Sauvegarde sans style.css, inexploitable'; exit 1; }
+             rm -rf \"\$DST.rollback-tmp\"
+             cp -a \"\$SRC\" \"\$DST.rollback-tmp\"
+             rm -rf \"\$DST\"
+             mv \"\$DST.rollback-tmp\" \"\$DST\"
+             find \"\$DST\" -type d -exec chmod 755 {} \;
+             find \"\$DST\" -type f -exec chmod 644 {} \;
+             echo 'Restaure depuis' \"\$SRC\""
+          echo "Theme restaure depuis $STAMP" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Smoke test
+        if: inputs.backup != ''
+        run: |
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
+          CODE=$(curl -s -A "$UA" -o /dev/null -w '%{http_code}' -m 30 https://ecole.st-joseph.fr/ || true)
+          CODE=${CODE:-000}
+          echo "HTTP $CODE" >> "$GITHUB_STEP_SUMMARY"
+          [ "$CODE" = "200" ] || { echo "::error::La page d'accueil repond $CODE"; exit 1; }

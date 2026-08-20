@@ -1,66 +1,137 @@
-name: Deploy to Production (Rsync)
+# Deploys the theme to production.
+#
+# Order matters and is never decorative:
+#   build -> back up what is live -> show what would change -> send -> smoke test
+#
+# If the smoke test fails, the backup taken moments earlier is restored
+# automatically. The site is never left in a state nobody chose.
+name: Deploy to Production
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    types: [ closed ]
-    branches: [ main ]
+    branches: [main]
+  # Manual runs, for redeploying without an empty commit.
+  workflow_dispatch:
+
+# Two deployments overlapping would interleave their rsync and their backups.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-    
+    environment: production
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build theme
-      run: npm run production
+      - name: Build theme
+        run: npm run production
 
-    - name: Setup SSH
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan -H -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      # style.css is generated, and it carries the header WordPress reads to
+      # recognise the theme. Shipping without it would take the site down.
+      - name: Verify build output
+        run: |
+          test -f theme/style.css || { echo "::error::theme/style.css absent apres le build"; exit 1; }
+          grep -q 'Theme Name:' theme/style.css || { echo "::error::style.css sans en-tete 'Theme Name'"; exit 1; }
+          test -f theme/js/script.min.js || { echo "::error::JavaScript non construit"; exit 1; }
+          echo "Build verifie : $(du -sh theme | cut -f1)"
 
-    - name: Create backup on server
-      run: |
-        sudo apt-get update && sudo apt-get install -y sshpass
-        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p ${{ secrets.SSH_PORT || 22 }} \
-          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
-          # Variables
-          THEME_PATH="${{ secrets.THEME_PATH }}"
-          BACKUP_DIR="${{ secrets.BACKUP_DIR }}/$(date +%Y%m%d_%H%M%S)"
-          
-          # Créer une sauvegarde du thème actuel
-          if [ -d "$THEME_PATH" ]; then
-            mkdir -p "$BACKUP_DIR"
-            cp -r "$THEME_PATH" "$BACKUP_DIR/"
-          fi
-        ENDSSH
+      - name: Setup SSH
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+          mkdir -p ~/.ssh
+          ssh-keyscan -H -p "${{ secrets.SSH_PORT || 22 }}" "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
-    - name: Deploy theme via rsync
-      run: |
-        # Utiliser rsync pour synchroniser les fichiers
-        sshpass -p "${{ secrets.SSH_PASSWORD }}" rsync -avz --delete \
-          -e "ssh -p ${{ secrets.SSH_PORT || 22 }}" \
-          ./theme/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.THEME_PATH }}/
+      - name: Back up the live theme
+        id: backup
+        run: |
+          STAMP=$(date +%Y%m%d_%H%M%S)
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p "${{ secrets.SSH_PORT || 22 }}" \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "set -e
+             mkdir -p '${{ secrets.BACKUP_DIR }}/$STAMP'
+             cp -a '${{ secrets.THEME_PATH }}/.' '${{ secrets.BACKUP_DIR }}/$STAMP/'
+             echo \"Sauvegarde : \$(find '${{ secrets.BACKUP_DIR }}/$STAMP' -type f | wc -l) fichiers\""
+          # The output is published only once the copy has actually happened. Set
+          # earlier, a failed SSH would still hand a stamp to the rollback step,
+          # which would then try to restore a backup that was never taken and
+          # fail in turn -- burying the real cause under a second error.
+          echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
+          echo "Sauvegarde horodatee : $STAMP" >> "$GITHUB_STEP_SUMMARY"
 
-    - name: Set permissions
-      run: |
-        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p ${{ secrets.SSH_PORT || 22 }} \
-          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
-          # Ajuster les permissions
-          find "${{ secrets.THEME_PATH }}" -type d -exec chmod 755 {} \;
-          find "${{ secrets.THEME_PATH }}" -type f -exec chmod 644 {} \;
-        ENDSSH
+      # Printed before anything is sent, so the log always shows what this run
+      # actually changed on the live site.
+      - name: Preview changes (dry run)
+        run: |
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" rsync -az --delete --dry-run --itemize-changes \
+            -e "ssh -p ${{ secrets.SSH_PORT || 22 }}" \
+            ./theme/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.THEME_PATH }}/" \
+            | tee -a "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Deploy theme
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" rsync -az --delete --itemize-changes \
+            -e "ssh -p ${{ secrets.SSH_PORT || 22 }}" \
+            ./theme/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.THEME_PATH }}/"
+
+      - name: Set permissions
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p "${{ secrets.SSH_PORT || 22 }}" \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "find '${{ secrets.THEME_PATH }}' -type d -exec chmod 755 {} \; ;
+             find '${{ secrets.THEME_PATH }}' -type f -exec chmod 644 {} \;"
+
+      # The host answers 403 to unknown user agents, so the check must present
+      # itself as a browser. Without this header a healthy site looks broken.
+      - name: Smoke test
+        id: smoke
+        run: |
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
+          for attempt in 1 2 3; do
+            CODE=$(curl -s -A "$UA" -o /tmp/home.html -w '%{http_code}' -m 30 https://ecole.st-joseph.fr/ || true)
+            CODE=${CODE:-000}
+            [ "$CODE" = "200" ] && break
+            echo "Tentative $attempt : HTTP $CODE"
+            sleep 10
+          done
+          echo "HTTP $CODE" >> "$GITHUB_STEP_SUMMARY"
+          [ "$CODE" = "200" ] || { echo "::error::La page d'accueil repond $CODE"; exit 1; }
+          grep -q 'wp-content/themes/st-jo' /tmp/home.html \
+            || { echo "::error::Le theme st-jo n'est pas charge par la page"; exit 1; }
+          grep -qi '<title' /tmp/home.html \
+            || { echo "::error::Page sans titre : rendu incomplet"; exit 1; }
+          echo "Site en ligne verifie."
+
+      # Only runs when a step above failed. Puts back exactly what was there.
+      - name: Roll back on failure
+        if: failure() && steps.backup.outputs.stamp != ''
+        run: |
+          STAMP='${{ steps.backup.outputs.stamp }}'
+          echo "::warning::Echec detecte, restauration de la sauvegarde $STAMP"
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -p "${{ secrets.SSH_PORT || 22 }}" \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "set -e
+             SRC='${{ secrets.BACKUP_DIR }}/$STAMP'
+             DST='${{ secrets.THEME_PATH }}'
+             test -f \"\$SRC/style.css\"
+             rm -rf \"\$DST.rollback-tmp\"
+             cp -a \"\$SRC\" \"\$DST.rollback-tmp\"
+             rm -rf \"\$DST\"
+             mv \"\$DST.rollback-tmp\" \"\$DST\"
+             find \"\$DST\" -type d -exec chmod 755 {} \;
+             find \"\$DST\" -type f -exec chmod 644 {} \;"
+          echo "Restauration effectuee depuis $STAMP" >> "$GITHUB_STEP_SUMMARY"

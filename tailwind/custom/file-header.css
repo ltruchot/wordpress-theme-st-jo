@@ -1,16 +1,17 @@
 /*!
 Theme Name: st-jo
-Theme URI: https://underscoretw.com/
+Theme URI: https://ecole.st-joseph.fr/
 Author: Loïc TRUCHOT
 Author URI: https://underscoretw.com/
-Description: Un thème le site web de l’école St Joseph de La Bouëxière
+Description: Thème du site web de l’école Saint-Joseph de La Bouëxière.
 Version: 0.1.0
-Tested up to: 6.2
-Requires PHP: 7.4
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 8.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: st-jo
-Tags:
+Tags: education, block-patterns, accessibility-ready, translation-ready
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.

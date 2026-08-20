@@ -15,4 +15,10 @@ st-jo.zip
 
 # Ignore .DS_Store files from macOS:
 .DS_Store
-.claude
+# Claude Code settings are machine-specific; the skills are shared with the team:
+.claude/*
+!.claude/skills/
+.claude/settings.local.json
+
+# Windows crash artifact, unrelated to the theme:
+debug.log
