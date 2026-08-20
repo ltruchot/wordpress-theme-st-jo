@@ -72,6 +72,9 @@ après.
 - Avant un changement notable, dans `st-jo-ops` : `bash scripts/backup-live.sh`, puis
   `bash scripts/restore-check.sh <horodatage>`. **Une sauvegarde qu'on n'a jamais restaurée n'est
   pas une sauvegarde** — le script la remonte dans une pile jetable et le prouve.
+  L'instantané est horodaté, complet et autonome (base + racine complète du serveur, cœur,
+  extensions, thème en ligne, médias), rangé hors des dépôts dans `~/st-jo-backups/`. Procédure
+  détaillée : `RUNBOOK.md` §5 de `st-jo-ops`.
 - Retour arrière : le workflow **Rollback Production**, ou `scripts/rollback-theme.sh`.
 - **Rien n'est écrit sur le serveur** en dehors des scripts de déploiement — pas de fichier
   déposé, même temporaire, même auto-effaçant.
