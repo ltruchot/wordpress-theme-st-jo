@@ -15,8 +15,10 @@ st-jo.zip
 
 # Ignore .DS_Store files from macOS:
 .DS_Store
-# Claude Code settings are machine-specific, but the WordPress skills are
-# shared with the team:
+# Claude Code settings are machine-specific; the skills are shared with the team:
 .claude/*
 !.claude/skills/
 .claude/settings.local.json
+
+# Windows crash artifact, unrelated to the theme:
+debug.log

@@ -73,9 +73,12 @@ Le clone local iso-production vit dans le dépôt privé **`st-jo-ops`**, à cô
 fichiers exacts du serveur, le contenu réel du site, la même version de PHP et le même moteur SQL.
 
 ```bash
-cd ../st-jo-ops && docker compose up -d     # le site, sur http://localhost:8210
+(cd ../st-jo-ops && docker compose up -d)   # le site, sur http://localhost:8210
 npm run watch                               # ici, dans le dépôt du thème
 ```
+
+Les parenthèses ne sont pas décoratives : sans elles, le `cd` persiste et `npm run watch`
+s'exécuterait dans `st-jo-ops`, qui n'a pas ce script.
 
 Le thème est monté en direct dans le clone : on modifie ici, on rafraîchit là, on voit le résultat
 sur les vraies pages. Avant de proposer un changement :
