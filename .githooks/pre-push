@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Refuses to push directly to the protected branch.
+#
+# Installed by: bash .githooks/install.sh
+#
+# The public repository is protected on the server as well, and that rule is the
+# one that counts. This hook exists because it fails EARLIER, with a message
+# that says what to do instead -- and because the private repository cannot be
+# protected server-side: branch protection and rulesets are refused on private
+# repositories outside a paid plan.
+
+set -euo pipefail
+
+PROTECTED="main"
+
+# git feeds one line per ref being pushed:  <local ref> <local sha> <remote ref> <remote sha>
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  case "$remote_ref" in
+    "refs/heads/$PROTECTED")
+      branch=$(git rev-parse --abbrev-ref HEAD)
+      cat >&2 <<MESSAGE
+
+  Push direct sur "$PROTECTED" refuse.
+
+  Rien n'arrive sur "$PROTECTED" sans Pull Request : c'est ce qui garantit qu'un
+  changement a ete vu tourner avant d'etre en ligne, et qu'il reste annulable.
+
+  La marche a suivre :
+
+      git switch -c ma-modification        # si tu es encore sur $PROTECTED
+      git push -u origin ma-modification
+      gh pr create
+
+MESSAGE
+      if [ "$branch" = "$PROTECTED" ]; then
+        printf '  (tu es actuellement sur %s)\n\n' "$PROTECTED" >&2
+      fi
+      exit 1
+      ;;
+  esac
+done
+
+exit 0
