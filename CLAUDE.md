@@ -28,9 +28,66 @@
 - Le design system du thème est fortement variabilisé, basé sur `theme/theme.json` et `tailwind/tailwind-theme.css`
 
 
+## Niveau d'exigence
+
+Travail de qualité professionnelle sur un site en production, consulté par les familles d'une
+école. Concrètement :
+
+- **On ne livre pas ce qu'on n'a pas vu tourner.** Une modification se constate sur le clone
+  local avant d'être proposée. « Ça devrait marcher » n'est pas un état livrable.
+- **On dit ce qui a été vérifié et ce qui ne l'a pas été.** Un test non lancé se signale, un
+  point resté incertain se nomme.
+- **On corrige la cause, pas le symptôme.** Un contournement se documente comme tel, avec sa
+  raison et ce qu'il faudrait faire à la place.
+- Le code respecte déjà les exigences listées plus haut (accessibilité, SEO, performance,
+  sécurité, responsive) : elles ne sont pas des objectifs lointains, ce sont les conditions
+  d'acceptation.
+
+## Environnement de travail
+
+Le clone local iso-production vit dans le dépôt privé **`st-jo-ops`**, à côté de celui-ci : les
+fichiers exacts du serveur, le contenu réel du site, la même version de PHP et le même moteur SQL.
+
+```bash
+cd ../st-jo-ops && docker compose up -d     # le site, sur http://localhost:8210
+npm run watch                               # ici, dans le dépôt du thème
+```
+
+Le thème est monté en direct dans le clone : on modifie ici, on rafraîchit là, on voit le résultat
+sur les vraies pages. Avant de proposer un changement :
+
+```bash
+cd ../st-jo-ops/e2e && npm run check:local
+```
+
+Les références visuelles sont capturées sur la production. Un écart signifie qu'on a changé autre
+chose que ce qu'on croyait — c'est précisément ce qu'on veut apprendre avant le déploiement, pas
+après.
+
+## Mise en production
+
+- **`main` est protégé : jamais de push direct.** Une Pull Request, toujours.
+- Le déploiement part au merge. Il sauvegarde le thème en ligne, affiche ce qu'il va changer,
+  vérifie le site ensuite, et **restaure automatiquement** la sauvegarde en cas d'échec.
+- Avant un changement notable, dans `st-jo-ops` : `bash scripts/backup-live.sh`, puis
+  `bash scripts/restore-check.sh <horodatage>`. **Une sauvegarde qu'on n'a jamais restaurée n'est
+  pas une sauvegarde** — le script la remonte dans une pile jetable et le prouve.
+- Retour arrière : le workflow **Rollback Production**, ou `scripts/rollback-theme.sh`.
+- **Rien n'est écrit sur le serveur** en dehors des scripts de déploiement — pas de fichier
+  déposé, même temporaire, même auto-effaçant.
+- Les mots de passe sont saisis par Loïc. Aucun secret n'est écrit dans le dépôt, ni affiché.
+
+## Étanchéité
+
+Aucun fichier de ce dépôt — code, commentaire, documentation, message de commit — ne fait
+référence à un autre projet, client ou site, **pas même par comparaison ou par négation**. Ce qui
+est écrit ici se tient seul.
+
 ## Fichier à lire avant de démarrer
 - `theme/theme.json` et `tailwind/tailwind-theme.css`
 - `README.md`
 - tous les fichiers dans le dossier `.cursor/rules/*`
 - `package.json`
 - `composer.json`
+- `docs/DEPLOYMENT.md`
+- le `README.md` et le `LEADS.md` de `st-jo-ops` (carnet de bord : faits vérifiés, pièges rencontrés)
