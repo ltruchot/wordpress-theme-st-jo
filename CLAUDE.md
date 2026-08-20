@@ -20,6 +20,26 @@
 - Claude produit du code optimisé pour la sécurité, conforme aux normes OWASP.
 - Claude réutilise les variables de couleur, typo, de breakpoints du thème sans redefinir de valeurs dans le css.
 
+### Où l'on a le droit d'écrire, et où l'on n'a pas le droit
+
+**Le thème nous appartient.** À l'intérieur de `theme/`, `tailwind/` et `javascript/`, on fait ce
+qu'on veut. Mais on le fait **autonome et auto-portant** : le thème doit tenir seul, sans rien
+supposer d'un autre thème ni d'une extension. Une extension s'active, se désactive, change de
+version, change de balisage. Un style ou un comportement qui dépend de ce qu'elle produit
+aujourd'hui cassera le jour où elle bougera, et personne ne fera le lien.
+
+**On ne corrige jamais dans le cœur WordPress ni dans une extension.** Leurs fichiers sont
+**remplacés à la prochaine mise à jour** : une retouche y disparaît sans prévenir, sans trace, et
+le défaut revient. Quand le problème vient de là, dans l'ordre :
+
+1. le corriger **depuis le thème** — un filtre, un `add_action`, `wp_dequeue_style`, une règle
+   CSS qui prend le dessus ;
+2. sinon, le contourner dans un **`mu-plugin`**, qui est notre code et survit aux mises à jour ;
+3. sinon, le **signaler en amont** et consigner le contournement avec sa raison.
+
+Ce qui vaut aussi pour les données : une valeur figée dans le contenu (une URL absolue, par
+exemple) se corrige dans l'éditeur, pas en la rattrapant en CSS.
+
 
 ## Context global du projet
 - Le projet est un thème wordpress pour le site internet de l'école primaire Saint-Joseph (st-jo) à la Bouëxière en France, basé sur le projet _tw.
