@@ -22,8 +22,10 @@ automatique.
 - **Ne jamais merger.** Aucune PR, sur aucun des trois dépôts. Le merge déclenche le déploiement
   d'un site consulté par les familles d'une école : c'est la décision de Loïc, après relecture.
   Pousser une branche n'engage rien, merger engage tout. Pas de `gh pr merge`, pas d'auto-merge.
-- **Ne jamais pousser sur `main`.** Le hook `pre-push` le refuse, et c'est voulu. Si le hook
-  bloque, c'est qu'on s'est trompé de branche — on ne contourne pas avec `--no-verify`.
+- **Ne jamais pousser sur `main`** dans `wordpress-theme-st-jo` ni dans `st-jo-ops` : le hook
+  `pre-push` le refuse, et c'est voulu. Si le hook bloque, c'est qu'on s'est trompé de branche —
+  on ne contourne pas avec `--no-verify`. `st-jo-backups` fait exception : son contenu est
+  produit par `scripts/push-backup.sh`, jamais édité à la main.
 
 ## Quand l'utiliser
 

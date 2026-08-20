@@ -21,7 +21,10 @@ trois fonctionnent aussi bien sur un diff local que sur une PR.
 
 - **Ne jamais merger.** Aucune PR, sur aucun des trois dépôts. C'est la décision de Loïc, après
   relecture.
-- **Ne jamais pousser sur `main`.** Le hook `pre-push` le refuse ; on ne le contourne pas.
+- **Ne jamais pousser sur `main`** dans `wordpress-theme-st-jo` ni dans `st-jo-ops` : le hook
+  `pre-push` le refuse, et c'est voulu. Si le hook bloque, c'est qu'on s'est trompé de branche —
+  on ne contourne pas avec `--no-verify`. `st-jo-backups` fait exception : son contenu est
+  produit par `scripts/push-backup.sh`, jamais édité à la main.
 
 ## Prérequis, une fois pour toutes
 
