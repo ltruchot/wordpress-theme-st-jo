@@ -43,6 +43,30 @@ Travail de qualité professionnelle sur un site en production, consulté par les
   sécurité, responsive) : elles ne sont pas des objectifs lointains, ce sont les conditions
   d'acceptation.
 
+## Les trois dépôts, et ce qui va où
+
+| Dépôt | Visibilité | Ce qu'il porte | Ce qu'on n'y met **jamais** |
+|---|---|---|---|
+| `wordpress-theme-st-jo` | **public** | Le thème `st-jo` seul : PHP, Tailwind, motifs de blocs, workflows de déploiement. | Quoi que ce soit venant de `site/www` ou de la base — le dépôt est public. |
+| `st-jo-ops` | privé | Le clone iso-production : fichiers exacts du serveur, dump de la base, scripts, harnais de tests, sauvegardes. | Le thème : il est monté en volume depuis son dépôt, jamais copié. |
+| `st-jo-backups` | privé | La part irremplaçable de chaque sauvegarde : base, médias, thème en ligne, `wp-config.php`. Un commit et une étiquette par prise. | Le cœur WordPress, les thèmes par défaut, les extensions : paquets publics, retéléchargeables aux versions du manifeste. |
+
+Les trois sont clonés côte à côte dans le **même dossier parent**. Les scripts s'appuient sur
+cette disposition (`THEME_REPO=../wordpress-theme-st-jo`, `BACKUPS_REPO=../st-jo-backups`).
+
+```
+github-ltruchot/
+├── wordpress-theme-st-jo/   public   ← le thème
+├── st-jo-ops/               privé    ← l'environnement, les scripts, la base
+└── st-jo-backups/           privé    ← les sauvegardes hors-machine
+```
+
+**Sens de circulation.** Le thème se développe dans son dépôt et se voit tourner dans le clone
+de `st-jo-ops`. `st-jo-ops` aspire la production et pousse vers `st-jo-backups`. Rien ne remonte
+jamais d'un dépôt privé vers le dépôt public.
+
+**Tu es ici : `wordpress-theme-st-jo`.**
+
 ## Environnement de travail
 
 Le clone local iso-production vit dans le dépôt privé **`st-jo-ops`**, à côté de celui-ci : les
