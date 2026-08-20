@@ -19,12 +19,16 @@ export const BREAKPOINTS = {
 	},
 	get wide() {
 		return getBreakpoint('lg');
-	}
+	},
 };
 
 export const isMobile = () => window.innerWidth < BREAKPOINTS.tablet;
-export const isTablet = () => window.innerWidth >= BREAKPOINTS.tablet && window.innerWidth < BREAKPOINTS.desktop;
-export const isDesktop = () => window.innerWidth >= BREAKPOINTS.desktop && window.innerWidth < BREAKPOINTS.wide;
+export const isTablet = () =>
+	window.innerWidth >= BREAKPOINTS.tablet &&
+	window.innerWidth < BREAKPOINTS.desktop;
+export const isDesktop = () =>
+	window.innerWidth >= BREAKPOINTS.desktop &&
+	window.innerWidth < BREAKPOINTS.wide;
 export const isWide = () => window.innerWidth >= BREAKPOINTS.wide;
 
 export const getCurrentBreakpoint = () => {
@@ -36,17 +40,22 @@ export const getCurrentBreakpoint = () => {
 
 export const matchesBreakpoint = (breakpoint) => {
 	switch (breakpoint) {
-		case 'mobile': return isMobile();
-		case 'tablet': return isTablet();
-		case 'desktop': return isDesktop();
-		case 'wide': return isWide();
-		default: return false;
+		case 'mobile':
+			return isMobile();
+		case 'tablet':
+			return isTablet();
+		case 'desktop':
+			return isDesktop();
+		case 'wide':
+			return isWide();
+		default:
+			return false;
 	}
 };
 
 export const onBreakpointChange = (callback) => {
 	let currentBreakpoint = getCurrentBreakpoint();
-	
+
 	const checkBreakpoint = () => {
 		const newBreakpoint = getCurrentBreakpoint();
 		if (currentBreakpoint !== newBreakpoint) {
@@ -54,9 +63,9 @@ export const onBreakpointChange = (callback) => {
 			callback(currentBreakpoint);
 		}
 	};
-	
+
 	window.addEventListener('resize', checkBreakpoint);
-	
+
 	// Return cleanup function
 	return () => window.removeEventListener('resize', checkBreakpoint);
 };

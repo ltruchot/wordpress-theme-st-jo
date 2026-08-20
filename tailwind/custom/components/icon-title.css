@@ -7,13 +7,13 @@
 /* Base styles */
 .wp-block-group.is-style-icon-title {
 	@apply flex items-center gap-4;
-	
+
 	/* Mobile first: flex row, centered */
 	@apply flex-row justify-start;
 
 	figure {
 		margin-top: 0 !important;
-        margin-bottom: 0 !important;
+		margin-bottom: 0 !important;
 	}
 }
 
@@ -30,10 +30,10 @@
 /* Icon container styling */
 .wp-block-group.is-style-icon-title > .wp-block-image:first-child {
 	@apply flex-shrink-0;
-	
+
 	/* Mobile: smaller icon */
 	@apply w-12 h-12;
-	
+
 	/* Ensure image fills container */
 	img {
 		@apply w-full h-full object-contain;
@@ -54,7 +54,7 @@
 .wp-block-group.is-style-icon-title > h3,
 .wp-block-group.is-style-icon-title > h4 {
 	@apply m-0;
-	
+
 	/* Mobile: left aligned */
 	@apply text-left;
 }
@@ -62,7 +62,9 @@
 /* Desktop: left aligned (already set on mobile) */
 
 /* When used inside MEA Rouge, ensure white text */
-.wp-block-group.is-style-mea-rouge .wp-block-group.is-style-icon-title > .wp-block-heading,
+.wp-block-group.is-style-mea-rouge
+	.wp-block-group.is-style-icon-title
+	> .wp-block-heading,
 .wp-block-group.is-style-mea-rouge h1,
 .wp-block-group.is-style-mea-rouge h2,
 .wp-block-group.is-style-mea-rouge h3,

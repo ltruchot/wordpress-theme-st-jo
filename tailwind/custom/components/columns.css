@@ -5,44 +5,45 @@
 
 /* Override WordPress default mobile stacking breakpoint */
 @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
-  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
-    flex-basis: 100% !important;
-  }
-  
-  .wp-block-columns {
-    flex-wrap: wrap !important;
-  }
+	.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
+		flex-basis: 100% !important;
+	}
+
+	.wp-block-columns {
+		flex-wrap: wrap !important;
+	}
 }
 
 /* Desktop layout starts at theme desktop breakpoint (960px) */
 @media (min-width: theme(--breakpoint-md)) {
-  .wp-block-columns {
-    flex-wrap: nowrap !important;
-  }
-  
-  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-  
-  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column[style*="flex-basis"] {
-    flex-grow: 0;
-  }
+	.wp-block-columns {
+		flex-wrap: nowrap !important;
+	}
+
+	.wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
+		flex-basis: 0;
+		flex-grow: 1;
+	}
+
+	.wp-block-columns:not(.is-not-stacked-on-mobile)
+		> .wp-block-column[style*="flex-basis"] {
+		flex-grow: 0;
+	}
 }
 
 /* Specific handling for 33/66 columns layout */
 @media (max-width: calc(theme(--breakpoint-md) - 1px)) {
-  /* Force 33% column to full width on mobile */
-  .wp-block-column[style*="flex-basis:33.33%"],
-  .wp-block-column[style*="flex-basis: 33.33%"] {
-    flex-basis: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  /* Force 66% column to full width on mobile */
-  .wp-block-column[style*="flex-basis:66.66%"],
-  .wp-block-column[style*="flex-basis: 66.66%"] {
-    flex-basis: 100% !important;
-    max-width: 100% !important;
-  }
+	/* Force 33% column to full width on mobile */
+	.wp-block-column[style*="flex-basis:33.33%"],
+	.wp-block-column[style*="flex-basis: 33.33%"] {
+		flex-basis: 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* Force 66% column to full width on mobile */
+	.wp-block-column[style*="flex-basis:66.66%"],
+	.wp-block-column[style*="flex-basis: 66.66%"] {
+		flex-basis: 100% !important;
+		max-width: 100% !important;
+	}
 }
