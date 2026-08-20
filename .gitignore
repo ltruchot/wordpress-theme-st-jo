@@ -16,3 +16,6 @@ st-jo.zip
 # Ignore .DS_Store files from macOS:
 .DS_Store
 .claude
+
+# Artefact de crash Windows, sans rapport avec le theme :
+debug.log

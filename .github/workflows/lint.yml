@@ -1,0 +1,70 @@
+# Runs the linters the project already configures but never executed
+# automatically, on pull requests -- so problems surface before the merge that
+# would deploy them.
+#
+# Only what the codebase passes today is blocking: ESLint and the build. The
+# existing code carries around 374 Stylelint findings, 66 PHPCS findings and 23
+# files Prettier would reformat. Making those blocking would stop every pull
+# request on defects predating it, so they report without failing the run.
+# Bringing them to zero is worth its own pass; until then the count is visible
+# on every pull request instead of invisible everywhere.
+name: Lint
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  javascript-css:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+
+      # Blocking: clean today, and it must stay that way.
+      - name: ESLint
+        run: npx eslint
+
+      # Blocking: a theme that does not build cannot be deployed.
+      - name: Build
+        run: |
+          npm run production
+          test -f theme/style.css
+          grep -q 'Theme Name:' theme/style.css
+
+      - name: Stylelint (informatif)
+        continue-on-error: true
+        run: |
+          npx stylelint "tailwind/**/*.css" 2>&1 | tail -30 || true
+          COUNT=$(npx stylelint "tailwind/**/*.css" -f json 2>/dev/null \
+            | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{try{console.log(JSON.parse(d).reduce((n,f)=>n+f.warnings.length,0))}catch{console.log('?')}})")
+          echo "Stylelint : $COUNT points a traiter" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Prettier (informatif)
+        continue-on-error: true
+        run: |
+          npx prettier --check . 2>&1 | tail -30 || true
+
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - uses: ramsey/composer-install@v3
+
+      # Blocking: a PHP syntax error takes the site down, and nothing else here
+      # is clean enough yet to gate on.
+      - name: Syntaxe PHP
+        run: find theme -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: PHP_CodeSniffer (informatif)
+        continue-on-error: true
+        run: composer run php:lint:errors

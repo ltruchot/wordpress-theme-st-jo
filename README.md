@@ -3,34 +3,45 @@ Wordpress Thème St Jo
 
 Thème du site web de l’école St Joseph de La Bouëxière
 
-## Démarrage rapide pour les dev: installer, developer, deployer
+## Démarrage rapide pour les dev
 
-- installer "Local": https://localwp.com/ et node.js en v22.x.x https://nodejs.org/en/download
-- créer/importer un worpress à jour via "Local" (bouton + en bas à gauche) (ex: `C:\Users\<remplacer-par-mon-username>\Local Sites\wp-st-jo` sous windows 11)
-- lancer ce site avec local (run site, open in browser)
+Deux dépôts travaillent ensemble :
 
-Enfin, cloner ce repertoire dans les themes du  site concerné (ex: `cd C:\Users\<remplacer-par-mon-username>\Local Sites\wp-st-jo\app\public\wp-content\themes` sous windows 11)
-- `git clone https://github.com/ltruchot/wordpress-theme-st-jo.git`
-- `cd wordpress-theme-st-jo`
-- `npm install` à la premiere utilisation
-- `npm run watch` démarre le theme en mode developpement local
+- **celui-ci** — le thème ;
+- **`st-jo-ops`** (privé) — un clone local de la production : les fichiers exacts du serveur, le
+  contenu réel du site, la même version de PHP. C'est là qu'on voit l'effet d'un changement
+  avant qu'il ne soit public.
 
-À la première utilisation:
-- dans le navigateur, accéder à l’Admin en local: http://wp-st-jo.local/wp-admin
-- passer le site en français si besoin: http://wp-st-jo.local:10004/wp-admin/options-general.php
-- puis activer le theme:
-  - Tableau de bord -> Apparence -> Thèmes -> wordpress-theme-st-jo -> activer
+```bash
+git clone git@github.com:ltruchot/st-jo-ops.git
+cd st-jo-ops && docker compose up -d --build     # http://localhost:8210
 
-Changer quelque chose dans un template, par exemple ajouter "bonjour" juste après `<main id="main">` dans `theme/page.php`  
-Recharger la page d’accueil de site http://wp-st-jo.local/ : le texte devrait s’afficher après l’entete du site  
+cd .. && git clone git@github.com:ltruchot/wordpress-theme-st-jo.git
+cd wordpress-theme-st-jo && npm install && npm run watch
+```
 
+Le thème est monté en direct dans le clone : on modifie ici, on rafraîchit
+<http://localhost:8210>, on voit. La mise en route complète du clone est décrite dans le
+`README.md` de `st-jo-ops`.
 
-Pour voir ce changement sur https://ecole.st-joseph.fr: 
-- demander à Loïc TRUCHOT le droit de contribuer au répertoire 
-- `git add -A && git commit -m "test deploiement" && git push` sur la branche `main` ou faire un PR depuis une nouvelle branche vers `main` et merger
-- aller sur https://github.com/ltruchot/wordpress-theme-st-jo/actions
-- une fois que l’action "deploy" est terminée, vérifier le changement: https://ecole.st-joseph.fr/  
+Pour essayer : ajouter « bonjour » juste après `<main id="main">` dans `theme/page.php`, puis
+recharger une page — le texte apparaît sous l'en-tête du site.
 
+### Alternative : LocalWP
+
+Sans Docker, on peut installer [LocalWP](https://localwp.com/) et Node 22.x, créer un site
+WordPress, puis cloner ce dépôt dans son dossier `wp-content/themes`, `npm install`,
+`npm run watch`, et activer le thème depuis l'administration. Le contenu ne sera pas celui du
+site en ligne.
+
+## Mettre un changement en production
+
+- créer une branche, faire une Pull Request vers `main`, la faire relire, la merger ;
+- le déploiement part au merge et se vérifie tout seul (voir [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)) ;
+- suivre le run sur <https://github.com/ltruchot/wordpress-theme-st-jo/actions>, puis vérifier
+  <https://ecole.st-joseph.fr/>.
+
+En cas de problème, le workflow **Rollback Production** remet la version précédente en ligne.
 
 ## Changements en profondeurs
 - demander à Loïc TRUCHOT le mot de passe SSH de la gestion de Thème
