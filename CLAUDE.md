@@ -113,10 +113,22 @@ Aucun fichier de ce dépôt — code, commentaire, documentation, message de com
 référence à un autre projet, client ou site, **pas même par comparaison ou par négation**. Ce qui
 est écrit ici se tient seul.
 
+## Skills du dépôt
+
+Deux skills portent la connaissance du thème. Elles se chargent à la demande — inutile de les
+lire d'avance, mais il faut savoir qu'elles existent :
+
+| Skill | Quand |
+|---|---|
+| `st-jo-design-system` | écrire ou modifier du CSS : jetons, breakpoints, choix du fichier, parité éditeur, motifs de blocs |
+| `st-jo-build` | construire, linter, déployer : scripts, build de production, exigences de la CI, retour arrière |
+
+Les autres skills de `.claude/skills/` sont des références WordPress amont, laissées telles
+quelles.
+
 ## Fichier à lire avant de démarrer
 - `theme/theme.json` et `tailwind/tailwind-theme.css`
 - `README.md`
-- tous les fichiers dans le dossier `.cursor/rules/*`
 - `package.json`
 - `composer.json`
 - `docs/DEPLOYMENT.md`
