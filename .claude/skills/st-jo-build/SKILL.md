@@ -19,8 +19,12 @@ description: À utiliser pour construire, linter, tester ou déployer le thème 
 | `composer run php:lint` | PHP_CodeSniffer, règles WordPress |
 | `composer run php:lint:autofix` | `phpcbf` |
 
-Chaque commande est un `run-p` sur quatre sorties parallèles : `style.css`, `style-editor.css`,
-`style-editor-extra.css` et les bundles JavaScript.
+`dev`, `watch`, `production` et `lint` sont des `run-p` : ils lancent leurs sous-tâches **en
+parallèle**. Les trois commandes de build produisent chacune quatre sorties — `style.css`,
+`style-editor.css`, `style-editor-extra.css` et les bundles JavaScript.
+
+`bundle`, lui, est un `run-s` : `production` puis `zip`, dans cet ordre, parce que l'archive a
+besoin du build terminé.
 
 `npm run bundle` (→ archive zip) existe, hérité de `_tw`, mais **ce n'est pas ainsi que ce site
 est déployé**. Voir plus bas.
