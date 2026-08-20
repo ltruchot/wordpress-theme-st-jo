@@ -38,11 +38,10 @@
 	@apply mb-3;
 }
 
-/**
- * Editor parity: the block editor renders the same markup, so the same rules
- * apply there. Without this the item looks like plain paragraphs while being
- * written, which is exactly when the structure needs to be visible.
+/*
+ * No editor-specific block here on purpose. The component sheet is imported by
+ * both tailwind.css and tailwind-editor.css, so the rules above already reach
+ * the block editor -- and `my-8` is among them. An `.editor-styles-wrapper`
+ * override would repeat what is already applied, and ship a front-end rule that
+ * no visitor ever needs.
  */
-.editor-styles-wrapper .wp-block-group.is-style-actualite {
-	@apply my-8;
-}
