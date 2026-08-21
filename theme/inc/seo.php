@@ -34,9 +34,13 @@
  * as well -- in that case render_sitemaps() sets its own 404 later, on
  * template_redirect, and this filter never contradicts it.
  *
- * Reported upstream; see the note in the theme's SEO skill. Until core exempts
- * sitemap requests, this belongs in the theme rather than in a patched core
- * file that the next update would silently overwrite.
+ * Known upstream as https://core.trac.wordpress.org/ticket/51912, filed against
+ * paginated sitemaps but describing this exact chain: the main query comes back
+ * empty, handle_404() sets the status, and template_redirect runs the sitemap
+ * logic too late to change it. A site with no posts at all hits it on the very
+ * first URL. Until core exempts sitemap requests, the fix belongs in the theme
+ * -- never in a patched core file, which the next update would overwrite in
+ * silence.
  *
  * @param bool     $preempt  Whether to short-circuit default header handling.
  * @param WP_Query $wp_query The query being handled.

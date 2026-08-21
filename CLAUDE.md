@@ -90,6 +90,19 @@ resultat=$(diff a b) && code=0 || code=$?
 [ "$code" -le 1 ] || die "Comparaison impossible."
 ```
 
+**Un garde-fou qui simplifie l'environnement finit par cacher ce qu'on cherche.** Le clone forçait
+`blog_public` à 0 pour n'être jamais indexé — au passage, il coupait les sitemaps par un chemin que
+la production ne prend pas, et le défaut qu'on cherchait était invisible en local. Quand une
+vérification s'avère impossible sur le clone, la première question est **« qu'est-ce qui, chez nous,
+rend ça impossible ? »**, pas « comment fait-on sans ».
+
+**Un rapport d'exploration n'est pas une mesure.** Trois constats sévères de l'audit SEO se sont
+révélés faux à la vérification : le `h1` prétendument absent de toutes les pages (il y en a
+exactement un partout), le favicon prétendument non référencé (`site_icon` est réglé et WordPress
+émet les balises), et une correction de titres annoncée comme neutre au pixel alors que les tailles
+sont pilotées par le nom de l'élément. On vérifie avant de citer, y compris — surtout — ce qui vient
+de soi-même.
+
 ## Les trois dépôts, et ce qui va où
 
 | Dépôt | Visibilité | Ce qu'il porte | Ce qu'on n'y met **jamais** |
@@ -170,7 +183,7 @@ est écrit ici se tient seul.
 
 ## Skills du dépôt
 
-Trois skills portent la connaissance du thème et du site. Elles se chargent à la demande —
+Quatre skills portent la connaissance du thème et du site. Elles se chargent à la demande —
 inutile de les lire d'avance, mais il faut savoir qu'elles existent :
 
 | Skill | Quand |
@@ -178,6 +191,7 @@ inutile de les lire d'avance, mais il faut savoir qu'elles existent :
 | `st-jo-design-system` | écrire ou modifier du CSS : jetons, breakpoints, choix du fichier, parité éditeur, motifs de blocs |
 | `st-jo-build` | construire, linter, déployer : scripts, build de production, exigences de la CI, retour arrière |
 | `st-jo-actualites` | publier des actualités à partir d'un e-mail : dates du module d'accueil, détail sur la page Actualités, rotation vers les archives |
+| `st-jo-seo` | référencement, données structurées, accessibilité, mesure : sitemap, titres, `<head>`, seuils Lighthouse et axe |
 
 Les autres skills de `.claude/skills/` sont des références WordPress amont, laissées telles
 quelles.
