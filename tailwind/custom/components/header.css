@@ -62,15 +62,23 @@
 				letter-spacing: 0;
 				text-decoration: none;
 
+				/*
+				 * primary-600 rather than primary-500.
+				 *
+				 * The header sits on #F9F7EF, not on the white the `background`
+				 * token names, and #CA4A28 measures 4.33 against it -- just
+				 * under the 4.5 that normal text has to reach. #A23B20 measures
+				 * 6.15 on the same ground, and reads as the same colour.
+				 */
 				&:hover {
-					color: theme(colors.primary-500);
+					color: theme(colors.primary-600);
 					text-decoration: underline;
 					text-decoration-style: solid;
 				}
 
 				&.current-menu-item {
 					font-weight: 700;
-					color: theme(colors.primary-500);
+					color: theme(colors.primary-600);
 					text-decoration-line: none;
 				}
 			}
@@ -191,15 +199,23 @@
 				text-decoration: none;
 				cursor: pointer;
 
+				/*
+				 * primary-600 rather than primary-500.
+				 *
+				 * The header sits on #F9F7EF, not on the white the `background`
+				 * token names, and #CA4A28 measures 4.33 against it -- just
+				 * under the 4.5 that normal text has to reach. #A23B20 measures
+				 * 6.15 on the same ground, and reads as the same colour.
+				 */
 				&:hover {
-					color: theme(colors.primary-500);
+					color: theme(colors.primary-600);
 					text-decoration: underline;
 					text-decoration-style: solid;
 				}
 
 				&.current-menu-item {
 					font-weight: 700;
-					color: theme(colors.primary-500);
+					color: theme(colors.primary-600);
 					text-decoration-line: none;
 				}
 			}

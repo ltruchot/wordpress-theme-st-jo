@@ -78,16 +78,26 @@
 	}
 }
 
-/* Secondary button (outline style in WordPress) */
+/*
+ * Secondary button (outline style in WordPress)
+ *
+ * primary-600 for the label, not primary-500.
+ *
+ * An outline button paints its text straight onto the page ground, which is the
+ * beige #F9F7EF rather than the white the `background` token names. #CA4A28
+ * measures 4.33 against it, just under the 4.5 that normal text must reach;
+ * #A23B20 measures 6.15 on the same ground and reads as the same colour. Filled
+ * buttons are untouched -- white on #CA4A28 measures 4.64.
+ */
 .estjo-button--secondary,
 .wp-block-button.is-style-outline .wp-block-button__link {
-	color: theme(colors.primary-500) !important;
+	color: theme(colors.primary-600) !important;
 	text-decoration: none !important;
 	background-color: transparent !important;
 	border-color: theme(colors.primary-300);
 
 	&:hover {
-		color: theme(colors.primary-500) !important;
+		color: theme(colors.primary-600) !important;
 		text-decoration: none !important;
 		background-color: transparent !important;
 		border-color: theme(colors.primary-500);
@@ -101,7 +111,7 @@
 	}
 
 	&:visited {
-		color: theme(colors.primary-500) !important;
+		color: theme(colors.primary-600) !important;
 		text-decoration: none !important;
 		background-color: transparent !important;
 		border-color: theme(colors.primary-300) !important;
@@ -109,7 +119,7 @@
 
 	/* Force Android/Chrome compliance */
 	&:visited:hover {
-		color: theme(colors.primary-500) !important;
+		color: theme(colors.primary-600) !important;
 		border-color: theme(colors.primary-500) !important;
 	}
 
@@ -287,13 +297,13 @@
 
 /* Button outline with arrow right */
 .wp-block-button.is-style-outline-chevron-right .wp-block-button__link {
-	color: var(--wp--preset--color--primary-500) !important;
+	color: var(--wp--preset--color--primary-600) !important;
 	text-decoration: none !important;
 	background-color: transparent !important;
 	border-color: var(--wp--preset--color--primary-300);
 
 	&:hover {
-		color: var(--wp--preset--color--primary-500) !important;
+		color: var(--wp--preset--color--primary-600) !important;
 		text-decoration: none !important;
 		background-color: transparent !important;
 		border-color: var(--wp--preset--color--primary-500);
