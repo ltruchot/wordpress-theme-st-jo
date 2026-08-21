@@ -104,10 +104,12 @@ dans le `<head>` de toutes les pages.
 
 Trois contraintes, dans cet ordre d'importance :
 
-- **Le poids.** L'aperçu est téléchargé par l'application qui l'affiche, et WhatsApp est le plus
-  sévère : au-delà de quelques centaines de kilooctets, la vignette ne s'affiche pas du tout. Un PNG
-  de photo est le mauvais format — 1,39 Mo pour l'image de 2026 — là où un JPEG progressif de qualité
-  88 en sous-échantillonnage 4:2:0 rend 217 Ko à 38,5 dB de PSNR, soit un écart invisible à l'œil.
+- **Le poids.** L'aperçu est téléchargé par l'application qui l'affiche, dans un délai court et
+  souvent en réseau mobile. Un PNG de photo est le mauvais format — 1,39 Mo pour l'image de 2026 —
+  là où un JPEG progressif de qualité 88 en sous-échantillonnage 4:2:0 rend 217 Ko pour 38,5 dB de
+  PSNR, soit un écart invisible à l'œil (mesuré). *Non vérifié ici, et souvent rapporté* : WhatsApp
+  renoncerait à la vignette au-delà de quelques centaines de kilooctets. On n'a pas de moyen de le
+  constater depuis le dépôt ; viser petit ne coûte rien et lève la question.
 - **La taille.** Au-delà de 600 × 315 px, Facebook affiche la grande carte ; 1200 × 630 est
   l'optimum sur écran dense. **Ne pas agrandir pour atteindre le chiffre** : des pixels inventés se
   voient, un aperçu un peu moins net ne se voit pas. Les plateformes recadrent au centre — c'est
