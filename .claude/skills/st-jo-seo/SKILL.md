@@ -130,13 +130,28 @@ comportement — une URL percent-encodée casse le partage et les journaux.
 
 ## 5. Ce qui pèse le plus, et qui ne se code pas
 
-Par rapport impact/effort décroissant :
+**Rien de tout cela ne se déclenche avant que le site remplaçant ne soit jugé prêt.** C'est une
+décision de l'école, pas une conséquence d'un audit — et pousser des liens vers un site inachevé
+coûte plus qu'il ne rapporte.
+
+Il y a une raison de plus d'attendre, et elle est structurelle : **l'ancien site
+`stjo35.free.fr/ecole/` est toujours en ligne, répond 200, s'intitule « Accueil, Ecole Saint
+Joseph », et son `robots.txt` n'interdit que quatre dossiers techniques.** Deux sites revendiquent
+donc la même école, et c'est exactement l'ambiguïté que le JSON-LD cherche à lever.
+
+**Le geste du jour de la bascule, qui ne se rattrape pas après** : une **redirection 301** de chaque
+ancienne URL vers son équivalent. C'est ce qui transfère l'ancienneté et les liens accumulés ; une
+mise hors ligne sèche les perd. Vérifier le moment venu ce que l'hébergement de l'ancien site
+autorise ; à défaut, un `rel="canonical"` vers la nouvelle page sur chaque ancienne — plus faible,
+mais réel.
+
+Ensuite seulement, par rapport impact/effort décroissant :
 
 1. **Le champ « site web » de la fiche UAI 0351195J** à l'annuaire de l'Éducation nationale est
    **vide**. Cette page est déjà dans les premiers résultats de la requête cible. Le remplir passe
    par la direction (remontée RAMSESE / DSDEN 35).
-2. **La page « Écoles » de la mairie** pointe vers `http://stjo35.free.fr/ecole/`, un ancien site.
-   Un lien périmé sur une page qui se positionne est pire que pas de lien.
+2. **La page « Écoles » de la mairie** pointe vers `http://stjo35.free.fr/ecole/`. Ce n'est pas une
+   erreur tant que c'est l'ancien site qui fait foi : le lien se change au lancement, pas avant.
 3. **La fiche Google Business Profile.** C'est le pack local, donc ce qui s'affiche avant les
    résultats organiques. La vérification par **vidéo** est devenue la méthode par défaut : une prise
    unique et continue, la signalétique extérieure avec le nom exact, l'intérieur, une action de
