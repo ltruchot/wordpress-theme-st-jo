@@ -50,9 +50,26 @@
 	}
 }
 
-/* Primary button (default) */
+/*
+ * Primary button (default)
+ *
+ * The exclusion matches every outline variant, not just `is-style-outline`.
+ *
+ * It used to read `:not(.is-style-outline)`, which let
+ * `is-style-outline-chevron-right` through -- and that mattered for exactly one
+ * declaration. The base colour and background were overridden further down by
+ * the outline rule, but nothing overrode `:visited`, so a visited outline
+ * button took `color: white` while keeping its transparent background: white
+ * text on the beige page ground, unreadable, and invisible to anyone testing
+ * with a fresh browser profile because `:visited` needs history to apply.
+ *
+ * `[class*="is-style-outline"]` encodes the naming convention itself: a style
+ * whose name starts with `outline` paints no background, so it must never take
+ * the filled button's white text. A new variant is covered on the day it is
+ * named.
+ */
 .estjo-button--primary,
-.wp-block-button:not(.is-style-outline) .wp-block-button__link {
+.wp-block-button:not([class*="is-style-outline"]) .wp-block-button__link {
 	color: theme(colors.white) !important;
 	text-decoration: none !important;
 	background-color: theme(colors.primary-500);
