@@ -24,7 +24,16 @@
 <?php wp_body_open(); ?>
 
 <div id="page">
-	<a href="#content" class="sr-only"><?php esc_html_e( 'Skip to content', 'st-jo' ); ?></a>
+	<?php
+	/*
+	 * The skip link only earns its place if it becomes visible when focused:
+	 * `sr-only` alone hides it from the keyboard user it exists for.
+	 */
+	?>
+	<a
+		href="#content"
+		class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded focus:bg-background focus:px-4 focus:py-2 focus:text-primary focus:shadow-lg focus:outline focus:outline-2 focus:outline-primary"
+	><?php esc_html_e( 'Aller au contenu', 'st-jo' ); ?></a>
 
 	<?php get_template_part( 'template-parts/layout/header', 'content' ); ?>
 

@@ -17,20 +17,20 @@
 				<h2>Pour les parents...</h2>
 				<div class="flex flex-col gap-4 md:flex-row">
 					<div class="w-full md:w-1/2">
-						<h5>Noéfil</h5>
+						<h3 class="estjo-footer-for-parents__subtitle">Noéfil</h3>
 						<p>Utilisez le portail sécurisé Noéfil afin de faciliter le règlement de la scolarité de votre enfant ainsi que celui de la cantine.</p>
 						<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex my-8">
 							<div class="wp-block-button is-style-chevron-right">
-								<a class="wp-block-button__link wp-element-button" href="https://www.noefil.fr/portail" target="_blank">Portail Noéfil</a>
+								<a class="wp-block-button__link wp-element-button" href="https://www.noefil.fr/portail" target="_blank" rel="noopener">Portail Noéfil</a>
 							</div>
 						</div>
 					</div>
 					<div class="w-full md:w-1/2">
-					<h5>Carnet en ligne Éducartable</h5>
+					<h3 class="estjo-footer-for-parents__subtitle">Carnet en ligne Éducartable</h3>
 						<p>Suivez simplement la scolarité de votre enfant grâce à une application gratuite et sans publicité pour les familles.</p>
 						<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex my-8">
 							<div class="wp-block-button is-style-chevron-right">
-								<a class="wp-block-button__link wp-element-button" href="https://www.educartable.com/" target="_blank">Éducartable</a>
+								<a class="wp-block-button__link wp-element-button" href="https://www.educartable.com/" target="_blank" rel="noopener">Éducartable</a>
 							</div>
 						</div>
 					</div>
@@ -42,10 +42,10 @@
 			
 			<!-- Right column - 1/3 width on desktop, full on mobile -->
 			<div class="w-full md:w-1/3 md:pl-12">
-				<h5>Inscription</h5>
+				<h3 class="estjo-footer-for-parents__subtitle">Inscription</h3>
 				<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex my-8">
 					<div class="wp-block-button is-style-chevron-right">
-						<a class="wp-block-button__link wp-element-button" href="https://www.noefil.fr/inscription?portail=QjEyNA==" target="_blank">Via Noéfil</a>
+						<a class="wp-block-button__link wp-element-button" href="https://www.noefil.fr/inscription?portail=QjEyNA==" target="_blank" rel="noopener">Via Noéfil</a>
 					</div>
 				</div>
 				<p class="space-y-2">
@@ -59,9 +59,9 @@
 	<!-- Background foating colored shapes -->
 	<div class="estjo-footer__shapes">
 		<img src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/st-jo-shape1.svg"
-			alt="Forme décorative de l'icone de l'école 1">
+			alt="">
 		<img src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/st-jo-shape2.svg"
-			alt="Forme décorative de l'icone de l'école 2">
+			alt="">
 	</div>
 	<!-- Background header to decorate the footer top -->
 	<div class="estjo-footer__background-decoration">
@@ -74,7 +74,7 @@
 					alt="Logo de l'enseignement catholique">
 			</section>
 			<section>
-				<h4>L'école</h4>
+				<h2 class="estjo-footer__title">L'école</h2>
 				<address>
 					École Saint-Joseph<br>
 					Allée Henri Quéfélec<br>
@@ -86,28 +86,28 @@
 					<li>
 						<a href="tel:0299626309" class="no-underline"><img
 								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-smartphone.svg"
-								alt="Icone de téléphone">02 99 62 63 09</a>
+								alt="">02 99 62 63 09</a>
 					</li>
 					<li>
 						<a href="mailto:eco35.st-joseph.la-bouexiere@enseignement-catholique.bzh"><img
 								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-speak.svg"
-								alt="Icone de discussion">Nous écrire ›</a>
+								alt="">Nous écrire ›</a>
 					</li>
 					<li>
 						<a href="https://ecole.st-joseph.fr/infos-pratiques"><img
 								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-talk.svg"
-								alt="Icone d'information">Infos
+								alt="">Infos
 							pratiques ›</a>
 					</li>
 				</ul>
 			</section>
 			<section>
-				<h4>Suivez l’animation de l’école et les prochains évènements sur le Facebook de l’Apel !</h4>
+				<h2 class="estjo-footer__title">Suivez l’animation de l’école et les prochains évènements sur le Facebook de l’Apel !</h2>
 				<ul>
 					<li>
 						<a href="https://www.facebook.com/share/19sAwLHJa1/?mibextid=wwXIfr"><img
 								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-facebook.svg"
-								alt="Icone de Facebook">Facebook de l’APEL</a>
+								alt="">Facebook de l’APEL</a>
 					</li>
 				</ul>
 			</section>

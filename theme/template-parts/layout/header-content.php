@@ -16,16 +16,10 @@
 		</a>
 
 		<nav id="site-navigation" class="estjo-header__nav" aria-label="<?php esc_attr_e( 'Navigation principale', 'st-jo' ); ?>">
-			<ul>
-				<li><a href="/ecole" <?php if(is_page('ecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
-				<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
-				<li><a href="/associations" <?php if(is_page('associations')) echo 'class="current-menu-item"'; ?>>Les associations</a></li>
-				<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
-				<li><a href="/actualites" <?php if(is_page('actualites')) echo 'class="current-menu-item"'; ?>>Actualités</a></li>
-			</ul>
+			<?php st_jo_nav_list(); ?>
 			<?php st_jo_button( array(
 				'text' => 'Nous contacter',
-				'url'  => '/contact'
+				'url'  => '/contact/'
 			) ); ?>
 		</nav>
 
@@ -39,16 +33,10 @@
 
 	<!-- Mobile menu -->
 	<nav id="mobile-menu" class="estjo-header__mobile-menu" aria-label="<?php esc_attr_e( 'Navigation mobile', 'st-jo' ); ?>">
-		<ul>
-			<li><a href="/ecole" <?php if(is_page('ecole')) echo 'class="current-menu-item"'; ?>>L'école</a></li>
-			<li><a href="/services-periscolaires" <?php if(is_page('services-periscolaires')) echo 'class="current-menu-item"'; ?>>Services périscolaires</a></li>
-			<li><a href="/associations" <?php if(is_page('associations')) echo 'class="current-menu-item"'; ?>>Les associations</a></li>
-			<li><a href="/infos-pratiques" <?php if(is_page('infos-pratiques')) echo 'class="current-menu-item"'; ?>>Infos pratiques</a></li>
-			<li><a href="/actualites" <?php if(is_page('actualites')) echo 'class="current-menu-item"'; ?>>Actualités</a></li>
-		</ul>
+		<?php st_jo_nav_list(); ?>
 		<?php st_jo_button( array(
 			'text' => 'Nous contacter',
-			'url'  => '/contact'
+			'url'  => '/contact/'
 		) ); ?>
 	</nav>
 </header><!-- #masthead -->
