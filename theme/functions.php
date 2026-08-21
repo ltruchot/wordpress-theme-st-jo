@@ -9,11 +9,19 @@
 
 if ( ! defined( 'ST_JO_VERSION' ) ) {
 	/*
-	 * Set the theme’s version number.
+	 * The theme's version number.
 	 *
-	 * This is used primarily for cache busting. If you use `npm run bundle`
-	 * to create your production build, the value below will be replaced in the
-	 * generated zip file with a timestamp, converted to base 36.
+	 * Inherited from the upstream starter, whose comment promised that
+	 * `npm run bundle` would replace this literal with a timestamp inside the
+	 * generated zip. This theme is not shipped as a zip -- it is rsynced -- so
+	 * the substitution never ran and the value stayed `0.1.0` through every
+	 * deployment. Assets were therefore served under an unchanging `?ver=`, and
+	 * a visitor kept the previous stylesheet until the host's own 15-minute
+	 * cache expired: new markup on old CSS, for a quarter of an hour, after
+	 * every single deployment.
+	 *
+	 * It is kept as a fallback for st_jo_asset_version(), and as the version a
+	 * human reads. Cache busting is that function's job now.
 	 */
 	define( 'ST_JO_VERSION', '0.1.0' );
 }
@@ -143,14 +151,32 @@ function st_jo_widgets_init() {
 add_action( 'widgets_init', 'st_jo_widgets_init' );
 
 /**
+ * Returns a cache-busting version for one of the theme's own files.
+ *
+ * The file's modification time, which changes exactly when the file does. A
+ * fixed version number cannot do this, and a hash would mean reading the whole
+ * file on every request where a single `stat` suffices.
+ *
+ * @param string $relative_path Path inside the theme, e.g. `js/script.min.js`.
+ * @return string Version string for wp_enqueue_*.
+ */
+function st_jo_asset_version( $relative_path ) {
+	$file = get_theme_file_path( $relative_path );
+
+	// A missing file means something is wrong with the build; fall back rather
+	// than emit `?ver=` with nothing after it.
+	return file_exists( $file ) ? (string) filemtime( $file ) : ST_JO_VERSION;
+}
+
+/**
  * Enqueue scripts and styles.
  */
 function st_jo_scripts() {
 	// Google Fonts
 	wp_enqueue_style( 'st-jo-google-fonts', 'https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap', array(), null );
 	
-	wp_enqueue_style( 'st-jo-style', get_stylesheet_uri(), array(), ST_JO_VERSION );
-	wp_enqueue_script( 'st-jo-script', get_template_directory_uri() . '/js/script.min.js', array(), ST_JO_VERSION, true );
+	wp_enqueue_style( 'st-jo-style', get_stylesheet_uri(), array(), st_jo_asset_version( 'style.css' ) );
+	wp_enqueue_script( 'st-jo-script', get_template_directory_uri() . '/js/script.min.js', array(), st_jo_asset_version( 'js/script.min.js' ), true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -170,7 +196,7 @@ function st_jo_enqueue_block_editor_script() {
 				'wp-blocks',
 				'wp-edit-post',
 			),
-			ST_JO_VERSION,
+			st_jo_asset_version( 'js/block-editor.min.js' ),
 			true
 		);
 		wp_add_inline_script( 'st-jo-editor', "tailwindTypographyClasses = '" . esc_attr( ST_JO_TYPOGRAPHY_CLASSES ) . "'.split(' ');", 'before' );
