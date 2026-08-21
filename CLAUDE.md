@@ -167,10 +167,19 @@ après.
 ## Mise en production
 
 - **`main` est protégé : jamais de push direct.** Une Pull Request, toujours.
-- **On ne merge pas avant d'avoir lu la review de qodo.** Elle met quelques minutes à venir, et
-  merger sans l'attendre revient à décider qu'elle ne sert à rien. Ses retours se traitent avec la
-  skill `qodo-pr-review` : chacun est corrigé ou refusé avec sa raison écrite dans le fil, puis
-  résolu — la protection de `main` l'exige de toute façon.
+- **Ouvrir la PR n'est pas la finir.** Une PR ouverte appelle trois gestes, dans cet ordre, et
+  aucun ne se saute :
+  1. **attendre la review de qodo** — elle met quelques minutes à venir, et passer outre revient à
+     décider qu'elle ne sert à rien ;
+  2. **repasser dessus avec la skill `qodo-pr-review` chargée**, pas de mémoire. La skill décrit
+     une procédure — un sous-agent par retour, un commit atomique par correction, `/agentic_review`
+     pour relancer — et la suivre de tête, c'est en oublier la moitié. C'est déjà arrivé ;
+  3. **traiter chaque retour** : corrigé, ou refusé avec sa raison écrite dans le fil, puis résolu.
+     La protection de `main` l'exige de toute façon.
+
+  Et pousser une correction relance qodo : le cycle recommence à l'étape 1 jusqu'à ce qu'un passage
+  ne rapporte plus rien de neuf. Une PR qu'on croit finie parce qu'on a corrigé ce qu'elle disait
+  au premier tour ne l'est pas.
 - **Le corps d'une PR dit aussi ce qui n'a pas été vérifié.** Lister ses contrôles est facile ;
   nommer ce qu'on n'a pas pu atteindre l'est moins, et c'est ce qui a de la valeur. Un rendu
   d'éditeur qui demande une session authentifiée, un navigateur qu'on n'a pas, un cas qu'on n'a pas
