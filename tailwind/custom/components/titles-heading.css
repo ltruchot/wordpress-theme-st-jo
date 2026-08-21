@@ -358,4 +358,37 @@ h5 {
 	}
 }
 
+/**
+ * Appearance, decoupled from level.
+ *
+ * Every rule above keys off the element name, so the only way to get a smaller
+ * heading was to pick a deeper level. That is how the footer ended up going
+ * h2 -> h5 -> h4 on every page of the site: the levels were being used as font
+ * sizes. These two classes carry the look, which frees the level to carry the
+ * meaning. They need one more class than `.estjo-footer h2` to win.
+ */
+.estjo-footer .estjo-footer__title {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 22px !important;
+	font-weight: 700 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.background) !important;
+	margin-top: 0 !important;
+	margin-bottom: 15px !important;
+}
+
+.estjo-footer-for-parents .estjo-footer-for-parents__subtitle {
+	font-family: var(--wp--preset--font-family--heading) !important;
+	font-size: 20px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+	color: theme(colors.black) !important;
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 22px !important;
+	}
+}
+
 /* stylelint-enable plugin/stylelint-bem-namics */
