@@ -404,4 +404,33 @@ h5 {
 	}
 }
 
+/**
+ * A heading that keeps the small look while taking the level the document
+ * structure calls for.
+ *
+ * Same reasoning as the two classes above, applied to content rather than to
+ * template parts: an editor who needs a smaller title should not have to reach
+ * for a deeper level to get it. On the home page three headings had dropped to
+ * h4 for their size alone, breaking the order straight after the h1.
+ *
+ * Only the size is pinned. Colour keeps coming from the surrounding block --
+ * white inside the red panel, black elsewhere -- and margins are left to the
+ * block that owns them, so `is-style-icon-title` keeps its own zeroed spacing.
+ */
+.entry-content .estjo-heading--compact,
+.wp-block-group.is-style-mea-rouge .estjo-heading--compact,
+.wp-block-group.is-style-icon-title .estjo-heading--compact {
+	font-size: 22px !important;
+
+	@media (min-width: theme(--breakpoint-md)) {
+		font-size: 26px !important;
+	}
+}
+
+.entry-content .estjo-heading--compact,
+.wp-block-group.is-style-mea-rouge .estjo-heading--compact {
+	margin-top: 1rem !important;
+	margin-bottom: 0.5rem !important;
+}
+
 /* stylelint-enable plugin/stylelint-bem-namics */
