@@ -25,4 +25,8 @@ debug.log
 
 # Photos dropped here before processing. This repository is public: a photo of
 # pupils must never enter it, not even for the length of one commit.
-raw/
+#
+# Anchored to the root: this is the one drop zone. Without the leading slash the
+# pattern would also swallow any other directory named "raw", at any depth, and
+# hiding files nobody asked to hide is how a rule stops being trusted.
+/raw/
