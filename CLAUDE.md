@@ -105,6 +105,17 @@ découpage :
 verifier() { depot="$1"; pr="$2"; ...; }   # et non : for r in "a 1" "b 2"; do set -- $r
 ```
 
+Le même piège a une seconde face, qui coûte une deuxième fois : **`for x in $sortie` ne découpe pas
+non plus les lignes**. La sortie entière part comme un unique élément, et l'appel reçoit trois
+identifiants collés là où il en attendait un — l'erreur dit alors « Could not resolve to a node »,
+ce qui envoie chercher du côté du serveur distant plutôt que du shell. On itère sur des lignes en
+les lisant, jamais en comptant sur un découpage :
+
+```bash
+cmd > /tmp/liste.txt
+while IFS= read -r ligne; do [ -n "$ligne" ] || continue; ...; done < /tmp/liste.txt
+```
+
 **Un lanceur de tests vise la production par défaut.** `playwright.config.ts` retombe sur
 `https://ecole.st-joseph.fr` quand `BASE_URL` est absent. Lancer `npx playwright test` à la main
 mesure donc **le site en ligne** en croyant mesurer le clone — sept échecs qu'on s'apprête à
