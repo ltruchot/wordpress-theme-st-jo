@@ -199,9 +199,9 @@ après.
   3. **traiter chaque retour** : corrigé, ou refusé avec sa raison écrite dans le fil, puis résolu.
      La protection de `main` l'exige de toute façon.
 
-  Et pousser une correction relance qodo : le cycle recommence à l'étape 1 jusqu'à ce qu'un passage
-  ne rapporte plus rien de neuf. Une PR qu'on croit finie parce qu'on a corrigé ce qu'elle disait
-  au premier tour ne l'est pas.
+  Puis **une seule** `/agentic_review`, et on s'arrête là. La nouvelle salve fait souvent
+  apparaître d'autres points : c'est normal, et c'est Loïc qui décide d'une passe de plus. Enchaîner
+  tout seul, c'est boucler sur un bot jusqu'à épuisement du sujet ou du budget.
 - **Le corps d'une PR dit aussi ce qui n'a pas été vérifié.** Lister ses contrôles est facile ;
   nommer ce qu'on n'a pas pu atteindre l'est moins, et c'est ce qui a de la valeur. Un rendu
   d'éditeur qui demande une session authentifiée, un navigateur qu'on n'a pas, un cas qu'on n'a pas
