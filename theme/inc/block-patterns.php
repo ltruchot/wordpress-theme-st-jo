@@ -9,6 +9,20 @@
  * Register block patterns
  */
 function st_jo_register_block_patterns() {
+	/*
+	 * Sample media for the patterns below.
+	 *
+	 * These used to be six files that never existed -- sample-image.jpg,
+	 * sample-icon.png, sample-round-image*.jpg -- behind a hardcoded
+	 * `/wp-content/themes/st-jo/theme/assets/...` path carrying one `theme/`
+	 * segment too many. Inserting any of those patterns produced broken
+	 * images. They now point at assets the theme actually ships, through the
+	 * function that knows where the theme lives; an editor replaces them from
+	 * the media library like any other image.
+	 */
+	$sample_photo = esc_url( get_theme_file_uri( 'assets/images/enfants-jouant-a-l-ecole.jpg' ) );
+	$sample_icon  = esc_url( get_theme_file_uri( 'assets/icons/calendar.png' ) );
+
 	// Register button patterns category
 	register_block_pattern_category(
 		'st-jo-buttons',
@@ -31,7 +45,7 @@ function st_jo_register_block_patterns() {
 			'keywords'    => array( 'image', 'masque', 'dessiné', 'svg', 'forme' ),
 			'content'     => '<!-- wp:html -->
 <div class="carousel-masked-image-wrapper">
-	<div class="carousel-masked-image with-splash with-character" style="--carousel-image-url: url(\'/wp-content/themes/st-jo/theme/assets/images/sample-image.jpg\');">
+	<div class="carousel-masked-image with-splash with-character" style="--carousel-image-url: url(\'' . $sample_photo . '\');">
 		<div class="splash-overlay"></div>
 		<div class="character-body"></div>
 		<div class="character-head"></div>
@@ -175,10 +189,10 @@ function st_jo_register_block_patterns() {
 <!-- wp:group {"className":"is-style-icon-title"} -->
 <div class="wp-block-group is-style-icon-title">
 <!-- wp:image {"width":64,"height":64} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-icon.png" alt="" width="64" height="64"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_icon . '" alt="" width="64" height="64"/></figure>
 <!-- /wp:image -->
 <!-- wp:heading {"level":3} -->
-<h4 class="wp-block-heading">' . __( 'Titre principal', 'st-jo' ) . '</h4>
+<h3 class="wp-block-heading">' . __( 'Titre principal', 'st-jo' ) . '</h3>
 <!-- /wp:heading -->
 </div>
 <!-- /wp:group -->
@@ -211,7 +225,7 @@ function st_jo_register_block_patterns() {
 			'content'     => '<!-- wp:group {"className":"is-style-icon-title"} -->
 <div class="wp-block-group is-style-icon-title">
 <!-- wp:image {"width":64,"height":64} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-icon.png" alt="" width="64" height="64"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_icon . '" alt="" width="64" height="64"/></figure>
 <!-- /wp:image -->
 <!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">' . __( 'Titre avec icône', 'st-jo' ) . '</h3>
@@ -232,7 +246,7 @@ function st_jo_register_block_patterns() {
 			'content'     => '<!-- wp:group {"className":"is-style-round-image-link"} -->
 <div class="wp-block-group is-style-round-image-link">
 <!-- wp:image {"width":250,"height":250} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image.jpg" alt="" width="250" height="250"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_photo . '" alt="" width="250" height="250"/></figure>
 <!-- /wp:image -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
@@ -259,7 +273,7 @@ function st_jo_register_block_patterns() {
 <!-- wp:group {"className":"is-style-round-image-link"} -->
 <div class="wp-block-group is-style-round-image-link">
 <!-- wp:image {"width":250,"height":250} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-1.jpg" alt="" width="250" height="250"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_photo . '" alt="" width="250" height="250"/></figure>
 <!-- /wp:image -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
@@ -274,7 +288,7 @@ function st_jo_register_block_patterns() {
 <!-- wp:group {"className":"is-style-round-image-link"} -->
 <div class="wp-block-group is-style-round-image-link">
 <!-- wp:image {"width":250,"height":250} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-2.jpg" alt="" width="250" height="250"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_photo . '" alt="" width="250" height="250"/></figure>
 <!-- /wp:image -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
@@ -303,7 +317,7 @@ function st_jo_register_block_patterns() {
 <!-- wp:group {"className":"is-style-round-image-link"} -->
 <div class="wp-block-group is-style-round-image-link">
 <!-- wp:image {"width":250,"height":250} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-1.jpg" alt="" width="250" height="250"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_photo . '" alt="" width="250" height="250"/></figure>
 <!-- /wp:image -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
@@ -318,7 +332,7 @@ function st_jo_register_block_patterns() {
 <!-- wp:group {"className":"is-style-round-image-link"} -->
 <div class="wp-block-group is-style-round-image-link">
 <!-- wp:image {"width":250,"height":250} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-2.jpg" alt="" width="250" height="250"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_photo . '" alt="" width="250" height="250"/></figure>
 <!-- /wp:image -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
@@ -333,7 +347,7 @@ function st_jo_register_block_patterns() {
 <!-- wp:group {"className":"is-style-round-image-link"} -->
 <div class="wp-block-group is-style-round-image-link">
 <!-- wp:image {"width":250,"height":250} -->
-<figure class="wp-block-image is-resized"><img src="/wp-content/themes/st-jo/theme/assets/images/sample-round-image-3.jpg" alt="" width="250" height="250"/></figure>
+<figure class="wp-block-image is-resized"><img src="' . $sample_photo . '" alt="" width="250" height="250"/></figure>
 <!-- /wp:image -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
