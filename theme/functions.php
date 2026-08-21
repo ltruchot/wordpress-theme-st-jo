@@ -150,23 +150,36 @@ function st_jo_widgets_init() {
 }
 add_action( 'widgets_init', 'st_jo_widgets_init' );
 
-/**
- * Returns a cache-busting version for one of the theme's own files.
+/*
+ * Cache busting, from the file itself.
  *
- * The file's modification time, which changes exactly when the file does. A
- * fixed version number cannot do this, and a hash would mean reading the whole
- * file on every request where a single `stat` suffices.
+ * The modification time changes exactly when the file does. A fixed version
+ * number cannot do that, and a hash would mean reading the whole file on every
+ * request where a single `stat` suffices.
  *
- * @param string $relative_path Path inside the theme, e.g. `js/script.min.js`.
- * @return string Version string for wp_enqueue_*.
+ * Guarded like st_jo_setup(): a child theme must be able to define its own
+ * without a fatal redeclaration when the parent loads.
  */
-function st_jo_asset_version( $relative_path ) {
-	$file = get_theme_file_path( $relative_path );
+if ( ! function_exists( 'st_jo_asset_version' ) ) :
+	/**
+	 * Returns a cache-busting version for one of the theme's own files.
+	 *
+	 * @param string $relative_path Path inside the theme, e.g. `js/script.min.js`.
+	 * @return string Version string for wp_enqueue_*.
+	 */
+	function st_jo_asset_version( $relative_path ) {
+		/*
+		 * `filemtime()` answers false on failure -- a race with a deployment, an
+		 * unreadable directory -- and it can do so on a file that exists. Casting
+		 * that to a string yields `?ver=` with nothing after it, which is the very
+		 * thing this function exists to avoid: an empty version busts no cache and
+		 * tells no one anything.
+		 */
+		$modified = @filemtime( get_theme_file_path( $relative_path ) );
 
-	// A missing file means something is wrong with the build; fall back rather
-	// than emit `?ver=` with nothing after it.
-	return file_exists( $file ) ? (string) filemtime( $file ) : ST_JO_VERSION;
-}
+		return false !== $modified ? (string) $modified : ST_JO_VERSION;
+	}
+endif;
 
 /**
  * Enqueue scripts and styles.
@@ -176,7 +189,7 @@ function st_jo_scripts() {
 	wp_enqueue_style( 'st-jo-google-fonts', 'https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap', array(), null );
 	
 	wp_enqueue_style( 'st-jo-style', get_stylesheet_uri(), array(), st_jo_asset_version( 'style.css' ) );
-	wp_enqueue_script( 'st-jo-script', get_template_directory_uri() . '/js/script.min.js', array(), st_jo_asset_version( 'js/script.min.js' ), true );
+	wp_enqueue_script( 'st-jo-script', get_theme_file_uri( 'js/script.min.js' ), array(), st_jo_asset_version( 'js/script.min.js' ), true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -191,7 +204,7 @@ function st_jo_enqueue_block_editor_script() {
 	if ( is_admin() ) {
 		wp_enqueue_script(
 			'st-jo-editor',
-			get_template_directory_uri() . '/js/block-editor.min.js',
+			get_theme_file_uri( 'js/block-editor.min.js' ),
 			array(
 				'wp-blocks',
 				'wp-edit-post',
