@@ -22,3 +22,7 @@ st-jo.zip
 
 # Windows crash artifact, unrelated to the theme:
 debug.log
+
+# Photos deposees ici avant traitement : ce depot est public, et une photo
+# d'eleves n'y a pas sa place, meme le temps d'un commit.
+raw/
