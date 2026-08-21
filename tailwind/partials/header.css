@@ -4,6 +4,22 @@
  */
 
 /**
+ * Keep Tailwind's class detection to the theme's own source.
+ *
+ * Tailwind scans the whole project and turns any string that looks like a
+ * utility into real CSS. Documentation counts: a vendored WordPress reference
+ * mentioning `class="wp-block-image size-full"` was enough to generate
+ * `.size-full { width: 100%; height: 100% }` -- which collides head-on with the
+ * class WordPress puts on every full-size image. Five figures on the home page
+ * were stretched and the blocks below them pushed down by 183 pixels, from a
+ * commit that touched no CSS at all.
+ *
+ * Anything under `.claude` is documentation for agents, never markup this theme
+ * renders, so it has no business feeding the stylesheet.
+ */
+@source not "../../.claude";
+
+/**
  * Add Tailwind Typography and a corresponding config file.
  */
 @plugin "@_tw/typography";
