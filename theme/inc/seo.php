@@ -74,6 +74,11 @@ add_filter( 'pre_handle_404', 'st_jo_keep_sitemap_status', 10, 2 );
  * Declaring the school as a LocalBusiness would light up a documented rich
  * result, and would be a lie about what this organisation is. We do not.
  *
+ * The values come from st_jo_school(), which the footer template reads too:
+ * one postal address, written once. A second copy would drift the day one of
+ * them is corrected, and publish a contradiction between what a visitor reads
+ * and what a search engine is told.
+ *
  * On visibility, precisely -- the earlier wording here was too broad. The name,
  * the postal address, the phone number and the URL are all on the page: they
  * sit in the footer of every one of them, which is what makes marking them up
@@ -94,38 +99,37 @@ add_filter( 'pre_handle_404', 'st_jo_keep_sitemap_status', 10, 2 );
  * @return array The ElementarySchool node.
  */
 function st_jo_school_schema() {
+	$school = st_jo_school();
+
 	return array(
 		'@type'         => 'ElementarySchool',
 		'@id'           => home_url( '/#school' ),
-		'name'          => 'École Saint-Joseph',
+		'name'          => $school['name'],
 		'alternateName' => array(
 			'École primaire privée Saint-Joseph',
-			'École Saint-Joseph La Bouëxière',
+			$school['name'] . ' ' . $school['city'],
 			'École maternelle et élémentaire Saint-Joseph',
 		),
 		'url'           => home_url( '/' ),
 		'logo'          => get_theme_file_uri( 'assets/images/Logotype.png' ),
-		'telephone'     => '+33299626309',
+		'telephone'     => $school['phone_e164'],
+		'email'         => $school['email'],
 		'address'       => array(
 			'@type'           => 'PostalAddress',
-			'streetAddress'   => 'Allée Henri Queffélec',
-			'postalCode'      => '35340',
-			'addressLocality' => 'La Bouëxière',
-			'addressRegion'   => 'Bretagne',
-			'addressCountry'  => 'FR',
+			'streetAddress'   => $school['street'],
+			'postalCode'      => $school['postcode'],
+			'addressLocality' => $school['city'],
+			'addressRegion'   => $school['region'],
+			'addressCountry'  => $school['country'],
 		),
-		/*
-		 * Six decimals. The three published by the Éducation nationale directory
-		 * are below what the structured data guidelines ask for.
-		 */
 		'geo'           => array(
 			'@type'     => 'GeoCoordinates',
-			'latitude'  => 48.184514,
-			'longitude' => -1.440811,
+			'latitude'  => $school['latitude'],
+			'longitude' => $school['longitude'],
 		),
 		'areaServed'    => array(
 			'@type' => 'City',
-			'name'  => 'La Bouëxière',
+			'name'  => $school['city'],
 		),
 		/*
 		 * The UAI is the identifier the French state uses for a school. Google
@@ -135,11 +139,11 @@ function st_jo_school_schema() {
 		'identifier'    => array(
 			'@type'      => 'PropertyValue',
 			'propertyID' => 'UAI',
-			'value'      => '0351195J',
+			'value'      => $school['uai'],
 		),
 		'sameAs'        => array(
-			'https://www.education.gouv.fr/annuaire/35340/la-bouexiere',
-			'https://www.facebook.com/share/19sAwLHJa1/?mibextid=wwXIfr',
+			$school['directory'],
+			$school['facebook'],
 		),
 	);
 }
@@ -165,10 +169,10 @@ function st_jo_print_schema() {
 				'@type'         => 'WebSite',
 				'@id'           => home_url( '/#website' ),
 				'url'           => home_url( '/' ),
-				'name'          => 'École Saint-Joseph',
+				'name'          => st_jo_school()['name'],
 				'alternateName' => array(
-					'École Saint-Joseph La Bouëxière',
-					'St-Joseph La Bouëxière',
+					st_jo_school()['name'] . ' ' . st_jo_school()['city'],
+					'St-Joseph ' . st_jo_school()['city'],
 				),
 				'inLanguage'    => 'fr-FR',
 				'publisher'     => array( '@id' => home_url( '/#school' ) ),
