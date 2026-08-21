@@ -21,7 +21,7 @@ get_header();
 					/* translators: 1: search result title. 2: search term. */
 					'<h1 class="page-title">%1$s <span>%2$s</span></h1>',
 					esc_html__( 'Résultats de recherche pour :', 'st-jo' ),
-					esc_html( get_search_query() )
+					esc_html( get_search_query( false ) )
 				);
 				?>
 			</header><!-- .page-header -->
