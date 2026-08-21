@@ -217,6 +217,13 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Block patterns for reusable components.
  */
+/**
+ * The school's own facts -- name, address, contact -- in one place.
+ *
+ * Required before the files that read it.
+ */
+require get_template_directory() . '/inc/school.php';
+
 require get_template_directory() . '/inc/block-patterns.php';
 
 /**

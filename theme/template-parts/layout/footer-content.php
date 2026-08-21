@@ -7,6 +7,7 @@
  * @package st-jo
  */
 
+$st_jo_school = st_jo_school();
 ?>
 <section class="estjo-footer-for-parents max-w-[1200px] mx-0 md:mx-auto mb-8 md:mb-24">
 	<!-- MEA quadrillée -->
@@ -76,20 +77,20 @@
 			<section>
 				<h2 class="estjo-footer__title">L'école</h2>
 				<address>
-					École Saint-Joseph<br>
-					Allée Henri Queffélec<br>
-					35340 La Bouëxière<br>
+					<?php echo esc_html( $st_jo_school['name'] ); ?><br>
+					<?php echo esc_html( $st_jo_school['street'] ); ?><br>
+					<?php echo esc_html( $st_jo_school['postcode'] . ' ' . $st_jo_school['city'] ); ?><br>
 				</address>
 			</section>
 			<section>
 				<ul>
 					<li>
-						<a href="tel:0299626309" class="no-underline"><img
+						<a href="tel:<?php echo esc_attr( $st_jo_school['phone_tel'] ); ?>" class="no-underline"><img
 								src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/smartphone.svg' ) ); ?>"
-								alt="">02 99 62 63 09</a>
+								alt=""><?php echo esc_html( $st_jo_school['phone'] ); ?></a>
 					</li>
 					<li>
-						<a href="mailto:eco35.st-joseph.la-bouexiere@enseignement-catholique.bzh"><img
+						<a href="mailto:<?php echo esc_attr( $st_jo_school['email'] ); ?>"><img
 								src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/speak.svg' ) ); ?>"
 								alt="">Nous écrire ›</a>
 					</li>
@@ -105,7 +106,7 @@
 				<h2 class="estjo-footer__title">Suivez l’animation de l’école et les prochains évènements sur le Facebook de l’Apel !</h2>
 				<ul>
 					<li>
-						<a href="https://www.facebook.com/share/19sAwLHJa1/?mibextid=wwXIfr" target="_blank" rel="noopener"><img
+						<a href="<?php echo esc_url( $st_jo_school['facebook'] ); ?>" target="_blank" rel="noopener"><img
 								src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/facebook.svg' ) ); ?>"
 								alt="">Facebook de l’APEL</a>
 					</li>
