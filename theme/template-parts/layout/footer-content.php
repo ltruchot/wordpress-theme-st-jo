@@ -58,9 +58,9 @@
 <footer class="estjo-footer">
 	<!-- Background foating colored shapes -->
 	<div class="estjo-footer__shapes">
-		<img src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/st-jo-shape1.svg"
+		<img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/footer-shape-1.svg' ) ); ?>"
 			alt="">
-		<img src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/st-jo-shape2.svg"
+		<img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/footer-shape-2.svg' ) ); ?>"
 			alt="">
 	</div>
 	<!-- Background header to decorate the footer top -->
@@ -70,14 +70,14 @@
 
 		<div class="estjo-footer__content">
 			<section>
-				<img src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/logo-enseignement-catholique.png"
+				<img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/logo-enseignement-catholique.png' ) ); ?>"
 					alt="Logo de l'enseignement catholique">
 			</section>
 			<section>
 				<h2 class="estjo-footer__title">L'école</h2>
 				<address>
 					École Saint-Joseph<br>
-					Allée Henri Quéfélec<br>
+					Allée Henri Queffélec<br>
 					35340 La Bouëxière<br>
 				</address>
 			</section>
@@ -85,17 +85,17 @@
 				<ul>
 					<li>
 						<a href="tel:0299626309" class="no-underline"><img
-								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-smartphone.svg"
+								src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/smartphone.svg' ) ); ?>"
 								alt="">02 99 62 63 09</a>
 					</li>
 					<li>
 						<a href="mailto:eco35.st-joseph.la-bouexiere@enseignement-catholique.bzh"><img
-								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-speak.svg"
+								src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/speak.svg' ) ); ?>"
 								alt="">Nous écrire ›</a>
 					</li>
 					<li>
-						<a href="https://ecole.st-joseph.fr/infos-pratiques"><img
-								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-talk.svg"
+						<a href="<?php echo esc_url( home_url( '/infos-pratiques/' ) ); ?>"><img
+								src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/talk.svg' ) ); ?>"
 								alt="">Infos
 							pratiques ›</a>
 					</li>
@@ -105,8 +105,8 @@
 				<h2 class="estjo-footer__title">Suivez l’animation de l’école et les prochains évènements sur le Facebook de l’Apel !</h2>
 				<ul>
 					<li>
-						<a href="https://www.facebook.com/share/19sAwLHJa1/?mibextid=wwXIfr"><img
-								src="https://ecole.st-joseph.fr/wp-content/uploads/2025/01/icon-facebook.svg"
+						<a href="https://www.facebook.com/share/19sAwLHJa1/?mibextid=wwXIfr" target="_blank" rel="noopener"><img
+								src="<?php echo esc_url( get_theme_file_uri( 'assets/icons/facebook.svg' ) ); ?>"
 								alt="">Facebook de l’APEL</a>
 					</li>
 				</ul>
@@ -118,10 +118,10 @@
 					©2025 École Saint-Joseph
 				</li>
 				<li>
-					<a href="https://ecole.st-joseph.fr">Mentions légales</a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Mentions légales</a>
 				</li>
 				<li>
-					<a href="https://ecole.st-joseph.fr">Données personnelles</a>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Données personnelles</a>
 				</li>
 			</ul>
 		</div>
