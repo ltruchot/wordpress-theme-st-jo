@@ -218,3 +218,8 @@ require get_template_directory() . '/inc/template-functions.php';
  * Block patterns for reusable components.
  */
 require get_template_directory() . '/inc/block-patterns.php';
+
+/**
+ * Search engine visibility: sitemap status and structured data.
+ */
+require get_template_directory() . '/inc/seo.php';
