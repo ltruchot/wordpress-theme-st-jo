@@ -90,6 +90,19 @@ resultat=$(diff a b) && code=0 || code=$?
 [ "$code" -le 1 ] || die "Comparaison impossible."
 ```
 
+**On ne laisse rien derrière soi, et on n'écrase pas ce qui servira.** Un outil qui écrit des
+fichiers en écrit *encore* au passage suivant. Lighthouse ajoute ses rapports à côté des anciens :
+relire le dossier revient alors à mélanger deux états du site et à annoncer un chiffre qui n'a été
+vrai ni de l'un ni de l'autre — c'est ainsi qu'une page notée 100 a été relue à 89. Un lanceur mal
+configuré fait pire : quarante-deux dossiers `C:\Users\...` sont apparus dans le dépôt en une
+commande.
+
+Deux gestes, pas un. **Archiver** ce qui a une valeur de comparaison — un avant et un après, c'est
+l'essentiel de ce à quoi servent des mesures — sous une clé horodatée, avec une profondeur bornée
+pour que personne n'ait à ranger plus tard. Puis **repartir propre**, pour que le dossier de travail
+décrive exactement une exécution, la dernière. Une commande qui produit des fichiers dit dans son
+en-tête où ils vont et ce qu'elle fait des précédents.
+
 **Un garde-fou qui simplifie l'environnement finit par cacher ce qu'on cherche.** Le clone forçait
 `blog_public` à 0 pour n'être jamais indexé — au passage, il coupait les sitemaps par un chemin que
 la production ne prend pas, et le défaut qu'on cherchait était invisible en local. Quand une
