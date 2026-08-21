@@ -19,7 +19,7 @@
 			<?php st_jo_nav_list(); ?>
 			<?php st_jo_button( array(
 				'text' => 'Nous contacter',
-				'url'  => '/contact/'
+				'url'  => home_url( '/contact/' )
 			) ); ?>
 		</nav>
 
@@ -36,7 +36,7 @@
 		<?php st_jo_nav_list(); ?>
 		<?php st_jo_button( array(
 			'text' => 'Nous contacter',
-			'url'  => '/contact/'
+			'url'  => home_url( '/contact/' )
 		) ); ?>
 	</nav>
 </header><!-- #masthead -->

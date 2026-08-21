@@ -361,6 +361,19 @@ h5 {
 /**
  * Appearance, decoupled from level.
  *
+ * Written against `.claude/skills/st-jo-design-system`, which is where the
+ * chain theme.json -> tailwind-theme.css -> utilities is described, and which
+ * asks that a rule live in the component sheet it belongs to.
+ *
+ * The literal pixel values below are deliberate, and they are debt. Every rule
+ * in this file keys off the element name and hardcodes its size, duplicating the
+ * scale that theme.json already publishes as font-size presets. These two
+ * classes exist to reproduce the h4 and h5 rules exactly; reaching for
+ * `--wp--preset--font-size--large` here would tokenise two declarations out of
+ * roughly sixty, and the md breakpoint sizes (26px, 34px, 36px, 48px) have no
+ * token at all -- so half the rule would follow theme.json and the other half
+ * would not. Tokenising this file is worth doing; it is worth doing whole.
+ *
  * Every rule above keys off the element name, so the only way to get a smaller
  * heading was to pick a deeper level. That is how the footer ended up going
  * h2 -> h5 -> h4 on every page of the site: the levels were being used as font
