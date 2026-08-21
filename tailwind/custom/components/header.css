@@ -63,6 +63,9 @@
 				text-decoration: none;
 
 				/*
+				 * Per `.claude/skills/st-jo-design-system`: a palette token, in the
+				 * component sheet that owns the header.
+				 *
 				 * primary-600 rather than primary-500.
 				 *
 				 * The header sits on #F9F7EF, not on the white the `background`

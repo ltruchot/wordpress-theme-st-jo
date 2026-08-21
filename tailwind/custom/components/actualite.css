@@ -36,6 +36,9 @@
 	@apply font-semibold;
 
 	/*
+	 * Per `.claude/skills/st-jo-design-system`: a Tailwind utility built from a
+	 * palette token, never a literal colour.
+	 *
 	 * primary-600, not primary. The block sits on the beige #F9F7EF, where
 	 * #CA4A28 measures 4.33 against text -- just under the 4.5 that normal
 	 * text has to reach. #A23B20 measures 6.15 on the same ground and reads

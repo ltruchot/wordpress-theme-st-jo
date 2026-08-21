@@ -81,6 +81,10 @@
 /*
  * Secondary button (outline style in WordPress)
  *
+ * Written against `.claude/skills/st-jo-design-system`: the colour comes from a
+ * palette token, not a literal, and the rule stays in the component sheet it
+ * belongs to.
+ *
  * primary-600 for the label, not primary-500.
  *
  * An outline button paints its text straight onto the page ground, which is the
