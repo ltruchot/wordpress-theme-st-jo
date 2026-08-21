@@ -63,7 +63,10 @@ Travail de qualité professionnelle sur un site en production, consulté par les
   sécurité, responsive) : elles ne sont pas des objectifs lointains, ce sont les conditions
   d'acceptation.
 
-## Deux pièges d'outillage, déjà payés
+## Pièges d'outillage, déjà payés
+
+Cette section grandit exprès. Chaque friction rencontrée s'y écrit le jour même, avec ce qu'il faut
+faire **et** ce qu'il ne faut pas faire — sinon elle se repaie au complet la fois suivante.
 
 **`git` obéit au dossier courant, pas à l'intention.** Trois dépôts vivent côte à côte, et un `cd`
 posé plus tôt dans la commande suffit à faire remiser, basculer ou dépiler dans le mauvais. Le
@@ -89,6 +92,36 @@ est pire que pas de comparaison. On accepte les codes attendus, on s'arrête sur
 resultat=$(diff a b) && code=0 || code=$?
 [ "$code" -le 1 ] || die "Comparaison impossible."
 ```
+
+**Le shell est `zsh`, et `zsh` ne découpe pas une variable non quotée.** En `bash`,
+`set -- $spec` éclate `"a b"` en deux paramètres ; en `zsh`, le paramètre reste `a b` d'un seul
+tenant, et la boucle traite un dépôt nommé « ltruchot/depot 31 ». Aucun message d'erreur, juste un
+résultat absurde. Même famille : `${PIPESTATUS[0]}` est du `bash` — `zsh` écrit `$pipestatus[1]`, et
+la version `bash` s'affiche vide sans rien signaler. La parade n'est pas de mémoriser les écarts,
+c'est de **passer les valeurs en paramètres explicites d'une fonction** plutôt que de compter sur un
+découpage :
+
+```bash
+verifier() { depot="$1"; pr="$2"; ...; }   # et non : for r in "a 1" "b 2"; do set -- $r
+```
+
+Le même piège a une seconde face, qui coûte une deuxième fois : **`for x in $sortie` ne découpe pas
+non plus les lignes**. La sortie entière part comme un unique élément, et l'appel reçoit trois
+identifiants collés là où il en attendait un — l'erreur dit alors « Could not resolve to a node »,
+ce qui envoie chercher du côté du serveur distant plutôt que du shell. On itère sur des lignes en
+les lisant, jamais en comptant sur un découpage :
+
+```bash
+cmd > /tmp/liste.txt
+while IFS= read -r ligne; do [ -n "$ligne" ] || continue; ...; done < /tmp/liste.txt
+```
+
+**Un lanceur de tests vise la production par défaut.** `playwright.config.ts` retombe sur
+`https://ecole.st-joseph.fr` quand `BASE_URL` est absent. Lancer `npx playwright test` à la main
+mesure donc **le site en ligne** en croyant mesurer le clone — sept échecs qu'on s'apprête à
+attribuer à sa propre modification. On passe toujours par les scripts npm, qui portent la cible dans
+leur nom : `npm run check:local`, `check:seo`, `check:a11y`. Et quand un chiffre surprend, la
+première question est **« sur quoi ai-je mesuré ? »**.
 
 **On ne laisse rien derrière soi, et on n'écrase pas ce qui servira.** Un outil qui écrit des
 fichiers en écrit *encore* au passage suivant. Lighthouse ajoute ses rapports à côté des anciens :
@@ -167,10 +200,19 @@ après.
 ## Mise en production
 
 - **`main` est protégé : jamais de push direct.** Une Pull Request, toujours.
-- **On ne merge pas avant d'avoir lu la review de qodo.** Elle met quelques minutes à venir, et
-  merger sans l'attendre revient à décider qu'elle ne sert à rien. Ses retours se traitent avec la
-  skill `qodo-pr-review` : chacun est corrigé ou refusé avec sa raison écrite dans le fil, puis
-  résolu — la protection de `main` l'exige de toute façon.
+- **Ouvrir la PR n'est pas la finir.** Une PR ouverte appelle trois gestes, dans cet ordre, et
+  aucun ne se saute :
+  1. **attendre la review de qodo** — elle met quelques minutes à venir, et passer outre revient à
+     décider qu'elle ne sert à rien ;
+  2. **repasser dessus avec la skill `qodo-pr-review` chargée**, pas de mémoire. La skill décrit
+     une procédure — un sous-agent par retour, un commit atomique par correction, `/agentic_review`
+     pour relancer — et la suivre de tête, c'est en oublier la moitié. C'est déjà arrivé ;
+  3. **traiter chaque retour** : corrigé, ou refusé avec sa raison écrite dans le fil, puis résolu.
+     La protection de `main` l'exige de toute façon.
+
+  Puis **une seule** `/agentic_review`, et on s'arrête là. La nouvelle salve fait souvent
+  apparaître d'autres points : c'est normal, et c'est Loïc qui décide d'une passe de plus. Enchaîner
+  tout seul, c'est boucler sur un bot jusqu'à épuisement du sujet ou du budget.
 - **Le corps d'une PR dit aussi ce qui n'a pas été vérifié.** Lister ses contrôles est facile ;
   nommer ce qu'on n'a pas pu atteindre l'est moins, et c'est ce qui a de la valeur. Un rendu
   d'éditeur qui demande une session authentifiée, un navigateur qu'on n'a pas, un cas qu'on n'a pas

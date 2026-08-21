@@ -77,6 +77,56 @@ a eu une — « émentaire » pour « élémentaire » — pendant des mois.
 Pour changer la construction, filtrer `document_title_parts`. Jamais écrire le `<title>` en dur dans
 un gabarit : la pagination, la recherche et les archives cesseraient de fonctionner.
 
+### L'image d'aperçu au partage, et par où elle passe
+
+Quand un parent colle un lien dans le groupe WhatsApp de la classe, c'est `og:image` qui décide s'il
+y a une vignette ou un rectangle vide. Les pages du site **n'ont pas d'image mise en avant** : elles
+dépendent donc toutes de l'image par défaut, un seul réglage pour les sept.
+
+Slim SEO la cherche dans cet ordre, et s'arrête au premier trouvé — `src/MetaTags/Image.php` :
+
+1. le champ « Facebook image » de la boîte SEO **de la page** ;
+2. le réglage du **type de contenu** ;
+3. l'**image mise en avant** de la page ;
+4. `slim_seo[default_facebook_image]`, *SEO → Réseaux sociaux → Image Facebook*.
+
+**Le réglage stocke une URL, pas un identifiant de média.** Slim SEO remonte ensuite à la pièce
+jointe *depuis* cette URL pour publier `og:image:width`, `og:image:height` et `og:image:alt`. D'où
+une conséquence à ne pas découvrir en production : si l'URL n'est pas exactement celle que WordPress
+sert — une variante redimensionnée, une adresse de CDN, un domaine qui a changé — la résolution
+échoue en silence, `og:image` sort seul, et l'aperçu perd ses dimensions et son texte alternatif.
+
+**`og:image:alt` est le texte alternatif du média** (`_wp_attachment_image_alt`), à défaut son titre.
+Le texte alternatif d'un média n'est donc pas de la décoration d'arrière-boutique : il est publié
+dans le `<head>` de toutes les pages.
+
+### Fabriquer l'image, et l'y déposer
+
+Trois contraintes, dans cet ordre d'importance :
+
+- **Le poids.** L'aperçu est téléchargé par l'application qui l'affiche, dans un délai court et
+  souvent en réseau mobile. Un PNG de photo est le mauvais format — 1,39 Mo pour l'image de 2026 —
+  là où un JPEG progressif de qualité 88 en sous-échantillonnage 4:2:0 rend 217 Ko pour 38,5 dB de
+  PSNR, soit un écart invisible à l'œil (mesuré). *Non vérifié ici, et souvent rapporté* : WhatsApp
+  renoncerait à la vignette au-delà de quelques centaines de kilooctets. On n'a pas de moyen de le
+  constater depuis le dépôt ; viser petit ne coûte rien et lève la question.
+- **La taille.** Au-delà de 600 × 315 px, Facebook affiche la grande carte ; 1200 × 630 est
+  l'optimum sur écran dense. **Ne pas agrandir pour atteindre le chiffre** : des pixels inventés se
+  voient, un aperçu un peu moins net ne se voit pas. Les plateformes recadrent au centre — c'est
+  donc le centre de l'image qui doit porter le sujet.
+- **Les métadonnées transportées.** Une photo venue d'un téléphone porte souvent la position GPS de
+  la prise de vue. Réencoder sans recopier EXIF ni profil ICC, et le vérifier plutôt que le supposer.
+
+Le dépôt du thème est **public** : une photo d'élèves n'y entre jamais, même le temps d'un commit
+(`raw/` est ignoré pour cette raison). Le trajet est `raw/` → médiathèque, par
+
+```bash
+bash scripts/deploy-media.sh photo.jpg --titre "…" --alt "…" --legende "…"
+```
+
+Le `--alt` est ce qui ressortira en `og:image:alt`. Le script affiche l'URL publique à recopier dans
+le réglage.
+
 ## 3. Les données structurées de l'école
 
 Le type le plus spécifique pour une école primaire française est **`ElementarySchool`**

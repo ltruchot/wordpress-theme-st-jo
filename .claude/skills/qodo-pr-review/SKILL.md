@@ -1,7 +1,6 @@
 ---
 name: qodo-pr-review
 description: Traiter une review de qodo-code-review[bot] sur une Pull Request — récupérer l'« Agent Prompt » de chaque finding, le confier à un sous-agent, vérifier soi-même, poser un commit atomique par finding, pousser, puis déclencher UNE seule nouvelle review. À utiliser quand on demande de « traiter la review qodo » d'une PR, avec ou sans numéro.
-globs: []
 ---
 
 # Traiter une review qodo
@@ -88,6 +87,27 @@ gh api "repos/$REPO/issues/$PR/comments" \
 
 Extraire par finding : numéro, titre, sévérité, catégorie, `path`, `line`, et l'**Agent Prompt**
 (le premier bloc de code après `<summary>…Agent Prompt</summary>`).
+
+**Un commentaire de qodo n'est pas une review.** Quelques secondes après l'ouverture de la PR, le
+bot publie un premier commentaire qui contient **« Qodo is busy working »**, un résumé, un
+diagramme et des « alternative approaches ». Les findings, eux, arrivent plusieurs minutes plus
+tard, en **commentaires de ligne**. Lire ce premier commentaire et conclure « aucun finding » est
+l'erreur exacte que la règle d'attente cherche à éviter — et elle est facile à commettre, parce
+qu'un commentaire *est* apparu.
+
+Les deux signaux qui disent qu'on peut y aller :
+
+```bash
+# 1. le commentaire de niveau PR ne dit plus "busy working"
+gh api "repos/$REPO/issues/$PR/comments" \
+  --jq '[.[]|select(.user.login=="qodo-code-review[bot]")|.body]|join(" ")' | grep -c "busy working"
+# 2. et/ou des commentaires de ligne existent
+gh api "repos/$REPO/pulls/$PR/comments" \
+  --jq '[.[]|select(.user.login=="qodo-code-review[bot]")]|length'
+```
+
+Tant que ni l'un ni l'autre n'est vrai, on attend — avec un `Monitor` qui prévient, pas en
+rafraîchissant à la main.
 
 ### 3. Trier AVANT de corriger
 
