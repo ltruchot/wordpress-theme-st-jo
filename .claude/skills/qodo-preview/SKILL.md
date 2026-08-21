@@ -1,7 +1,6 @@
 ---
 name: qodo-preview
 description: Lancer la review locale de Qodo (le même moteur que le bot de PR) sur les changements non committés ou sur la branche, AVANT de committer ou de pousser, et ramener les retours dans la session. À utiliser avant de committer un changement notable, avant de pousser une branche, ou quand on demande un « aperçu local de la review qodo ».
-globs: []
 ---
 
 # Aperçu local de la review qodo
