@@ -63,7 +63,10 @@ Travail de qualité professionnelle sur un site en production, consulté par les
   sécurité, responsive) : elles ne sont pas des objectifs lointains, ce sont les conditions
   d'acceptation.
 
-## Deux pièges d'outillage, déjà payés
+## Pièges d'outillage, déjà payés
+
+Cette section grandit exprès. Chaque friction rencontrée s'y écrit le jour même, avec ce qu'il faut
+faire **et** ce qu'il ne faut pas faire — sinon elle se repaie au complet la fois suivante.
 
 **`git` obéit au dossier courant, pas à l'intention.** Trois dépôts vivent côte à côte, et un `cd`
 posé plus tôt dans la commande suffit à faire remiser, basculer ou dépiler dans le mauvais. Le
@@ -89,6 +92,25 @@ est pire que pas de comparaison. On accepte les codes attendus, on s'arrête sur
 resultat=$(diff a b) && code=0 || code=$?
 [ "$code" -le 1 ] || die "Comparaison impossible."
 ```
+
+**Le shell est `zsh`, et `zsh` ne découpe pas une variable non quotée.** En `bash`,
+`set -- $spec` éclate `"a b"` en deux paramètres ; en `zsh`, le paramètre reste `a b` d'un seul
+tenant, et la boucle traite un dépôt nommé « ltruchot/depot 31 ». Aucun message d'erreur, juste un
+résultat absurde. Même famille : `${PIPESTATUS[0]}` est du `bash` — `zsh` écrit `$pipestatus[1]`, et
+la version `bash` s'affiche vide sans rien signaler. La parade n'est pas de mémoriser les écarts,
+c'est de **passer les valeurs en paramètres explicites d'une fonction** plutôt que de compter sur un
+découpage :
+
+```bash
+verifier() { depot="$1"; pr="$2"; ...; }   # et non : for r in "a 1" "b 2"; do set -- $r
+```
+
+**Un lanceur de tests vise la production par défaut.** `playwright.config.ts` retombe sur
+`https://ecole.st-joseph.fr` quand `BASE_URL` est absent. Lancer `npx playwright test` à la main
+mesure donc **le site en ligne** en croyant mesurer le clone — sept échecs qu'on s'apprête à
+attribuer à sa propre modification. On passe toujours par les scripts npm, qui portent la cible dans
+leur nom : `npm run check:local`, `check:seo`, `check:a11y`. Et quand un chiffre surprend, la
+première question est **« sur quoi ai-je mesuré ? »**.
 
 **On ne laisse rien derrière soi, et on n'écrase pas ce qui servira.** Un outil qui écrit des
 fichiers en écrit *encore* au passage suivant. Lighthouse ajoute ses rapports à côté des anciens :
