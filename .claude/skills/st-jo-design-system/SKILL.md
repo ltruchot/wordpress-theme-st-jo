@@ -135,6 +135,28 @@ style, et le contenu reste modifiable dans l'éditeur.
 Poser un motif, c'est donc deux fichiers : le balisage dans `block-patterns.php`, le style dans
 `custom/components/`, plus la ligne d'`@import` dans `partials/footer.css`.
 
+## Un état qu'aucun test ne voit : `:visited`
+
+Un navigateur d'automatisation démarre sans historique, donc **`:visited` ne s'y applique jamais**.
+Pire, `getComputedStyle()` renvoie délibérément la couleur de l'état *non* visité, pour ne pas
+laisser une page deviner où l'on est allé. Une règle `:visited` fausse est donc invisible à la
+mesure, sur toute la chaîne : axe, Lighthouse, captures d'écran, comparaison de géométrie.
+
+Elle s'est payée une fois. La règle du bouton plein s'écrivait
+`.wp-block-button:not(.is-style-outline) .wp-block-button__link:visited { color: white }` — et
+`is-style-outline-chevron-right` **n'est pas** `is-style-outline`. Le bouton « Découvrir l'école »
+prenait donc du texte blanc une fois cliqué, en gardant son fond transparent : blanc sur le beige de
+la page, illisible, et seulement pour les gens qui avaient déjà visité la destination.
+
+Deux conséquences pratiques :
+
+- **Exclure par convention de nommage, pas par cas** : `:not([class*="is-style-outline"])` couvre la
+  variante qui n'existe pas encore. Une liste de `:not()` se périme au premier style ajouté.
+- **Ce qui n'est pas mesurable se relit.** Quand une règle porte `:visited`, `:target`,
+  `:focus-within` ou une media query que la suite ne joue pas, la vérifier consiste à comparer les
+  sélecteurs à la main — et à se demander lesquels attrapent plus large que leur intention.
+  `element.matches('<sélecteur>')` dans la console tranche en une ligne.
+
 ## Accessibilité et responsive
 
 Ce sont des conditions d'acceptation, pas des objectifs (voir `CLAUDE.md`) : contraste suffisant
