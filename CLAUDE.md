@@ -81,7 +81,14 @@ npm run lint > /tmp/lint.txt 2>&1; echo "code de retour : $?"
 
 Corollaire pour les scripts : sous `set -euo pipefail`, une commande dont le code non nul est
 normal — `diff` qui trouve une différence, `grep -c` qui compte zéro — met fin au script en
-silence. Elle se garde par `|| true`.
+silence. Mais un `|| true` sec corrige le symptôme en avalant tout le reste : `diff` répond **2**
+quand il ne peut pas comparer du tout, et un résultat vide présenté comme une comparaison réussie
+est pire que pas de comparaison. On accepte les codes attendus, on s'arrête sur les autres :
+
+```bash
+resultat=$(diff a b) && code=0 || code=$?
+[ "$code" -le 1 ] || die "Comparaison impossible."
+```
 
 ## Les trois dépôts, et ce qui va où
 
