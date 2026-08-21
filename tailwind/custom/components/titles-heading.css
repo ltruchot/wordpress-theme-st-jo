@@ -413,9 +413,23 @@ h5 {
  * for a deeper level to get it. On the home page three headings had dropped to
  * h4 for their size alone, breaking the order straight after the h1.
  *
- * Only the size is pinned. Colour keeps coming from the surrounding block --
- * white inside the red panel, black elsewhere -- and margins are left to the
- * block that owns them, so `is-style-icon-title` keeps its own zeroed spacing.
+ * Colour keeps coming from the surrounding block: white inside the red panel,
+ * black elsewhere.
+ *
+ * The margins are set here, and the earlier wording claiming they were "left to
+ * the block that owns them" was wrong. `.entry-content .estjo-heading--compact`
+ * reaches inside `is-style-icon-title` too, since that component lives in the
+ * content, and its `!important` beats the `@apply m-0` icon-title asks for.
+ *
+ * That conflict is older than this class and is not changed by it: every rule
+ * above already forces margins on the bare element with `!important`, so
+ * icon-title's `m-0` has never applied to a heading. Measured on the live site,
+ * before any of this: the icon-title heading there carries 16px / 8px, exactly
+ * what this class reproduces. Which is why the geometry did not move by a pixel.
+ *
+ * Worth fixing one day -- either icon-title states its intent with `!important`
+ * or this file stops using it -- but it is a visible change to the home page,
+ * so it belongs to its own pass, seen and approved.
  */
 .entry-content .estjo-heading--compact,
 .wp-block-group.is-style-mea-rouge .estjo-heading--compact,
