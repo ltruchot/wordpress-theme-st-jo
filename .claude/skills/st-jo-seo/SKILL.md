@@ -169,6 +169,12 @@ rapport « Signaux web essentiels » de la Search Console restera vide, ce n'est
 
 Toute exclusion axe est versionnée **avec sa raison écrite**.
 
+**Les rapports Lighthouse s'archivent, puis le dossier repart vide.** `check:lighthouse` déplace le
+passage précédent dans `.lighthouse-archive/<horodatage>/`, en garde cinq, et laisse `.lighthouse`
+ne décrire qu'une seule exécution. Sans ça, Lighthouse ajoute ses rapports à côté des anciens et
+relire le dossier mélange deux états du site : c'est ainsi qu'une page notée 100 a été relue à 89
+ici même.
+
 ## 7. Le piège du clone, déjà payé
 
 Le garde-fou local forçait `blog_public` à 0, ce qui coupait les sitemaps **par un chemin que la
