@@ -137,6 +137,11 @@ Toujours dans cet ordre, et jamais directement en production :
    affiche le diff et exige un `OUI` tapé à la main ;
 6. après publication, réancrer les références visuelles (`npm run baseline` dans `e2e`).
 
+Si le lot comporte aussi une modification du **thème**, elle passe par une Pull Request, et
+**on attend la review de qodo avant de merger** — quelques minutes, et c'est la règle du dépôt.
+Le corps de la PR dit ce qui a été vérifié **et ce qui ne l'a pas été** : le rendu dans l'éditeur
+WordPress, par exemple, demande une session authentifiée qu'un agent n'a pas.
+
 ## Pièges déjà rencontrés
 
 **`docker compose exec` n'hérite de rien.** Une variable exportée dans le shell appelant

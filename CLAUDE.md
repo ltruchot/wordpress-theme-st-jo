@@ -114,6 +114,14 @@ après.
 ## Mise en production
 
 - **`main` est protégé : jamais de push direct.** Une Pull Request, toujours.
+- **On ne merge pas avant d'avoir lu la review de qodo.** Elle met quelques minutes à venir, et
+  merger sans l'attendre revient à décider qu'elle ne sert à rien. Ses retours se traitent avec la
+  skill `qodo-pr-review` : chacun est corrigé ou refusé avec sa raison écrite dans le fil, puis
+  résolu — la protection de `main` l'exige de toute façon.
+- **Le corps d'une PR dit aussi ce qui n'a pas été vérifié.** Lister ses contrôles est facile ;
+  nommer ce qu'on n'a pas pu atteindre l'est moins, et c'est ce qui a de la valeur. Un rendu
+  d'éditeur qui demande une session authentifiée, un navigateur qu'on n'a pas, un cas qu'on n'a pas
+  su reproduire : ça s'écrit, et ça indique à qui revient la vérification.
 - Le déploiement part au merge. Il sauvegarde le thème en ligne, affiche ce qu'il va changer,
   vérifie le site ensuite, et **restaure automatiquement** la sauvegarde en cas d'échec.
 - Avant un changement notable, dans `st-jo-ops` : `bash scripts/backup-live.sh`, puis
