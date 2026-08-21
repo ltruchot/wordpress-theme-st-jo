@@ -63,6 +63,26 @@ Travail de qualité professionnelle sur un site en production, consulté par les
   sécurité, responsive) : elles ne sont pas des objectifs lointains, ce sont les conditions
   d'acceptation.
 
+## Deux pièges d'outillage, déjà payés
+
+**`git` obéit au dossier courant, pas à l'intention.** Trois dépôts vivent côte à côte, et un `cd`
+posé plus tôt dans la commande suffit à faire remiser, basculer ou dépiler dans le mauvais. Le
+symptôme est déroutant : « No stash entries found » alors qu'on vient de remiser. La parade est
+d'écrire le dépôt : `git -C ../wordpress-theme-st-jo status`, jamais `cd … && git …`.
+
+**Une sortie tronquée ne prouve rien.** `| tail -2`, `| head -3`, une chaîne de `&&` : tout cela
+cache les échecs au milieu du flot, et `run-p` entrelace en plus plusieurs processus. C'est ainsi
+qu'un « ESLint : rien à signaler » a été annoncé alors que vingt erreurs sortaient. On conclut sur
+le **code de retour**, pas sur ce qu'on a sous les yeux :
+
+```bash
+npm run lint > /tmp/lint.txt 2>&1; echo "code de retour : $?"
+```
+
+Corollaire pour les scripts : sous `set -euo pipefail`, une commande dont le code non nul est
+normal — `diff` qui trouve une différence, `grep -c` qui compte zéro — met fin au script en
+silence. Elle se garde par `|| true`.
+
 ## Les trois dépôts, et ce qui va où
 
 | Dépôt | Visibilité | Ce qu'il porte | Ce qu'on n'y met **jamais** |

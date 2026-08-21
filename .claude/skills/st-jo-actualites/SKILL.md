@@ -142,6 +142,54 @@ Si le lot comporte aussi une modification du **thème**, elle passe par une Pull
 Le corps de la PR dit ce qui a été vérifié **et ce qui ne l'a pas été** : le rendu dans l'éditeur
 WordPress, par exemple, demande une session authentifiée qu'un agent n'a pas.
 
+## Vérifier dans l'éditeur, sans demander d'accès à personne
+
+Le rendu côté rédactrice ne se devine pas depuis le site public, et il ne demande pourtant aucun
+identifiant : **le clone nous appartient**. On s'y crée un compte le temps de la vérification, et
+on le supprime après. Rien de tout cela n'existe ni ne part en production.
+
+```bash
+PW=$(head -c 18 /dev/urandom | base64 | tr -d '/+=' | head -c 20)
+wp user create verif-locale verif-locale@example.invalid --role=administrator --user_pass="$PW"
+# … vérifier avec Playwright sur http://localhost:8210/wp-login.php …
+wp user delete verif-locale --yes
+```
+
+Le garde-fou local neutralise `wp_mail`, donc l'adresse fictive n'envoie rien nulle part.
+
+Quatre pièges coûtent chacun une tentative ratée :
+
+- **La fenêtre « Bienvenue dans l'éditeur » masque le canevas.** Attendre que `.block-editor`
+  devienne visible échoue en boucle alors que l'éditeur marche très bien. La refermer, ou ne pas
+  attendre sa visibilité.
+- **Les styles de blocs ne sont pas sur l'objet du bloc.** `getBlockType('core/group').styles`
+  revient vide. C'est
+  `wp.data.select('core/blocks').getBlockStyles('core/group')` qui répond.
+- **Le canevas est dans une iframe** nommée `editor-canvas` : atteindre un bloc demande
+  `frameLocator('iframe[name="editor-canvas"]')`.
+- **Laisser le temps.** L'éditeur met plusieurs secondes à se peupler ; interroger trop tôt donne
+  des listes vides qu'on prend pour des absences.
+
+Une capture du panneau vaut mieux qu'une affirmation : elle montre en même temps que le style est
+enregistré, que le bloc porte le bon nom, et que le rendu de l'éditeur ressemble au site.
+
+## Modifier le contenu sans se battre contre les caractères
+
+Le contenu WordPress est semé de caractères qu'on ne voit pas : **espace insécable** après un
+emoji, **espace fine insécable** avant un `›`, apostrophes courbes `’`. Une correspondance
+littérale sur un bloc entier échoue alors sans rien dire de pourquoi.
+
+Repérer plutôt **par index, sur des marqueurs courts et sûrs** — un titre, une ancre — et
+remplacer entre les deux :
+
+```python
+i = s.index('<p><strong>Septembre 2026:</strong></p>')
+j = s.index('<!-- /wp:list -->', s.index('septembre-2026')) + len('<!-- /wp:list -->')
+s = s[:i] + nouveau + s[j:]
+```
+
+Et vérifier les octets quand ça résiste : `cat -A` révèle les espaces insécables d'un coup d'œil.
+
 ## Pièges déjà rencontrés
 
 **`docker compose exec` n'hérite de rien.** Une variable exportée dans le shell appelant

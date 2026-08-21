@@ -89,6 +89,18 @@ Créer `tailwind/custom/components/mon-bloc.css` ne suffit pas. Il faut **l'ajou
 à la liste d'`@import` de `tailwind/partials/footer.css`, sinon il n'est jamais compilé — et
 l'absence est silencieuse, pas d'erreur au build.
 
+### L'autre piège : Tailwind lit tout le projet
+
+Tailwind fabrique une classe utilitaire à partir de **toute chaîne qui y ressemble**, où qu'elle
+soit dans le dépôt — la documentation comprise. Un fichier de référence WordPress mentionnant
+`class="wp-block-image size-full"` a suffi à générer `.size-full { width: 100%; height: 100% }`,
+qui percute la classe posée par WordPress sur chaque image en taille réelle : cinq figures étirées
+sur l'accueil, et un bloc projeté 183 px plus bas, **depuis une PR qui ne touchait aucun CSS**.
+
+`tailwind/partials/header.css` écarte donc `.claude` du scan. Toute nouvelle source de
+documentation dans le dépôt mérite la même question : Tailwind la lit-il, et que pourrait-il en
+tirer ? En cas de doute, comparer les règles générées avant et après.
+
 ### Corollaire utile : la parité éditeur est gratuite
 
 `tailwind.css` (→ `style.css`, le site) et `tailwind-editor.css` (→ `style-editor.css`,
