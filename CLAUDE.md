@@ -135,13 +135,14 @@ est écrit ici se tient seul.
 
 ## Skills du dépôt
 
-Deux skills portent la connaissance du thème. Elles se chargent à la demande — inutile de les
-lire d'avance, mais il faut savoir qu'elles existent :
+Trois skills portent la connaissance du thème et du site. Elles se chargent à la demande —
+inutile de les lire d'avance, mais il faut savoir qu'elles existent :
 
 | Skill | Quand |
 |---|---|
 | `st-jo-design-system` | écrire ou modifier du CSS : jetons, breakpoints, choix du fichier, parité éditeur, motifs de blocs |
 | `st-jo-build` | construire, linter, déployer : scripts, build de production, exigences de la CI, retour arrière |
+| `st-jo-actualites` | publier des actualités à partir d'un e-mail : dates du module d'accueil, détail sur la page Actualités, rotation vers les archives |
 
 Les autres skills de `.claude/skills/` sont des références WordPress amont, laissées telles
 quelles.

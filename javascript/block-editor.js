@@ -56,6 +56,20 @@ wp.domReady(() => {
 	});
 
 	/**
+	 * Add Actualité variation for Group block
+	 *
+	 * The style already had its CSS and its pattern, but no entry in the editor's
+	 * Styles panel: it could only be reached by inserting the pattern. An editor
+	 * who removed the class by accident had no way of putting it back without
+	 * typing it into the Advanced panel.
+	 */
+	wp.blocks.registerBlockStyle('core/group', {
+		name: 'actualite',
+		label: 'Actualité',
+		className: 'is-style-actualite',
+	});
+
+	/**
 	 * Add button variations with chevron
 	 */
 	wp.blocks.registerBlockStyle('core/button', {
