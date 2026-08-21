@@ -34,6 +34,16 @@
  * as well -- in that case render_sitemaps() sets its own 404 later, on
  * template_redirect, and this filter never contradicts it.
  *
+ * THIS IS A WORKAROUND. It papers over a core defect from the outside; it does
+ * not repair it. Two things would make it unnecessary, and either one should
+ * lead to deleting this function rather than keeping it out of habit:
+ *
+ *   1. core exempting sitemap requests in handle_404(), the actual fix;
+ *   2. this site publishing real posts. The bug needs an empty main query, and
+ *      an empty main query is what a site made only of pages produces. The day
+ *      the actualités become `post` entries rather than hand-written page
+ *      content, the defect stops firing on its own.
+ *
  * Known upstream as https://core.trac.wordpress.org/ticket/51912, filed against
  * paginated sitemaps but describing this exact chain: the main query comes back
  * empty, handle_404() sets the status, and template_redirect runs the sitemap
@@ -64,9 +74,22 @@ add_filter( 'pre_handle_404', 'st_jo_keep_sitemap_status', 10, 2 );
  * Declaring the school as a LocalBusiness would light up a documented rich
  * result, and would be a lie about what this organisation is. We do not.
  *
- * Every value below is also visible to a reader on the page itself: the address
- * and phone number sit in the footer of every page. Marking up content that
- * visitors cannot see is what the structured data guidelines forbid.
+ * On visibility, precisely -- the earlier wording here was too broad. The name,
+ * the postal address, the phone number and the URL are all on the page: they
+ * sit in the footer of every one of them, which is what makes marking them up
+ * legitimate. Two fields are not, and are kept deliberately:
+ *
+ *   - `geo` is the machine-readable form of an address the visitor does read,
+ *     not a separate claim about the school;
+ *   - `identifier` carries the UAI, a public state identifier for the
+ *     establishment. It exists to tie this page to the Éducation nationale
+ *     directory entry named in `sameAs`, and it is the honest use of the
+ *     property.
+ *
+ * Nothing here asserts anything a reader could not otherwise verify. What the
+ * guidelines forbid is marking up *content* that visitors cannot see -- a
+ * review, a price, a rating invented for the crawler -- and that is a different
+ * thing from metadata about an entity.
  *
  * @return array The ElementarySchool node.
  */
@@ -153,9 +176,15 @@ function st_jo_print_schema() {
 		),
 	);
 
+	/*
+	 * Slashes stay escaped. Every value here is a literal or comes from
+	 * home_url(), so none of them can carry a `</script>` today -- but the day
+	 * one becomes editable, `\/` is what keeps the sequence from closing the
+	 * tag early. Unicode stays unescaped so the accents read as accents.
+	 */
 	printf(
 		'<script type="application/ld+json">%s</script>' . "\n",
-		wp_json_encode( $graph, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
+		wp_json_encode( $graph, JSON_UNESCAPED_UNICODE )
 	);
 }
 add_action( 'wp_head', 'st_jo_print_schema' );
